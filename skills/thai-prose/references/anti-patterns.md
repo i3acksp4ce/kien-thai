@@ -112,6 +112,9 @@ Reserve การ- for genuinely abstract topics (การปฏิวัติ
 
 Reserve มีความ for genuine emphasis.
 
+Counter-exception: see #38 — `เป็นความ + V` (predicate-noun, e.g. `เป็นความตั้งใจ`)
+is required grammar, not padding. Don't strip it to a bare verb.
+
 ### 11. การที่...นั้น... subject framing
 
 Calque of "the fact that X is..."
@@ -314,6 +317,16 @@ want `ก็` opening (Frame 6) plus a particle close.
 
 - **Bad (clipped)**: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน เป็นความตั้งใจ`
 - **Good**: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน ก็เป็นความตั้งใจ`
+
+Related pitfall — **don't strip `เป็นความ` to a bare verb.** Thai verbs can't serve
+as subject complements alone; `ตั้งใจ` without `เป็นความ-` or an explicit subject
+(`เราตั้งใจ`) flips to imperative ("intend!") or "intent on doing X." This is the
+inverse of rule #10: `มีความ + adj` is bureaucratic padding, but `เป็นความ + V` for
+"X is [verb-as-noun]" is required grammar, not padding.
+
+- **Bad (bare verb)**: `ที่ไม่มีคอลัมนิสต์ดัง ตั้งใจ`
+- **Good (nominalized)**: `ที่ไม่มีคอลัมนิสต์ดัง เป็นความตั้งใจ`
+- **Good (explicit subject)**: `ที่ไม่มีคอลัมนิสต์ดัง เราตั้งใจ`
 
 ## Sentence-level shape  *(Style)*  *(Style)*
 
