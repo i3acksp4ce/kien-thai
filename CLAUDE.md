@@ -1,6 +1,6 @@
 # PRODIGY9 Coding School
 
-This project's AI coding environment is managed by [ACE](https://github.com/prod9/ace).
+This project's AI coding environment is managed by [ACE](https://github.com/ace-rs/ace).
 Run `ace` to start a coding session. Run `ace setup` if not yet configured.
 
 Skills and conventions are provided by the **PRODIGY9 Coding School** school and are
@@ -17,6 +17,44 @@ A skills repo (open-source target) teaching Claude to write Thai prose that:
 4. Counters training-data skew toward over-formal / over-polite Thai.
 
 One skill at `skills/thai-prose/`. School re-imports from here.
+
+### Markdown style
+
+All Markdown files in this repo follow these rules. Durable here so open-source
+contributors follow them without needing the school skill.
+
+**Hard-wrap at column 90.** Wrap every line at 90 columns. Break before the limit,
+never after. Apply to prose, bullet items, and blockquotes. Do not wrap inside fenced
+code blocks, tables, or URLs.
+
+Indent bullet continuations under the first character after the marker:
+
+```markdown
+- A long bullet item that exceeds ninety characters must wrap cleanly at the limit,
+  with the second line aligned under the first letter of the bullet text.
+```
+
+Practical exemptions — treat as atomic, like URLs:
+
+- YAML frontmatter (`description:` fields stay single-line).
+- Long Thai sentences inside inline backticks or blockquotes — splitting mid-string
+  breaks rendering.
+- Verbatim source quotes (English originals for translation examples, etc.).
+
+**Align table columns.** Pad cells with spaces so pipes line up vertically. Size the
+separator dashes to the widest cell in each column. Match padding direction to
+alignment: left-aligned and default columns pad right; right-aligned columns pad left;
+centered columns pad both sides. Apply to header cells too — a right-aligned column
+gets a right-aligned header.
+
+```markdown
+| Name  | Role                  |  Yrs |
+| ----- | --------------------- | ---: |
+| Alice | Engineer              |    4 |
+| Bob   | Senior Staff Engineer | 1024 |
+```
+
+Repad the whole column whenever any cell in it changes width.
 
 ### Layout
 
@@ -69,6 +107,32 @@ uv run pytest -m evaluate                # advisory heuristics on latest iterati
 
 Requires `ANTHROPIC_API_KEY` and `codex` logged in. Tests skip gracefully if a backend
 is missing.
+
+### Skill iteration discipline
+
+Every rule in `skills/thai-prose/` was synthesized from research into specific Thai
+writing sources (real tech blogs, bank long-form, young-newspaper features, skilled
+non-fiction translation). Each rule has a *why* — a failure mode it counters or a
+human-writing pattern it captures.
+
+When an eval output looks bad, the temptation is to immediately add a new rule or
+tighten an existing one. Resist this. Trace first:
+
+1. **Find the offending pattern** in the output.
+2. **Map it to existing rules** — which rule was supposed to prevent this? Is it in
+   `anti-patterns.md`, `style-rules.md`, `register.md`, or `examples.md`? If it's in
+   none, that's a real gap.
+3. **If a rule exists but didn't fire**: ask why. Was it buried? Phrased weakly?
+   Conflicting with another rule? Wrong register applied? Fix the existing rule's
+   wording, prominence, or anchoring example — don't pile on a new rule that says
+   the same thing differently.
+4. **If no rule covers it**: before adding one, check the source-research evidence.
+   Is this a pattern the research surfaced? If yes, surface the existing observation
+   into a rule. If no, the new rule is speculative — flag it as such, add only with
+   a concrete citation or counter-example, and keep it provisional.
+5. **Document the trace** in `iteration-N/feedback.md` so the rule's origin survives.
+
+Rules without provenance rot. Don't grow the skill faster than the evidence does.
 
 ### Locked decisions
 
