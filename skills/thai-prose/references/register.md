@@ -178,6 +178,27 @@ Some pieces shift register intentionally:
 - **Long-form analysis with reader-application section**: Academic body, then a shift
   to Explainer when zooming to "what this means for you, the reader."
 
+## Coherence within a passage
+
+Once you pick a register, sustain it. AI tends to drift — using a casual form
+(`คนไหน`, `ยังไง`, `เยอะ`) in one sentence and a formal counterpart
+(`คนใดคนหนึ่ง`, `อย่างไร`, `จำนวนมาก`) in the next. Native readers feel the wobble
+even when each sentence in isolation is fine.
+
+Common casual ↔ formal pairs to keep consistent within one passage:
+
+- `คนไหน` ↔ `คนใด` / `คนใดคนหนึ่ง`
+- `ยังไง` ↔ `อย่างไร`
+- `เยอะ` ↔ `มาก` / `จำนวนมาก`
+- `แบบไหน` ↔ `แบบใด` / `รูปแบบใด`
+- `ทำไม` ↔ `เพราะเหตุใด`
+- `ตอนนี้` ↔ `ขณะนี้` / `ในปัจจุบัน`
+- `อยากรู้` ↔ `ต้องการทราบ`
+
+Pick one column for the whole passage and stay there. Switching mid-paragraph reads
+as AI register-drift; switching at section/heading breaks is fine if intentional
+(see Cross-register section above).
+
 ## Default if unclear
 
 Default to Explainer register. It's the safest for tech docs, marketing, B2B, and most

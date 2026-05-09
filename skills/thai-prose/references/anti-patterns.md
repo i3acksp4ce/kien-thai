@@ -4,10 +4,23 @@ Each entry: rule, why, **bad** (synthetic AI-Thai), **good** (natural Thai). Syn
 from observed patterns in real Thai tech writing, bank long-form blogs, young-newspaper
 features, and skilled non-fiction translation.
 
+Each rule cross-references the **discourse frame** it violates (see `SKILL.md`):
+
+- **F1** — Topic-comment over SVO
+- **F2** — Condition / time / frame goes first
+- **F3** — Sentence boundaries via space and paragraph, not period
+- **F4** — Closure via sentence-final particles
+- **F5** — Cohesion via zero anaphora and demonstratives
+- **F6** — Pacing via ก็
+- **F7** — Pivots via rhetorical question
+
+Some rules are stylistic conventions outside the frames (register, padding, etc.).
+Those are labelled **Style**.
+
 Inline-code Thai examples may exceed the 90-column rule when the example itself is
 longer than that — they're treated as atomic, like URLs.
 
-## Connectives and transitions
+## Connectives and transitions  *(F6, F7)*
 
 ### 1. ซึ่ง-stacking
 
@@ -54,7 +67,7 @@ Cap at one โดย per paragraph. Prefer ด้วย, ผ่าน, จาก
 - **Bad**: `ในขณะที่ A เชื่อ X, B เชื่อ Y`
 - **Good**: `A เชื่อ X แต่ B เชื่อ Y` / `A เชื่อ X ส่วน B กลับเชื่อ Y`
 
-## Passive and agency
+## Passive and agency  *(F1)*
 
 ### 6. ถูก- passive on actions with no real agent
 
@@ -73,7 +86,7 @@ Calque of "is considered (to be)."
 
 - **Good**: `ถือกันว่าเป็น...` / `นับว่าเป็น...` / `คนมองว่าเป็น...`
 
-## Nominalization and padding
+## Nominalization and padding  *(Style)*
 
 ### 8. ทำการ + verb
 
@@ -129,7 +142,21 @@ Calques of "regarding / as for." Often unnecessary.
 
 Thai compounds by juxtaposition, not by ของ.
 
-## Openers
+### 39. `ที่มี + adjective` padding when noun-noun compound exists
+
+AI calques English `[noun] that has [quality]` patterns into `[noun]ที่มี[คุณ]`.
+Thai usually compounds noun-noun directly without `ที่มี` scaffolding.
+
+- **Bad**: `งานเขียนทั่วไปที่มีคุณภาพ` (calque of "general writing that has quality")
+- **Good**: `งานเขียนคุณภาพทั่วไป` (noun-noun: "quality writing, generally")
+
+- **Bad**: `บทความที่มีความน่าสนใจ`
+- **Good**: `บทความน่าสนใจ`
+
+This compounds with anti-pattern #10 (มีความ + adj). When you see `ที่มี + ความ + adj`,
+both layers are usually padding — strip both.
+
+## Openers  *(Style)*
 
 ### 15. "ในยุคปัจจุบัน / ในโลกที่..." panorama
 
@@ -151,7 +178,7 @@ Real writers don't assert consensus they have to declare. They show the symptom.
 - **Good**: question pair (`X คืออะไร / Y ได้จริงไหม`) / specific pain frame /
   numbered angle (`5 เรื่องที่...`)
 
-## Closings
+## Closings  *(Style)*
 
 ### 18. โดยสรุป + recap
 
@@ -167,7 +194,7 @@ Real Thai writing rarely closes with "in summary."
 - **Bad**: `รีบสมัครเลย!` / `อย่ารอช้า!`
 - **Good (advisory)**: `กู้เท่าที่จำเป็นและชำระคืนไหว` / `ผู้ลงทุนควรทำความเข้าใจก่อนตัดสินใจ`
 
-## Padding and intensifiers
+## Padding and intensifiers  *(Style)*
 
 ### 20. Empty intensifiers
 
@@ -197,7 +224,7 @@ Used sparingly in real copy; AI defaults to it for any list.
 - **Bad**: `ไม่ต้องกังวล เป็นเรื่องที่เข้าใจได้`
 - **Good**: specifics — what the reader concretely should do next.
 
-## Pronouns and politeness
+## Pronouns and politeness  *(F5, register)*
 
 ### 25. ครับ/ค่ะ on every sentence
 
@@ -238,7 +265,7 @@ English needs *we / you / it*; Thai drops them once topic is set.
 - **Bad**: `สำหรับฉันแล้ว ฉันคิดว่า...`
 - **Good**: `ฉันคิดว่า...` / `ในความเห็นของฉัน...`
 
-## Punctuation
+## Punctuation  *(F3, Style)*
 
 ### 31. Comma-glued apposition
 
@@ -249,14 +276,46 @@ Thai uses spaces for apposition, not commas.
 
 ### 32. English em-dashes / semicolons
 
-Thai prose rarely uses `—` or `;`. Real writers use full stop, comma, parens, or
-whitespace.
+Thai prose rarely uses `—` or `;`. Real writers use comma, parens, paragraph break,
+or just whitespace. Periods are an option but not the default — see #37.
 
 - **Bad**: `แนวคิดนี้ — ซึ่งเริ่มต้นในศตวรรษที่ 18 — ได้เปลี่ยนโลก`
 - **Good**: `แนวคิดนี้ (ซึ่งเริ่มต้นในศตวรรษที่ 18) ได้เปลี่ยนโลก` or split into two
   sentences.
 
-## Sentence-level shape
+### 37. Full-stop overuse  *(F3)*
+
+English requires a period after every sentence. Modern Thai web writing
+(blog, marketing, explainer, news) uses periods sparingly. Sentence boundaries are
+carried by spaces and paragraph breaks. AI inserts periods because the English
+training data conventions carry over. Result: prose with the rhythm of a typewriter.
+
+- **Bad (period spam)**: `ระบบทำงานเร็วขึ้น. ใช้ memory น้อยลง. ทีมพอใจมาก.`
+- **Good**: `ระบบทำงานเร็วขึ้น ใช้ memory น้อยลง ทีมพอใจมาก`
+
+Heuristic: drop mid-paragraph periods. Reserve periods for end-of-paragraph snap or
+genuinely terminal statements where finality is intended (`เท่านี้ก่อน.`).
+
+## Closure  *(F4)*
+
+### 38. Missing closure particle on additive frames
+
+Thai uses sentence-final particles (`ด้วย`, `แล้ว`, `ไป`, `อยู่`, `เลย`, `ก็แล้วกัน`,
+`อยู่ดี`) to wrap clauses. English has no equivalent, so AI omits them and Thai
+sentences feel dangling. Especially watch frames that *imply* "also Y": `ไม่ได้...อย่างเดียว`,
+`ไม่ใช่แค่...`, `ไม่เพียงแต่...` almost always need `ด้วย` or similar to finish the
+implicit additive clause.
+
+- **Bad (dangling)**: `repo นี้ไม่ได้มากับกฎอย่างเดียว มี eval harness ผูกกับ claude และ codex`
+- **Good (closed)**: `repo นี้ไม่ได้มากับกฎอย่างเดียว มี eval harness ผูกกับ claude และ codex ด้วย`
+
+Beyond the additive frame, watch for clipped statements after a topic — they often
+want `ก็` opening (Frame 6) plus a particle close.
+
+- **Bad (clipped)**: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน เป็นความตั้งใจ`
+- **Good**: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน ก็เป็นความตั้งใจ`
+
+## Sentence-level shape  *(Style)*  *(Style)*
 
 ### 33. Monotone sentence length
 

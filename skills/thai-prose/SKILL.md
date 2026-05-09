@@ -13,116 +13,239 @@ re-reading sentences, skimming, abandoning. The biggest tells:
 - **Connective spam**: ซึ่ง / โดย / ทั้งนี้ / อีกทั้ง / นอกจากนี้ / อย่างไรก็ตาม /
   ดังนั้น in every other clause.
 - **Calqued English syntax**: ถูก-passive on actions with no real agent,
-  "การที่...นั้น...", long subordinate chains glued by ซึ่ง, "หนึ่งใน...ที่...ที่สุด"
-  patterns.
+  "การที่...นั้น...", long subordinate chains glued by ซึ่ง.
 - **Bureaucratic padding**: ทำการ+verb, มีความ+adj, การ-nominalization of every verb.
 - **Wrong register default**: ครับ/ค่ะ on every sentence, ท่าน as default address,
   "ในยุคปัจจุบัน..." openers.
-- **Empty intensifiers and tricolons**: "อย่างมาก", "อย่างมีประสิทธิภาพ",
-  "รวดเร็ว ปลอดภัย และมีประสิทธิภาพ".
 
-Real Thai writers don't write like this. The goal: produce Thai that a Thai reader can
-read at speed, with a distinct human voice appropriate to register.
+Real Thai writers don't write like this. The goal: produce Thai that a Thai reader
+can read at speed, with a distinct human voice appropriate to register.
 
-## Core philosophy
+## The deeper problem: discourse frames
 
-1. **Drop the connective. Use a full stop.** Most ซึ่ง / โดย / อย่างไรก็ตาม can be
-   replaced by a period. Test every connective: would a Thai reader notice it missing?
-   If no, delete.
+Surface-level rules ("don't use ทั้งนี้") treat symptoms. The cause is structural:
+**AI-generated Thai imports English's discourse mechanics whole-cloth.** Thai has its
+own way of connecting clauses, marking sentence boundaries, closing thoughts,
+maintaining cohesion, pacing prose, and pivoting between ideas. When you preserve
+English mechanics in Thai words, the result reads as translated AI, even when every
+word is grammatical.
 
-2. **Topicalize, don't passivize.** Thai prefers `topic → comment` to English's
-   `subject → verb → object`. When you would calque a passive ("X is done by Y"),
-   front the patient as topic and use active voice: "ข้อมูลพวกนี้ระบบจะ process"
-   beats "ข้อมูลพวกนี้จะถูก process โดยระบบ".
+Internalize these seven frames first. The granular rules in `references/anti-patterns.md`
+become applications of the frames — many of them auto-resolve once the frames are right.
 
-3. **Verbs over nouns.** Prefer `แปลหนังสือ` to `ทำการแปลหนังสือ`. Prefer `ระบบขยายได้`
-   to `ระบบมีความสามารถในการขยาย`. Reserve การ- and ความ- for genuinely abstract
-   topics.
+### Frame 1 — Topic-comment over subject-verb-object
 
-4. **Particles match register, not friendliness.** ครับ/ค่ะ in body copy of explainers,
-   tech docs, and marketing → NO. They belong in spoken-voice contexts: personal blog
-   openings/sign-offs, quoted speakers, chat-app messaging, direct-to-reader social
-   posts. See `references/register.md`.
+English defaults to SVO. Thai often fronts the topic (whatever the sentence is *about*)
+and then comments on it. When the English source has a heavy subject ("the fact that
+X is..."), calquing it into Thai produces `การที่...นั้น...` chains that no Thai
+reader produces unprompted.
 
-5. **Open with the reader's situation, not a panorama.** Banned openers:
-   "ในยุคปัจจุบัน...", "ในโลกที่...", "เป็นที่ทราบกันดีว่า...", "ปฏิเสธไม่ได้ว่า...".
+- English (SVO): `The system processes this data every five minutes.`
+- Calqued: `ระบบประมวลผลข้อมูลพวกนี้ทุก ๆ 5 นาที`
+- Topicalized: `ข้อมูลพวกนี้ ระบบจะ process ทุก 5 นาที`
+
+Heuristic: if the English subject is heavy, abstract, or really the patient of the
+verb, front it as topic in Thai.
+
+Covers anti-patterns #6 (ถูก-passive), #11 (การที่...นั้น), #12 (การที่...ทำให้).
+
+### Frame 2 — Condition, time, and frame go first
+
+English puts conditions and time-frames after the main clause: "X happens when Y" /
+"X if Y". Thai prefers the inverse: condition first, main clause after.
+
+- English: `The DB starts timing out when traffic spikes.`
+- Calqued: `DB จะเริ่ม timeout เมื่อ traffic พุ่งสูง`
+- Native: `พอ traffic พุ่งสูง DB ก็เริ่ม timeout`
+
+Common Thai openers for fronted conditions/times: `พอ...ก็...`, `ถ้า...จะ...`,
+`เมื่อ...`, `ตอน...`, `หาก...`.
+
+### Frame 3 — Sentence boundaries via space and paragraph, not period
+
+English uses a period after every sentence. Modern Thai web writing
+(blog, marketing, explainer, news) uses periods sparingly. Sentence boundaries are
+carried by spaces and paragraph breaks; periods are reserved for end-of-paragraph
+snap or genuinely terminal statements.
+
+- AI density: `ระบบทำงานเร็วขึ้น. ใช้ memory น้อยลง. ทีมพอใจมาก.`
+- Native: `ระบบทำงานเร็วขึ้น ใช้ memory น้อยลง ทีมพอใจมาก`
+
+Heuristic: drop mid-paragraph periods; let space carry the boundary. Keep periods
+only where a snap or finality is genuinely intended.
+
+Covers anti-pattern #37 (period spam — see `references/anti-patterns.md`).
+
+### Frame 4 — Closure via sentence-final particles
+
+English doesn't need closure particles. Thai uses a small inventory of them to wrap
+clauses cleanly: `ด้วย` (also/too — closes additive thoughts), `แล้ว` (completion,
+transition), `ไป` (movement away/done), `อยู่` (ongoing state), `เลย` (intensification
+or "right then"), `ก็แล้วกัน` (let's just leave it / decision), `อยู่ดี`
+(still / nonetheless).
+
+When AI omits these because the English source has no equivalent token, Thai
+sentences feel dangling — like the writer trailed off.
+
+- Dangling: `repo นี้ไม่ได้มากับกฎอย่างเดียว มี eval harness ผูกกับ claude และ codex`
+- Closed: `repo นี้ไม่ได้มากับกฎอย่างเดียว มี eval harness ผูกกับ claude และ codex ด้วย`
+
+Especially watch for `ไม่ได้...อย่างเดียว`, `ไม่ใช่แค่...`, `ไม่เพียงแต่...` frames —
+they almost always need a closure particle to finish the implicit "also Y".
+
+### Frame 5 — Cohesion via zero anaphora and demonstratives
+
+English needs explicit pronouns: *it / they / he / she / this / that*. Thai has two
+main strategies that AI underuses:
+
+1. **Zero anaphora** — once the topic is established, drop the subject entirely.
+   Re-state only when control changes. A paragraph beginning `เราเรียนรู้จากความผิดพลาด...`
+   can run several sentences before *เรา* needs to reappear.
+2. **Demonstratives over pronouns** — `นี่ / นั่น / โน่น` for "this / that / yonder";
+   reference the noun by demonstrative + classifier when needed
+   (`คนนี้`, `เคสนั้น`, `ปัญหานั้น`). AI overuses `มัน`, `เขา`, `พวกเขา` because they
+   map to English `it / he / they`.
+
+- Calqued: `เราต้องเข้าใจว่าเราอยู่ในโลกที่เราสร้างขึ้นมาเอง มันมีกฎของมันเอง`
+- Native: `ต้องเข้าใจว่าโลกที่เราอยู่ คือโลกที่สร้างขึ้นเอง มีกฎของตัวมันเอง`
+
+### Frame 6 — Pacing via ก็
+
+`ก็` is a uniquely Thai pacing particle. It marks expectation, sequence, mild
+concession, and "as expected" causation. English has no direct equivalent, so AI
+drops it, and Thai prose without ก็ reads choppy or robotic.
+
+- Without ก็: `พอ traffic ขึ้น DB เริ่มอืด`
+- With ก็: `พอ traffic ขึ้น DB ก็เริ่มอืด`
+
+Common patterns: `พอ X ก็ Y`, `X แล้ว ก็ Y`, `ถ้า X ก็ Y`, `เลย...ก็...`,
+`X ไม่ทัน ก็เลย Y`.
+
+**Sub-pattern: ก็ as topic-resumptive bridge.** When a sentence states a topic and
+then offers a comment that would otherwise feel clipped, ก็ at the start of the
+comment gives the natural "as expected / belongs together" beat. AI tends to write
+the comment without ก็ and produce a snap that lands wrong.
+
+- Clipped: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน เป็นความตั้งใจ`
+- Bridged: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน ก็เป็นความตั้งใจ`
+
+Use ก็ as breath/rhythm, not as a connective replacement. Don't force it where it
+doesn't fit; do allow it where Thai naturally wants the beat.
+
+### Frame 7 — Pivots via rhetorical question
+
+English pivots between ideas using formal connectives: *however*, *moreover*,
+*on the other hand*, *furthermore*. Thai prose pivots more often via rhetorical
+questions: `แล้วถ้า X ล่ะ?`, `นั่นแปลว่ายังไง?`, `ทำไมถึงเป็นแบบนั้น?`.
+
+- AI pivot: `อย่างไรก็ตาม การใช้งานในระดับ production มีข้อจำกัด`
+- Native pivot: `แต่พอเอาขึ้น production จริง ก็มีอะไรให้ปวดหัวอีก`
+- Native (question pivot): `แล้วถ้าโหลดเพิ่มอีกสิบเท่าล่ะ? ตรงนี้แหละที่เริ่มน่าสนใจ`
+
+Heuristic: every "however" you'd write, ask whether a question or just `แต่` would
+do better. Drop one in two.
+
+## Stylistic conventions (apply on top of the frames)
+
+Once the frames are right, these surface-level conventions fine-tune the voice.
+
+1. **Verbs over noun forms.** Prefer `แปลหนังสือ` to `ทำการแปลหนังสือ`. Prefer
+   `ระบบขยายได้` to `ระบบมีความสามารถในการขยาย`. Reserve การ- and ความ- for
+   genuinely abstract topics.
+
+2. **Particles match register, not friendliness.** ครับ/ค่ะ in body copy of
+   explainers, tech docs, and marketing → NO. They belong in spoken-voice contexts:
+   personal blog openings/sign-offs, quoted speakers, chat-app messaging,
+   direct-to-reader social posts. See `references/register.md`.
+
+3. **Open with the reader's situation, not a panorama.** Banned openers:
+   `ในยุคปัจจุบัน...`, `ในโลกที่...`, `เป็นที่ทราบกันดีว่า...`, `ปฏิเสธไม่ได้ว่า...`.
    Replace with: a symptom the reader recognizes, a concrete fact, a rhetorical
    question, or a confession.
 
-6. **Concrete numbers and named examples beat abstract claims.**
+4. **Concrete numbers and named examples beat abstract claims.**
    `p99 ลดจาก 800ms เหลือ 120ms` beats `ประสิทธิภาพดีขึ้นอย่างมีนัยสำคัญ`.
-   `งบ 4 ส่วน: ใช้/ลงทุน/ออม/ฉุกเฉิน` beats `การจัดสรรเงินอย่างเหมาะสม`.
 
-7. **Vary sentence length deliberately.** A 6-word sentence next to a 35-word one is
+5. **Vary sentence length deliberately.** A 6-word sentence next to a 35-word one is
    normal Thai prose. AI homogenizes around 20 words and reads as monotone. Mix.
 
-8. **Mai-yamok (ๆ) for casual reduplication.** `เรื่อย ๆ`, `ใหม่ ๆ`, `บ่อย ๆ` — natural
-   Thai signal. Don't avoid it.
+6. **Mai-yamok (ๆ) for casual reduplication.** `เรื่อย ๆ`, `ใหม่ ๆ`, `บ่อย ๆ` —
+   natural Thai signal. Don't avoid it.
 
 ## Workflow when asked to write Thai prose
 
-1. **Identify register** before writing. Ask if unclear. Four main ones live in
+1. **Identify register** before writing. Ask if unclear. Four registers live in
    `references/register.md`:
-   - **News / reference** — no first-person, no particles, active voice,
-     formal-neutral
+   - **News / reference** — no first-person, no particles, active voice
    - **Explainer / bank long-form / tech doc** — no particles, problem-first,
-     "เรา"/"คุณ" address, prose+bullets
+     `เรา`/`คุณ` address
    - **Personal blog / dev war-story** — first-person ผม, conversational, ครับ at
      openings and sign-offs
    - **Academic long-form** — no particles, longer sentences acceptable, synthesis
      closings
 
-2. **Draft.** Apply the 8 core principles above. Specifically:
-   - Budget: at most one ซึ่ง, one โดย, one ดังนั้น per ~100 words.
-   - Drop pronominal subjects after the topic is established. Re-state only when
-     control changes.
-   - For tech terms: see the four-bucket ทับศัพท์ guide in `references/style-rules.md`.
+2. **Draft frame-first.** Before picking words, ask:
+   - What's the topic? Is it fronted (Frame 1)?
+   - Are conditions/times leading (Frame 2)?
+   - Are sentences flowing without period spam (Frame 3)?
+   - Do clauses close with appropriate particles (Frame 4)?
+   - Is cohesion via zero anaphora + demonstratives (Frame 5)?
+   - Is ก็ pacing where Thai wants the beat (Frame 6)?
+   - Are pivots via question or simple `แต่`, not formal connectives (Frame 7)?
 
 3. **Self-edit pass — scan for AI tells:**
-   - Search for the forbidden phrases listed in `references/anti-patterns.md`.
-   - Count connectives per paragraph. If &gt; 2 of any one kind, rewrite.
-   - Check sentence-length variance. If every sentence is ~20 words, break some.
-   - Check ครับ/ค่ะ usage against register.
-   - Check ถูก- passive: each instance should be genuinely adversative or genuinely
-     agentless. Otherwise active-voice.
+   - Search for the forbidden phrases in `references/anti-patterns.md`.
+   - Connective budget: at most one ซึ่ง, one โดย, one ดังนั้น per ~100 words.
+   - Period audit: drop mid-paragraph periods.
+   - Closure audit: any `ไม่ได้...อย่างเดียว` / `ไม่ใช่แค่...` needs a closure particle.
+   - Sentence-length variance.
+   - ครับ/ค่ะ usage matches register.
+   - ถูก- passive: each instance genuinely adversative or genuinely agentless?
 
 4. **Closing.** Don't recap. Real Thai writing ends with: a forward-looking line, a
-   reframed question, a quiet handoff (`เท่านี้ก่อน`, `ลองเอาไปเล่นดู`), or just stops.
-   Never `โดยสรุปแล้ว...` then re-state the body.
+   reframed question, a quiet handoff (`เท่านี้ก่อน`, `ลองเอาไปเล่นดู`), or just
+   stops. Never `โดยสรุปแล้ว...` then re-state the body.
 
 ## When asked to edit Thai prose
 
-Apply the same passes in reverse: hunt for AI tells, propose specific line edits with
-the *why*. See `references/examples.md` for before/after worked examples.
+Apply the same passes in reverse: hunt for frame violations and AI tells, propose
+specific line edits with the *why*. See `references/examples.md` for before/after
+worked examples.
 
 ## When asked to translate English to Thai
 
-Translation is where AI fails hardest because it preserves English shape. The minimum:
+Translation is where AI fails hardest because it preserves English shape — meaning
+all seven frames are at maximum risk.
 
-- Reorder to topic-comment.
-- Drop pronouns once topic is set.
-- Break long English sentences at conceptual seams (often 2–3 Thai sentences per
-  English one).
+Minimum checklist:
+
+- Reorder to topic-comment (Frame 1).
+- Move condition/time clauses to front (Frame 2).
+- Drop English-style mid-paragraph periods (Frame 3).
+- Add Thai closure particles where the English-shaped sentence dangles (Frame 4).
+- Drop pronouns once topic is set; use demonstratives where English uses pronouns
+  (Frame 5).
+- Insert ก็ where Thai wants the beat (Frame 6).
+- Convert "however / moreover" to questions or simple `แต่` (Frame 7).
 - Localize idioms; preserve authorial metaphors with consistent Thai coinage.
-- Don't add politeness the source doesn't have. Confident essayists stay confident in
-  Thai.
-- ทับศัพท์ judgment per the four-bucket guide.
-
-Full translation craft rules in `references/style-rules.md` (section: translation).
+- Don't add politeness the source doesn't have. Confident essayists stay confident
+  in Thai.
+- ทับศัพท์ judgment per the four-bucket guide in `references/style-rules.md`.
 
 ## References — read on demand
 
-- `references/anti-patterns.md` — full catalog of AI tells with bad/good Thai examples.
-  Consult when self-editing or when uncertain whether a pattern is AI-shaped.
-- `references/style-rules.md` — positive rules, ทับศัพท์ four-bucket guide, translation
-  craft rules. Consult when drafting.
+- `references/anti-patterns.md` — full catalog of AI tells with bad/good Thai
+  examples. Each rule cross-references the frame it violates. Consult when
+  self-editing or when uncertain whether a pattern is AI-shaped.
+- `references/style-rules.md` — positive rules, ทับศัพท์ four-bucket guide,
+  translation craft rules. Consult when drafting.
 - `references/register.md` — the four registers in detail, particle/pronoun/heading
   conventions per register. Consult before drafting.
-- `references/examples.md` — before/after worked rewrites across registers. Consult for
-  pattern-matching.
+- `references/examples.md` — before/after worked rewrites across registers. Consult
+  for pattern-matching.
 
 ## Important: when in doubt, ask the user
 
 If the register is ambiguous (is this for a dev blog or formal docs? is the audience
-SME owners or finance pros?), ask before drafting. Wrong register is worse than rough
-prose.
+SME owners or finance pros?), ask before drafting. Wrong register is worse than
+rough prose.
