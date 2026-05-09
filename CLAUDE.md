@@ -134,6 +134,22 @@ tighten an existing one. Resist this. Trace first:
 
 Rules without provenance rot. Don't grow the skill faster than the evidence does.
 
+### Load these skills
+
+Default skill set (project-study, narrows ACE auto-load):
+
+- `general-coding` — Python edits in `tests/`, eval harness work.
+- `markdown-writing` — primary deliverables are Markdown (`SKILL.md`,
+  `references/*.md`, eval feedback). Hard-wrap-90 + table-align rules apply.
+- `skill-creator` — this repo *is* a skill; iteration follows skill-creator
+  doctrine (two-stage evals, human review).
+- `shell` — `uv` / pytest / eval harness shell glue.
+- `ace`, `ace-audit`, `ace-docs`, `ace-realign`, `ace-save`, `ace-school` —
+  ACE workflow + school-PR flow (skills symlinked from PRODIGY9 school).
+
+Not loaded: Rust/Go/C#/CUE/Typst/Payload/Bulma/frontend language skills — no
+such code here. `gh-org-admin`, `p9-infra`, `prod9-fx` — wrong repo type.
+
 ### Locked decisions
 
 - Backends: claude + codex, both in bare modes (no skill auto-loading).
