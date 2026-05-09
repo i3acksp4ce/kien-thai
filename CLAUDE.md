@@ -158,3 +158,7 @@ such code here. `gh-org-admin`, `p9-infra`, `prod9-fx` — wrong repo type.
 - No LLM-judge until human review proves insufficient.
 - No celebrity-columnist source material. Tech writing, bank long-form
   (non-sensational), younger newspaper voices, internationally-minded translators.
+
+## RTK (token saver)
+
+Prefix every shell command with `rtk`. Full reference: [`RTK.md`](RTK.md).

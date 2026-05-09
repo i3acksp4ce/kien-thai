@@ -17,3 +17,6 @@ thai-prose-workspace/
 .venv/
 __pycache__/
 .pytest_cache/
+
+.rtk/
+!.rtk/filters.toml
