@@ -1,0 +1,59 @@
+---
+name: kode-thai
+description: Run an iterative audit-and-fix loop on Thai prose using the kien-thai skill — repeats audit/fix passes until a full pass produces zero new edits. TRIGGER when user invokes `/kode-thai`, asks for "audit loop" / "วน audit" / "ตรวจวนๆ" / "ขัดภาษาไทยให้สุด" on Thai writing, says variants of "แก้ไปเรื่อยๆ จนกว่าจะไม่เจอที่ผิด", or explicitly requests repeated review passes on Thai prose. DO NOT TRIGGER for single-pass rewrites or one-off Thai edits (use kien-thai directly), or for non-Thai content.
+---
+
+# kode-thai
+
+โคตรไทย — invoke kien-thai in a loop until the prose stops changing.
+
+## Why this exists
+
+Single-pass review misses issues that only surface after earlier fixes shift
+sentence shape. A connective collapses, the next sentence's framing changes, a
+new awkward seam appears. Loop until clean.
+
+## Protocol
+
+1. Load `kien-thai` in full — `SKILL.md` plus all four references
+   (`anti-patterns.md`, `style-rules.md`, `register.md`, `examples.md`). Don't
+   skip references. Most misses surface against the granular anti-patterns, not
+   the seven frames alone.
+
+2. Read the target file end-to-end before editing anything. Skim-and-fix
+   produces shallow passes.
+
+3. Audit pass. List every issue with a citation to the offending rule — frame
+   number (1–7), anti-pattern number (#NN), or named style rule. No issue
+   without a citation. If you can't cite a rule, you don't have an issue.
+
+4. Fix pass. Apply the listed edits.
+
+5. Re-read the edited file end-to-end. Diff-level review misses paragraph-flow
+   problems that only show on full re-read.
+
+6. Repeat steps 3–5 until one audit pass produces zero new issues.
+
+7. Stop only on a clean pass — not on "good enough", not on "running out of
+   obvious things". If you think it's done, run one more audit pass to confirm.
+
+## Stop condition
+
+The loop ends when an audit pass surfaces zero edits. A pass that finds one
+issue and fixes it doesn't end the loop — the next pass might surface a new
+issue caused by that fix. Only a fully clean pass terminates.
+
+## Token cost
+
+Each pass reloads kien-thai (~tens of thousands of tokens of skill +
+references) plus the full target file. For long prose this compounds fast.
+Warn the user before starting on files over ~1000 words so they can decide
+whether to scope the loop to a section.
+
+## Relationship to kien-thai
+
+`kien-thai` is the rule set. `kode-thai` is the loop. `kode-thai` doesn't add
+new rules — it enforces that kien-thai's rules get applied to convergence. If
+the audit surfaces a pattern no kien-thai rule covers, follow the iteration
+discipline in the project `CLAUDE.md` ("Iteration discipline — READ FIRST"):
+trace the gap before adding a rule, don't synthesize on vibes.

@@ -17,7 +17,14 @@ A skills repo (open-source target) teaching Claude to write Thai prose that:
 3. Is easy to read for native Thai readers (no brain damage).
 4. Counters training-data skew toward over-formal / over-polite Thai.
 
-One skill at `skills/kien-thai/`. School re-imports from here.
+Two skills:
+
+- `skills/kien-thai/` — content rules: 7 frames + anti-patterns + style +
+  register + examples.
+- `skills/kode-thai/` — audit-loop trigger that invokes kien-thai to
+  convergence.
+
+School re-imports from here.
 
 ### Locked decisions — skill content
 
@@ -72,6 +79,8 @@ skills/kien-thai/
     ├── style-rules.md       # positive style rules
     ├── register.md          # formality selection
     └── examples.md          # before/after rewrites
+skills/kode-thai/
+└── SKILL.md                 # audit-loop trigger over kien-thai
 evals/evals.json             # eval prompts (tech doc + marketing)
 tests/
 ├── lib.py                   # shared helpers (paths, BACKENDS, build_prompt)
