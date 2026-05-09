@@ -23,10 +23,10 @@ repo นี้รวบรวมกฎการเขียนภาษาไท
 
 ## เริ่มใช้ยังไง
 
-skill อยู่ที่ `skills/thai-prose/` ให้ copy ทั้ง folder ไปไว้ใน `.claude/skills/`
+skill อยู่ที่ `skills/kien-thai/` ให้ copy ทั้ง folder ไปไว้ใน `.claude/skills/`
 ของ project ที่ต้องการ หรือ import ผ่านระบบ skill management ที่คุณใช้อยู่
 
-(ตัวอย่าง: ใน [ACE](https://github.com/ace-rs/ace) ใช้ `ace import skills/thai-prose`
+(ตัวอย่าง: ใน [ACE](https://github.com/ace-rs/ace) ใช้ `ace import skills/kien-thai`
 จาก clone ของ repo นี้)
 
 ## ใช้แบบ audit loop
@@ -86,7 +86,7 @@ uv run pytest -m generate -k claude # เลือก backend เดียว
 uv run pytest -m evaluate           # ตรวจหยาบเชิงปริมาณ (เป็นแค่สัญญาณ)
 ```
 
-artifact จะลงที่ `thai-prose-workspace/iteration-N/<eval>/<backend>/<config>/`
+artifact จะลงที่ `kien-thai-workspace/iteration-N/<eval>/<backend>/<config>/`
 จากนั้นดูผลกับ Claude ใน chat ได้เลย ไม่มี viewer แยกต่างหาก
 
 การตัดสินคุณภาพงานเขียนเป็นงานของมนุษย์ ส่วน `test_quant.py` แค่ flag คำต้องห้าม

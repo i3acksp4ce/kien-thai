@@ -9,7 +9,7 @@ from lib import EVALS_FILE, SKILL_PATH, Eval, build_prompt
 
 def test_evals_json_loads():
     data = json.loads(EVALS_FILE.read_text(encoding="utf-8"))
-    assert data["skill_name"] == "thai-prose"
+    assert data["skill_name"] == "kien-thai"
     assert isinstance(data["evals"], list) and data["evals"], "no evals defined"
     for e in data["evals"]:
         assert {"id", "name", "prompt"} <= e.keys()

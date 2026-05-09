@@ -1,9 +1,9 @@
 ---
-name: thai-prose
+name: kien-thai
 description: Write Thai-language prose (technical documentation, marketing copy, explainers, blog posts) that reads like a real Thai writer — not generic AI output. Counters training-data skew toward over-formal, over-polite, calqued Thai. Use this skill whenever the user asks for Thai writing, asks to translate English content into Thai, or asks to edit/rewrite existing Thai prose, even if they don't explicitly say "good prose." Also use when the user is in a Thai-language conversation and asks for any non-trivial prose output (a paragraph, section, blog post, landing page, doc page, README in Thai, email, announcement). The default Thai output without this skill is mechanically polite, connective-spammed, and calque-shaped — this skill fixes that.
 ---
 
-# thai-prose
+# kien-thai
 
 ## Why this skill exists
 

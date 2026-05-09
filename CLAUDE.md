@@ -8,7 +8,7 @@ symlinked into `.claude/skills/`. Skill edits go through symlinks into the schoo
 — propose changes back to the school repo when ready. Run `ace config` or `ace paths`
 to debug configuration issues.
 
-## Project: thai-prose — what the skill teaches
+## Project: kien-thai — what the skill teaches
 
 A skills repo (open-source target) teaching Claude to write Thai prose that:
 
@@ -17,7 +17,7 @@ A skills repo (open-source target) teaching Claude to write Thai prose that:
 3. Is easy to read for native Thai readers (no brain damage).
 4. Counters training-data skew toward over-formal / over-polite Thai.
 
-One skill at `skills/thai-prose/`. School re-imports from here.
+One skill at `skills/kien-thai/`. School re-imports from here.
 
 ### Locked decisions — skill content
 
@@ -31,7 +31,7 @@ One skill at `skills/thai-prose/`. School re-imports from here.
 
 > **Rules don't get added on vibes. Trace before you write.**
 >
-> Every rule in `skills/thai-prose/` was synthesized from research into specific Thai
+> Every rule in `skills/kien-thai/` was synthesized from research into specific Thai
 > writing sources (real tech blogs, bank long-form, young-newspaper features, skilled
 > non-fiction translation). Each rule has a *why* — a failure mode it counters or a
 > human-writing pattern it captures.
@@ -65,7 +65,7 @@ itself.
 ### Layout
 
 ```
-skills/thai-prose/
+skills/kien-thai/
 ├── SKILL.md
 └── references/
     ├── anti-patterns.md     # AI tells to avoid
@@ -82,7 +82,7 @@ tests/
     ├── conftest.py          # run_eval fixture, parametrize
     ├── test_claude.py       # -m generate
     └── test_codex.py        # -m generate
-thai-prose-workspace/        # gitignored: iteration-N/<eval>/<backend>/<config>/
+kien-thai-workspace/         # gitignored: iteration-N/<eval>/<backend>/<config>/
 ```
 
 ### Eval strategy

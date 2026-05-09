@@ -12,7 +12,7 @@
 .claude/skills
 ace.local.toml
 # end ACE
-thai-prose-workspace/
+kien-thai-workspace/
 
 .venv/
 __pycache__/

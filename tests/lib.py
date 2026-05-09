@@ -12,9 +12,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-SKILL_PATH = ROOT / "skills" / "thai-prose" / "SKILL.md"
+SKILL_PATH = ROOT / "skills" / "kien-thai" / "SKILL.md"
 EVALS_FILE = ROOT / "evals" / "evals.json"
-WORKSPACE = ROOT / "thai-prose-workspace"
+WORKSPACE = ROOT / "kien-thai-workspace"
 
 # Bare-mode invocations. Skills are injected via prompt prepend, never via
 # the backend's own skill-loading machinery — so the only delta between
