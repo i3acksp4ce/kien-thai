@@ -91,7 +91,7 @@ tests/
     ├── conftest.py          # run_eval fixture, parametrize
     ├── test_claude.py       # -m generate
     └── test_codex.py        # -m generate
-kien-thai-workspace/         # gitignored: iteration-N/<eval>/<backend>/<config>/
+workspace/                   # gitignored: iteration-N/<eval>/<backend>/<config>/
 ```
 
 ### Eval strategy

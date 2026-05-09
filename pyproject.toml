@@ -2,7 +2,9 @@
 name = "kien-thai-evals"
 version = "0.1.0"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "pythainlp>=5.3.4",
+]
 
 [dependency-groups]
 dev = [

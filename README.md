@@ -96,7 +96,7 @@ uv run pytest -m generate -k claude # เลือก backend เดียว
 uv run pytest -m evaluate           # ตรวจหยาบเชิงปริมาณ (เป็นแค่สัญญาณ)
 ```
 
-artifact จะลงที่ `kien-thai-workspace/iteration-N/<eval>/<backend>/<config>/`
+artifact จะลงที่ `workspace/iteration-N/<eval>/<backend>/<config>/`
 จากนั้นดูผลกับ Claude ใน chat ได้เลย ไม่มี viewer แยกต่างหาก
 
 การตัดสินคุณภาพงานเขียนเป็นงานของมนุษย์ ส่วน `test_quant.py` แค่ flag คำต้องห้าม

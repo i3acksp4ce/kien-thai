@@ -22,6 +22,7 @@ from lib import (
     build_prompt,
     load_evals,
     next_iteration_dir,
+    wrap_markdown,
 )
 
 
@@ -62,7 +63,7 @@ def run_eval(iteration_dir: Path, skill_text: str):
         (out_dir / "prompt.txt").write_text(prompt, encoding="utf-8")
 
         stdout, rc, duration = _invoke(backend, prompt)
-        (out_dir / "output.md").write_text(stdout, encoding="utf-8")
+        (out_dir / "output.md").write_text(wrap_markdown(stdout), encoding="utf-8")
         (out_dir / "meta.json").write_text(
             json.dumps(
                 {
