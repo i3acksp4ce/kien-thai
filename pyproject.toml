@@ -1,0 +1,20 @@
+[project]
+name = "thai-prose-evals"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-xdist>=3.8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+markers = [
+    "generate: invokes a real backend (claude/codex) to produce artifacts.",
+    "evaluate: reads artifacts from latest iteration and grades them.",
+]
+addopts = "-m 'not generate and not evaluate'"
