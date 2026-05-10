@@ -1,7 +1,7 @@
 # Register and voice guide
 
 Register and voice are two top-level concerns. **Register** governs structural
-conventions (particles, openers, closings, connectives, person-arity defaults).
+conventions (particles, openers, closings, connectives, person deixis defaults).
 **Voice** governs personality cues within those conventions (gender, brand mood,
 formality). Pick both before drafting; if either is ambiguous, ASK. Wrong register
 is worse than rough prose.
@@ -40,7 +40,7 @@ Marketing (brand mood) and Personal blog (gender, formality).
   frequency, English code-switch density all shift formality without changing
   register.
 
-## Person-arity
+## Person deixis
 
 Identify three roles for any piece. Most critical for Marketing:
 
@@ -115,7 +115,7 @@ distinct corpus voices. Pick the sub-register, then apply its conventions.
 **Common to all Marketing sub-registers**:
 
 - **Particles**: zero ครับ/ค่ะ in body. Only inside customer testimonial quotes.
-- **Person-arity**: required (see Person-arity above). Brand `เรา`, reader `คุณ`,
+- **Person deixis**: required (see Person deixis above). Brand `เรา`, reader `คุณ`,
   product `ระบบนี้`/`แอปนี้`. Demographic-noun substitution is a hard fail.
 - **Openers**: prefer reader's pain symptom or question hook over definition-first
   (`X คือ...`). Definition-first is the SEO default but reads as homogenized — use
@@ -145,7 +145,7 @@ when the rest of the close stays advisory.
 Source corpus: Bluebik, Wisesight, AWS Thailand corporate posts.
 Voice: advisory authority, third-person institutional.
 
-**Person-arity**: institutional brand third-person (`บริษัท`, team name) over `เรา`;
+**Person deixis**: institutional brand third-person (`บริษัท`, team name) over `เรา`;
 reader `คุณ` only in instructional sections.
 
 **Code-switch**: heavy English/Thai bilingual with bracketed-bilingual gloss
@@ -163,7 +163,7 @@ with marketing-shaped openers and CTAs.
 **Punctuation as warmth**: `…` (three-dot ellipsis) at coaching pauses is the
 bank-warm signature (`อยากซื้อบ้านแต่กังวล…`). `!` is rare.
 
-**Person-arity**: brand `เรา` for teaching, switches to `คุณ` for action/advisory.
+**Person deixis**: brand `เรา` for teaching, switches to `คุณ` for action/advisory.
 
 **Openers**: lifestyle scenario, age-bracket framing (`คนอายุ 30+ ควร...`).
 
@@ -178,7 +178,7 @@ Voice: practical-direct, instructional, hook with `!`.
 **Punctuation**: `!` allowed at hook/CTA. Vivid colloquial markers (`สาย-` slang for
 identifying merchant types) are signature.
 
-**Person-arity**: reader `คุณ` direct, brand third-person institutional.
+**Person deixis**: reader `คุณ` direct, brand third-person institutional.
 
 **Openers**: pain-point hook + service framing.
 

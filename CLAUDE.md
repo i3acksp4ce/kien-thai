@@ -77,13 +77,13 @@ itself.
 
 ```
 skills/kien-thai/
-├── SKILL.md                 # frames + person-arity + workflow
+├── SKILL.md                 # frames + person deixis + workflow
 └── references/
     ├── ai-tells.md          # mechanical Thai-correctness violations (hard)
     ├── grammar.md           # surface grammar (classifiers, modals, calques)
     ├── craft.md             # voice/taste preferences (soft)
     ├── style-rules.md       # positive style rules + ทับศัพท์ guide
-    ├── register.md          # 5 register families + person-arity
+    ├── register.md          # 5 register families + person deixis
     ├── examples.md          # before/after, register-tagged
     ├── forbidden-phrases.md # blocklist for audit pre-check
     └── anti-patterns.md     # human-facing redirector — excluded from bundle

@@ -188,9 +188,10 @@ or contrastive `แต่` to mark the shift.
 Heuristic: every "however" you'd write, ask whether a question or just `แต่` would
 do better. Drop one in two.
 
-## Person-arity (apply before drafting any piece with a reader)
+## Person deixis (apply before drafting any piece with a reader)
 
-In any piece, identify three roles. Most critical for Marketing copy.
+Person deixis — who speaks, who's addressed, who's the referent. In any piece,
+identify all three roles. Most critical for Marketing copy.
 
 - **1st person — speaker**. Marketing: brand as `เรา`. Personal blog: author as
   `ผม`/`ดิฉัน`. News/reference: no first-person.
@@ -208,7 +209,7 @@ In any piece, identify three roles. Most critical for Marketing copy.
 
 Don't mix `เรา` and `คุณ` within the same paragraph (Krungsri pattern). Body in
 `เรา` when teaching a concept; advisory line shifts to `คุณ` for action. See
-`references/register.md` for register-specific person-arity defaults.
+`references/register.md` for register-specific person deixis defaults.
 
 ## Stylistic conventions (apply on top of the frames)
 
@@ -224,7 +225,7 @@ rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
    - **Explainer** — bank/tech long-form, no particles, problem-first, `เรา`/`คุณ`
      address
    - **Marketing (family)** — SaaS-SME / B2B-formal / fintech-warm / retail-tech
-     sub-registers; person-arity required
+     sub-registers; person deixis required
    - **Personal blog / dev war-story** — first-person `ผม` *or* `ดิฉัน` per gender,
      ครับ/ค่ะ at openings and sign-offs only. **ASK gender if not stated** — don't
      silently default to `ผม`.
@@ -234,9 +235,9 @@ rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
    Voice attributes (gender, brand mood, formality level) are orthogonal to
    register — pick both.
 
-1.5. **Identify person-arity** for any piece with a reader, especially Marketing.
+1.5. **Identify person deixis** for any piece with a reader, especially Marketing.
    1st (brand `เรา`) / 2nd (reader `คุณ` — never demographic noun) / 3rd (product).
-   See Person-arity section above.
+   See Person deixis section above.
 
 2. **Draft frame-first.** Before picking words, ask:
    - What's the topic? Is it fronted (Frame 1)?
