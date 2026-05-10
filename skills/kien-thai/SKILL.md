@@ -7,33 +7,13 @@ description: Write Thai-language prose (technical documentation, marketing copy,
 
 ## Why this skill exists
 
-Generic AI-produced Thai has tells. Native readers feel them as friction —
-re-reading sentences, skimming, abandoning. The biggest tells:
-
-- **Connective spam**: ซึ่ง / โดย / ทั้งนี้ / อีกทั้ง / นอกจากนี้ / อย่างไรก็ตาม /
-  ดังนั้น in every other clause.
-- **Calqued English syntax**: ถูก-passive on actions with no real agent,
-  "การที่...นั้น...", long subordinate chains glued by ซึ่ง.
-- **Bureaucratic padding**: ทำการ+verb, มีความ+adj, การ-nominalization of every verb.
-- **Wrong register default**: ครับ/ค่ะ on every sentence, ท่าน as default address,
-  "ในยุคปัจจุบัน..." openers.
-
-Real Thai writers don't write like this. The goal: produce Thai that a Thai reader
-can read at speed, with a distinct human voice appropriate to register.
-
-## The deeper problem: discourse frames
-
-Surface-level rules ("don't use ทั้งนี้") treat symptoms. The cause is structural:
-**AI-generated Thai imports English's discourse mechanics whole-cloth.** Thai has its
-own way of connecting clauses, marking sentence boundaries, closing thoughts,
-maintaining cohesion, pacing prose, and pivoting between ideas. When you preserve
-English mechanics in Thai words, the result reads as translated AI, even when every
-word is grammatical.
-
-Internalize these seven frames first. The granular rules in
-`references/ai-tells.md` (mechanical Thai-correctness), `references/grammar.md`
-(surface grammar), and `references/craft.md` (voice / taste preferences) become
-applications of the frames — many of them auto-resolve once the frames are right.
+AI-produced Thai imports English's discourse mechanics whole-cloth and adds
+politeness/connective padding by default. Native readers feel the friction —
+re-reading, skimming, abandoning. Surface-level rules ("don't use ทั้งนี้")
+treat symptoms; the seven frames below are the structural cause. Granular
+rules in `references/ai-tells.md` (mechanical), `references/grammar.md`
+(surface), and `references/craft.md` (taste) become applications of the
+frames — many auto-resolve once the frames are right.
 
 ### Frame 1 — Topic-comment over subject-verb-object
 
@@ -239,30 +219,9 @@ Don't mix `เรา` and `คุณ` within the same paragraph (Krungsri patter
 
 ## Stylistic conventions (apply on top of the frames)
 
-Once the frames are right, these surface-level conventions fine-tune the voice.
-
-1. **Verbs over noun forms.** Prefer `แปลหนังสือ` to `ทำการแปลหนังสือ`. Prefer
-   `ระบบขยายได้` to `ระบบมีความสามารถในการขยาย`. Reserve การ- and ความ- for
-   genuinely abstract topics.
-
-2. **Particles match register, not friendliness.** ครับ/ค่ะ in body copy of
-   explainers, tech docs, and marketing → NO. They belong in spoken-voice contexts:
-   personal blog openings/sign-offs, quoted speakers, chat-app messaging,
-   direct-to-reader social posts. See `references/register.md`.
-
-3. **Open with the reader's situation, not a panorama.** Banned openers:
-   `ในยุคปัจจุบัน...`, `ในโลกที่...`, `เป็นที่ทราบกันดีว่า...`, `ปฏิเสธไม่ได้ว่า...`.
-   Replace with: a symptom the reader recognizes, a concrete fact, a rhetorical
-   question, or a confession.
-
-4. **Concrete numbers and named examples beat abstract claims.**
-   `p99 ลดจาก 800ms เหลือ 120ms` beats `ประสิทธิภาพดีขึ้นอย่างมีนัยสำคัญ`.
-
-5. **Vary sentence length deliberately.** A 6-word sentence next to a 35-word one is
-   normal Thai prose. AI homogenizes around 20 words and reads as monotone. Mix.
-
-6. **Mai-yamok (ๆ) for casual reduplication.** `เรื่อย ๆ`, `ใหม่ ๆ`, `บ่อย ๆ` —
-   natural Thai signal. Don't avoid it.
+Surface-level voice fine-tuning lives in `references/style-rules.md` (positive
+rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
+ทับศัพท์, translation craft) and `references/craft.md` (soft taste rules).
 
 ## Workflow when asked to write Thai prose
 
@@ -334,30 +293,16 @@ Minimum checklist:
   in Thai.
 - ทับศัพท์ judgment per the four-bucket guide in `references/style-rules.md`.
 
-## References — read on demand
+## References
 
-- `references/ai-tells.md` — mechanical Thai-correctness violations. Hard rules
-  applying across registers. Consult when self-editing or when uncertain whether
-  a pattern is AI-shaped.
-- `references/grammar.md` — surface Thai grammar: classifiers, modal markers,
-  function-word distinctions, verb-level calques. Hard rules.
-- `references/craft.md` — voice / taste / register-conditional preferences. Soft
-  rules with scope notes.
-- `references/style-rules.md` — positive style rules, ทับศัพท์ four-bucket guide,
-  translation craft rules. Consult when drafting.
-- `references/register.md` — register family + voice + person-arity. Consult
-  before drafting; pick register and voice first.
-- `references/examples.md` — before/after worked rewrites across registers.
-  Consult for pattern-matching.
-- `references/audit-checklist.md` — condensed grep-able checklist for kode-thai
-  audit pass.
+References (full text below, in bundle order): `ai-tells.md` (mechanical),
+`grammar.md` (surface), `craft.md` (soft), `style-rules.md` (positive),
+`register.md` (active register only when the harness scopes), `examples.md`
+(active register only when scoped), `forbidden-phrases.md` (audit blocklist).
 
-Citation-grade backing for many rules (Iwasaki & Ingkaphirom, Smyth, Higbie &
-Thinsan, Li & Thompson, Prasithrathsint, Takahashi, Olsson, Thai Discourse
-Treebank, Singnoi, Royal Institute spacing manual, Marcel Barang) lives in
-`corpus/curated/scholarly/<source-slug>.md` — author/year extracts with direct
-rule mappings. Corpus prose is gitignored due to copyright; the index in
-`corpus/README.md` lists what's available locally.
+Scholarly provenance (Iwasaki & Ingkaphirom, Smyth, Prasithrathsint,
+Takahashi, Olsson, Thai Discourse Treebank, Singnoi, Royal Institute,
+Marcel Barang) lives in `corpus/curated/scholarly/` — not in the bundle.
 
 ## Important: when in doubt, ask the user
 
