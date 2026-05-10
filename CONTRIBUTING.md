@@ -1,51 +1,39 @@
 # Contributing
 
-ขอบคุณที่อยากช่วยปรับปรุง skill นี้ เอกสารนี้สรุปขั้นตอนเสนอแก้ไขเมื่อเจอกฎที่ผิด
-เจอ AI tell ที่ skill จับไม่ได้ หรืออยากเพิ่มกฎใหม่
+ขอบคุณที่คุณอยากจะช่วยปรับปรุง skill นี้ เอกสารนี้สรุปขั้นตอนการเสนอการแก้ไขเมื่อเจอกฎที่ผิด เจอ AI tell ที่ skill จับไม่ได้ หรืออยากเพิ่มกฎใหม่
 
 ## 0. อ่านก่อน
 
 ก่อนเปิด issue หรือ PR ขอให้อ่านสามไฟล์นี้ก่อน:
 
 1. [`skills/kien-thai/SKILL.md`](skills/kien-thai/SKILL.md): กรอบการเรียบเรียง
-   7 ข้อ + person-arity + workflow
+   7 ข้อ + person deixis + workflow
 2. [`skills/kien-thai/references/register.md`](skills/kien-thai/references/register.md):
    register 5 family
 3. ไฟล์ใน `references/` ที่ตรงกับประเภทกฎ: `ai-tells.md` (mechanical),
    `grammar.md` (surface), `craft.md` (taste), `style-rules.md` (positive)
 
-ส่วนใหญ่ feedback แบบ "กฎข้อนี้ผิด" จริง ๆ แล้วเป็น register-mismatch ต่างหาก
-ไม่ใช่ตัวกฎพัง เช็คก่อนว่า register ถูกแล้วหรือยัง
+feedback ในลักษณะ "กฎข้อนี้ผิด" จริง ๆ แล้วส่วนใหญ่จะเป็น register-mismatch มากกว่า ไม่ใช่ตัวกฎพัง ลองเช็คดูก่อนว่ากำหนด register ถูกต้องแล้วหรือยัง
 
 ## 1. วินัยการเพิ่มกฎ — trace before you write
 
-ทุกกฎใน skill นี้กลั่นจากงานเขียนจริง (tech blog, bank long-form, newspaper รุ่น
-ใหม่, งานแปลฝีมือดี) มี *why* รองรับทุกข้อ คือ failure mode ที่ป้องกัน หรือ pattern
-มนุษย์ที่อยากให้ทำตาม
+ทุกกฎใน skill นี้กลั่นจากงานเขียนจริง (tech blog, bank long-form, newspaper รุ่นใหม่, งานแปลฝีมือดี) มี *why* รองรับทุกข้อ คือ failure mode ที่ไม่ต้องการให้เกิดขึ้น หรือ pattern ของมนุษย์ที่อยากให้ทำตาม
 
-**กฎที่ไม่มีที่มาจะเน่า** อย่าโตเร็วกว่าหลักฐาน
+**กฎที่ไม่มีที่มาจะเน่า** อย่ารีบเพิ่มกฎเร็วกว่าเพิ่มหลักฐาน
 
-เวลาเจอ output แย่ ความรู้สึกแรกคืออยากเพิ่มกฎใหม่หรือเข้มงวดกฎเดิม **อดทนไว้**
-ทำตาม trace ก่อน:
+เวลาเจอ output แย่ ๆ ความรู้สึกแรกคืออยากจะเพิ่มกฎใหม่ หรือเพิ่มความเข้มงวดของกฎเดิม **อดทนไว้** อย่าเพิ่งรีบเพิ่ม ทำตาม trace ก่อน:
 
 1. **หา offending pattern** ใน output ที่เป็นปัญหา
-2. **map กลับไปยังกฎที่ควรจับได้** ถามว่ากฎไหน ไฟล์ไหน ถ้าไม่เจอ นั่นคือช่อง
-   โหว่จริง
-3. **ถ้ากฎมีอยู่แล้วแต่ไม่ทำงาน** ดูว่าเพราะอะไร wording อ่อน? ตัวอย่างไม่ชัด?
-   ขัดกับกฎอื่น? register ไม่ตรง? **แก้กฎเดิมที่ wording / ความเด่น / anchoring
-   example อย่าซ้อนกฎใหม่ที่พูดเรื่องเดียวกัน**
-4. **ถ้าไม่มีกฎครอบคลุมจริง ๆ** ก่อนเพิ่ม เช็คงานค้นคว้าก่อนว่า pattern นี้มี
-   หลักฐานในงานจริงไหม ถ้ามี ก็ดึงขึ้นมาเขียนเป็นกฎ ถ้าไม่มี กฎใหม่ก็เป็นแค่
-   ข้อสันนิษฐาน ต้อง flag เป็น provisional แล้ว cite counter-example หรือแหล่ง
-   ให้ชัด
-5. **บันทึก trace** ใน issue / PR description เพื่อให้ที่มาของกฎอยู่กับการแก้
+2. **map กลับไปยังกฎที่ควรจับได้** ถามว่ากฎไหน ไฟล์ไหนก่อน ถ้าไม่เจอถึงจะเป็นช่องโหว่จริง
+3. **ถ้ากฎมีอยู่แล้วแต่ไม่ทำงาน** ตรวจดูก่อนว่าเพราะอะไร wording อ่อนรึเปล่า? ตัวอย่างไม่ชัดใช่ไหม? หรือว่ามันขัดกับกฎอื่น? register ไม่ตรง? **แก้กฎเดิมให้ดีขึ้นก่อนโดยการปรับ wording / ความเด่น / anchoring example ก่อน อย่าซ้อนกฎใหม่ที่พูดเรื่องเดียวกัน**
+4. **ถ้าไม่มีกฎครอบคลุมจริง ๆ** ก่อนจะเพิ่ม ลองค้นหางานค้นคว้าที่มีอยู่ก่อน ว่า pattern นี้มีการศึกษา หรือตัวอย่างที่เห็นได้ชัดในงานจริงที่คนเขียนไหม ถ้ามี ก็ดึงขึ้นมาเขียนเป็นกฎ ถ้าไม่มี กฎใหม่ก็จะเป็นได้แค่ข้อสันนิษฐานเท่านั้น ต้อง flag ให้เป็น provisional แล้ว cite counter-example หรือแหล่งที่มาให้ชัด
+5. **บันทึก trace** ใน issue / PR description เพื่อให้ข้อมูลที่มาของกฎอยู่ใกล้กับ diff ของการแก้ไขกฎนั้น ๆ มากที่สุด
 
-CLAUDE.md ส่วน "Iteration discipline" มีรายละเอียดเดียวกันสำหรับ developer
-internal
+สามารถอ่านขั้นตอนรายละเอียดเดียวกันนี้เพิ่มเติมจาก CLAUDE.md ส่วน "Iteration discipline" ได้
 
 ## 2. ขั้นตอนเสนอแก้ไข
 
-ใช้ template ตามนี้ใน issue / PR:
+ให้ใช้ template ตามนี้ใน issue / PR:
 
 ### a. ระบุ register
 
@@ -58,11 +46,11 @@ prose ตัวอย่างเป็น register ไหน?
 - `news`: ข่าว / reference doc
 - `academic`: วิชาการยาว
 
-ถ้า register ไม่ตรงกับที่ skill จับ บอกเลยว่าตรงไหน
+ถ้า register ไม่ตรงกับที่ skill จับ แจ้งได้เลยว่าควรเป็น register ไหน หรือ skill เข้าใจผิดยังไง
 
-### b. ระบุชั้นของกฎ
+### b. ระบุลำดับชั้นของกฎ
 
-issue เป็นเรื่อง:
+ระบุก่อนว่า issue เป็นเรื่องอะไร:
 
 - **discourse-level**: โครงสร้างประโยค การจัดอนุประโยค การเปลี่ยน topic
   → frame F1–F7 ใน SKILL.md
@@ -75,24 +63,22 @@ issue เป็นเรื่อง:
 - **positive guidance**: สิ่งที่อยากให้ทำตอน draft ไม่ใช่กฎ audit
   → `style-rules.md`
 
-ไม่แน่ใจก็เดาก่อน reviewer จะช่วยปรับ
+ถ้าหากไม่แน่ใจก็เดามาก่อนได้ เดี๋ยว reviewer จะช่วยปรับให้
 
 ### c. trace
 
-- กฎไหน *น่าจะ* จับ pattern นี้ได้? cite slug
-- ทำไมไม่ทำงาน? (wording อ่อน / ตัวอย่างเก่า / ขัด register / ตัวกฎไม่มีจริง)
-- เสนอแก้: rewrite กฎเดิม หรือเพิ่ม slug ใหม่
+- กฎไหน *น่าจะ* จับ pattern นี้ได้? cite slug ของกฎ
+- ทำไมกฎไม่ทำงาน? วิเคราะห์ดูว่าเป็นเพราะ wording อ่อน / ตัวอย่างเก่า / ขัด register / ตัวกฎไม่มีจริง หรือเพราะอย่างอื่น?
+- เสนอการแก้ไข: rewrite กฎเดิม หรือเพิ่ม slug ใหม่
 
 ### d. ที่มา (กรณีเสนอกฎใหม่)
 
 cite ตัวอย่างจริงอย่างน้อยหนึ่งแหล่ง:
 
-- blog dev ไทย / bank explainer / newspaper รุ่นใหม่ / งานแปล non-fiction
-  พร้อม URL หรือ excerpt
+- blog dev ไทย / bank explainer / newspaper รุ่นใหม่ / งานแปล non-fiction พร้อม URL หรือ excerpt
 - หรือ counter-example ชัด ๆ ที่แสดงว่ากฎเดิมพลาด
 
-กฎที่ไม่มี citation จะเข้าเป็น *provisional* คือมี marker ใน file
-รอ eval หลายรอบเพื่อยืนยัน
+กฎที่ไม่มี citation จะเข้าเป็น *provisional* คือมี marker ใน file รอ eval หลายรอบเพื่อยืนยัน
 
 ## 3. รูปแบบ slug + metadata
 
@@ -115,26 +101,23 @@ cite ตัวอย่างจริงอย่างน้อยหนึ่
 frame slug ใช้ form `f<N>` (`f1`...`f7`) sub-pattern ใต้ frame ใช้
 `f<N>/<descriptor>` (เช่น `f4/targhak-closure`)
 
-cross-reference ระหว่าง rule ใช้ slug ใน backtick ในเนื้อความ เช่น "ดู
-`mid-paragraph-period` สำหรับ period spam" ไม่ใช้เลขลำดับ (legacy IDs ตายไปแล้ว)
+cross-reference ระหว่าง rule ให้ใช้ slug ใน backtick ใส่ไปในเนื้อความ เช่น "ดู `mid-paragraph-period` สำหรับ period spam"
 
 ## 4. รูปแบบ PR
 
-- **title** สั้น ระบุประเภท + slug ที่กระทบ เช่น `craft: rewrite cliche-headline
-  to cover SEO listicle pattern` หรือ `ai-tells: add new slug for X`
-- **body** ครอบคลุม:
-  - register และไฟล์ที่กระทบ
+- **title** หัวข้อสั้น ๆ ระบุประเภท + slug ที่กระทบ เช่น `craft: rewrite cliche-headline to cover SEO listicle pattern` หรือ `ai-tells: add new slug for X`
+- **body** ต้องครอบคลุม:
+  - register และไฟล์กฎที่กระทบ
   - offending example (snippet จริง)
   - trace ตามข้อ 2 ข้างบน
-  - diff ของ rule wording (ถ้าแก้กฎเดิม) หรือ slug + metadata + body ใหม่
-    (ถ้าเพิ่มกฎใหม่)
+  - diff ของ rule wording (ถ้าแก้กฎเดิม) หรือ slug + metadata + body ใหม่ (ถ้าเพิ่มกฎใหม่)
   - citation
-- **scope** หนึ่ง logical change ต่อ PR อย่ารวมแก้กฎหลายข้อใน PR เดียว ยกเว้น
-  เป็นการ refactor โครงสร้าง
+- **scope** หนึ่ง logical change ต่อ PR อย่ารวมแก้กฎหลายข้อใน PR เดียว ยกเว้นเป็นการ refactor โครงสร้างขนานใหญ่
 
 ## 5. eval expectations
 
-การแก้กฎมักทำให้ behavior model เปลี่ยน reviewer ก็เลยอาจขอให้รัน eval รอบใหม่
+การแก้กฎมักทำให้ behavior model เปลี่ยน เพราะฉะนั้นก่อน submit รบกวนรัน eval รอบใหม่ให้หน่อยนะครับ
+
 ก่อน merge:
 
 ```sh
@@ -143,21 +126,12 @@ uv run pytest                  # sanity (ฟรี)
 uv run pytest -m generate      # full eval (ใช้ API token)
 ```
 
-ผลลง `workspace/iteration-N/` แล้วเปรียบเทียบ convergence (loop_passes,
-converged) กับ baseline iteration ปัจจุบัน ถ้าระดับคุณภาพหรือจำนวน pass แย่ลง
-ชัด ๆ reviewer จะ flag
+เก็บผลไว้ที่ `workspace/iteration-N/` แล้วเปรียบเทียบ convergence (loop_passes,
+converged) กับ baseline iteration ปัจจุบัน ถ้าระดับคุณภาพหรือจำนวน pass แย่ลงอย่างมีนัย ตัว pytest จะ flag ให้เอง
 
-ถ้าไม่มี API key หรือ codex setup ก็ไม่ต้องรัน eval เอง บอก reviewer แทนได้
+ถ้าไม่มี API key หรือ codex setup ก็ไม่เป็นไร แจ้งมาใน issue/PR แล้วเดี๋ยวทางเรา run ให้เอง
 
-## 6. ขอบเขตที่ไม่รับ (ตอนนี้)
+## 6. สิ่งที่เกินขอบเขต (ตอนนี้)
 
-- LLM-judge eval: ใช้ human review จนกว่าจะพิสูจน์ได้ว่าไม่พอ
-- กฎที่อ้างอิงคอลัมนิสต์ดังคนเดียว: skill ครอบคลุม pattern คนทั่วไป ไม่ใช่ลอก
-  น้ำเสียงคนใดคนหนึ่ง
-- **Stage 4 token-audit** (slim fix-pass bundle): reject แล้วถาวร อย่าเสนออีก
-  เพราะ fix pass ต้องเห็น ruleset เต็มเสมอ ดูใน
-  `workspace/token-audit/08-synthesis.md`
-
-## ติดต่อ
-
-เปิด issue หรือ PR ที่ repo นี้ตรง ๆ ก็พอ ไม่ต้องผ่าน Slack / Discord / mailing list
+- LLM-judge eval: ใช้ human review จนกว่าจะพิสูจน์ได้ว่า LLM ทำงานดีกว่าคน
+- กฎที่อ้างอิงคอลัมนิสต์ดังคนเดียว: skill ควรครอบคลุม pattern ที่ใช้ได้สำหรับคนทั่วไป ไม่ใช่การลอกน้ำเสียงของคน คนใดคนหนึ่ง
