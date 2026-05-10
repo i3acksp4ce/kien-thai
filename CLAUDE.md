@@ -143,9 +143,12 @@ is missing.
   in `tests/lib.py:kien_thai_bundle` strips frontmatter, dead refs, default
   metadata, and filters by register at bundle time.
 - Two-tier injection: pass-0 (draft) → full register-scoped bundle. Audit
-  passes → drop draft-time workflow sections. Fix passes →
-  `kien_thai_slim_fix_bundle` ships SKILL.md + active register +
-  forbidden-phrases + only audit-cited rule blocks.
+  and fix passes → drop draft-time workflow sections (audit-mode bundle).
+  **Fix passes always run with the full register-scoped audit bundle —
+  never a slimmed cited-rules-only variant.** Tried in iter-6 and rejected:
+  per-pass slimming strips sibling-rule context and the fixer thrashes,
+  introducing new violations as fast as it patches cited ones. Iteration
+  is tested with the full ruleset applied; do not re-attempt slimming.
 - Python: 3.13+ via `uv`. pytest 9 + pytest-xdist.
 
 ---

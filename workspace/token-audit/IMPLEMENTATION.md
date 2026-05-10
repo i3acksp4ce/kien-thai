@@ -167,31 +167,18 @@ Stage 3 (instrumentation):
   `cache_read_input_tokens=18183` after warm-up — cache is working
   for the eval flow.
 
-Stage 4 (slim fix-pass bundle):
-- `_build_rules_index()` walks ai-tells/craft/grammar/style-rules,
-  maps slug → full rule block.
-- `extract_cited_slugs()` parses audit output for slug refs (order-
-  preserving, deduplicated).
-- `kien_thai_slim_fix_bundle(register, cited_slugs)` builds:
-  SKILL.md (workflow stripped) + active register + forbidden-phrases
-  + only the cited rule blocks.
-- `_run_loop` extracts cited slugs after each audit, feeds slim
-  bundle to the matching fix invocation. `cited_slugs` lands in
-  meta.json per-pass.
-- 3 new tests cover slug extraction, slim bundle filtering, and
-  graceful unknown-slug handling.
+## Stage 4 — REJECTED on principle
 
-Slim fix-bundle measurements (explainer register):
-- audit pass:  51,817 chars
-- slim, 1 cited rule  : 20,186 chars (39%)
-- slim, 3 cited rules : 21,489 chars (41%)
-- slim, 5 cited rules : 22,056 chars (43%)
+Stage 4 was a slim fix-pass bundle: on each fix invocation, ship
+only the cited rules from the preceding audit (plus SKILL frames +
+active register), not the full audit bundle.
 
-Per fix pass: ~30K chars / ~16K tokens cut on top of Stage 1+2.
-
-## iter-6 — Stage 4 regression, reverted
-
-iter-6 ran with Stages 1+2+3+4 active. Convergence shifted:
+Tried in iter-6. Codex tech-doc-short regressed from iter-5's
+2-pass convergence back to MAX_LOOP=5 — the same cell Stages 1+2
+had fixed. Telemetry: each pass-N audit cited a different rule than
+pass-(N-1). Fixer patched the cited issue but lost sibling-rule
+context, so its restructuring landed a new violation that the next
+audit caught. Thrash.
 
 | Cell                    | iter-5 (S1+2) | iter-6 (S1-4) |
 | ----------------------- | ------------- | ------------- |
@@ -200,68 +187,35 @@ iter-6 ran with Stages 1+2+3+4 active. Convergence shifted:
 | tech-doc-short/claude   | 2 ✓          | 2 ✓          |
 | tech-doc-short/codex    | **2 ✓**      | **5 ✗**      |
 
-**Codex tech-doc regressed back to MAX_LOOP=5**. The same cell that
-Stages 1+2 *fixed* was re-broken by Stage 4.
+**Locked principle:** fix passes always run with the full register-
+scoped audit bundle. Iteration is tested with the full ruleset
+applied. No per-pass slimming, period — not because of one
+regression, but because the fixer needs sibling-rule peripheral
+vision while restructuring, and there is no slim-bundle design that
+preserves that without rebuilding the full bundle.
 
-Telemetry from iter-6 codex tech-doc-short:
+`kien_thai_slim_fix_bundle()`, `extract_cited_slugs()`,
+`_build_rules_index()`, and their unit tests have been deleted.
+Do not re-introduce.
 
-```
-pass-1 fix: cited [f5/zero-anaphora, seam-connective-missing, function-word-confusion]
-pass-2 fix: cited [f3, f7/demo-pivot]                            ← different rules
-pass-3 fix: cited [f6/ko-pacing, seam-connective-missing]        ← different again
-pass-4 fix: cited [wrong-classifier, f1/topic-comment]           ← different again
-pass-5 fix: cited [f5/zero-anaphora]                             ← still finding things
-```
-
-Each pass-N audit cites a different rule than pass-(N-1) — the fixer
-patches the cited issue but introduces a new one, audit catches it
-next pass. Classic thrash.
-
-Diagnosis: slim fix bundle drops sibling-rule context. When the
-fixer addresses `f5/zero-anaphora`, it doesn't know about `f6/ko-pacing`
-or `wrong-classifier` — so its restructuring can land a new
-violation. iter-5 with the full audit bundle on fix passes had the
-fixer aware of all rules while patching, so fixes were holistic.
-
-**Action taken**: reverted `_run_loop` to use the audit bundle on
-fix passes. `kien_thai_slim_fix_bundle()` and `extract_cited_slugs()`
-remain in `lib.py` and are unit-tested — kept as latent capability
-for a future re-introduction with one of:
-- A 1-line slug index of all rules (so fixer knows what else exists).
-- File-level intros (preamble of each rule file) carried alongside
-  cited rules.
-- Conditional slim mode (only kick in when audit cites ≥4 rules,
-  where the slim path is most worthwhile).
-
-This regression is the kind iter 08-synthesis explicitly warned
-about: "biggest win, biggest implementation cost. Defer until
-Stages 1–3 are validated." I jumped ahead under autonomous-mode
-direction; the validation invalidated.
-
-Telemetry data from iter-6 is still useful — first eval run with
-usage stats per pass. Notable:
+Stage 3 telemetry from iter-6 was still useful — first eval run
+with usage stats per pass:
 - claude cache_read after warm-up: ~18K tokens (stable).
 - codex cache: smaller (6528 baseline) and TTL appears variable
   (24960 read on some passes, falls back to 6528 on others). Codex
   cache TTL is shorter than Anthropic's; cross-cell reuse limited.
 
-Stage 3 instrumentation works as designed.
-
-## Total state at end of session
-
-15 commits since iter-3 review save. Default pytest 20/20.
+## Total state
 
 **Active**: Stages 1+2 (mechanical cuts + register scoping) + Stage 3
 (usage telemetry).
 
-**Latent**: Stage 4 helpers (slim fix bundle, slug extraction) live
-in `lib.py` with tests but aren't wired into `_run_loop`. Re-wire
-when a richer fix-bundle design lands.
+**Rejected**: Stage 4 (slim fix-pass bundle). Locked decision.
 
-iter-5 (Stage 1+2 only) is the current quality baseline — codex
-tech-doc-short converges in 2 passes vs iter-3's MAX_LOOP failure.
-Next eval run will combine Stage 1+2 + telemetry; that's the
-right artifact for review.
+iter-5 (Stage 1+2) is the quality baseline — codex tech-doc-short
+converges in 2 passes vs iter-3's MAX_LOOP failure. iter-6 added
+Stage 3 telemetry and surfaced the Stage 4 regression that produced
+the lock.
 
 ## Architectural notes for next session
 

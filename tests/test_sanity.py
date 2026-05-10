@@ -9,9 +9,7 @@ from lib import (
     SKILL_PATH,
     Eval,
     build_prompt,
-    extract_cited_slugs,
     kien_thai_bundle,
-    kien_thai_slim_fix_bundle,
     parse_backend_output,
 )
 
@@ -107,45 +105,6 @@ def test_bundle_strips_default_metadata():
     assert "· mechanical · all-registers · hard" not in bundle
     # But the slug line itself should still be present (with at most non-default meta).
     assert "`chueung-stacking`" in bundle
-
-
-def test_extract_cited_slugs():
-    audit = """
-- `em-dash-semicolon` (#32) — em-dash ปรากฏสองครั้ง
-  - `f4/targhak-closure` ตัวอย่าง: ...
-- `wrong-classifier` ที่ใช้ `bucket หนึ่งใบ`
-- `em-dash-semicolon` ซ้ำ
-"""
-    cited = extract_cited_slugs(audit)
-    # Order preserved, deduped.
-    assert cited == ["em-dash-semicolon", "f4/targhak-closure", "wrong-classifier"]
-
-
-def test_slim_fix_bundle_only_includes_cited_rules():
-    cited = ["em-dash-semicolon", "wrong-classifier"]
-    slim = kien_thai_slim_fix_bundle("explainer", cited)
-    full = kien_thai_bundle(register="explainer", mode="audit")
-    # Slim is materially smaller than the audit bundle.
-    assert len(slim) < len(full) * 0.7, f"slim {len(slim)} not < 70% of audit {len(full)}"
-    # Cited rules present.
-    assert "em-dash-semicolon" in slim
-    assert "wrong-classifier" in slim
-    # Non-cited rules absent.
-    assert "chueung-stacking" not in slim, "uncited rule leaked into slim bundle"
-    assert "tham-kan-padding" not in slim
-    # SKILL.md still present (frames are essential).
-    assert "Frame 1" in slim
-    # Active register present.
-    assert "## Register 1 — Explainer" in slim
-
-
-def test_slim_bundle_handles_unknown_slugs():
-    # Auditor cites a typo or invented slug — should not crash.
-    cited = ["em-dash-semicolon", "made-up-slug-that-does-not-exist"]
-    slim = kien_thai_slim_fix_bundle("explainer", cited)
-    assert "em-dash-semicolon" in slim
-    # No exception raised; bundle still well-formed.
-    assert "Frame 1" in slim
 
 
 def test_parse_codex_output():
