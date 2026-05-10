@@ -18,13 +18,6 @@ longer than that — they're treated as atomic, like URLs.
    ดังนั้น. Drop "however" in roughly half its English occurrences. Test every
    connective: would a Thai reader notice it missing? If no, delete.
 
-   The 100-word budget is currently observation-calibrated. The Thai Discourse
-   Treebank (Boriboon et al., TACL 2024 — ~18k connective tokens across 8k
-   sentences with a 148-connective inventory) is the right empirical reference
-   for register-specific density caps. Re-calibrate when the analysis lands;
-   the inventory itself is likely to surface AI tells the skill doesn't
-   currently name.
-
 3. **Topicalize before commenting.** Thai prefers `topic → comment` over English's
    SVO. When the English would calque a passive ("X is done by Y"), front the patient
    as topic and use active voice.
@@ -201,14 +194,9 @@ bureaucratic.
 30. **Don't translate the same technical term twice in the same paragraph.** First
     mention establishes the Thai/transliterated form; later mentions don't gloss again.
 
-31. **Don't add anything the source doesn't have.** Per Marcel Barang on Thai
-    literary translation: no added editorial commentary, no cultural framing
-    the source author didn't write, no in-text glosses inflating Thai readers'
-    presumed knowledge gap. Confident essayists stay confident in Thai — no
-    added ครับ/ค่ะ, no hedging อาจจะ inserted into declarative sentences. If
-    the source omits a transition, omit it; if the source names a fact bare,
-    name it bare. The translator's job is fidelity to voice, not tour-guiding
-    the reader.
+31. **Don't add anything the source doesn't have.** No added ครับ/ค่ะ on
+    confident essayists. No hedging อาจจะ where the source asserts. If the
+    source omits a transition, omit it. Fidelity to voice, not tour-guiding.
 
 32. **Headings: shorter than the English, often noun-only.**
     - English: `How Imagined Orders Shape Cooperation`

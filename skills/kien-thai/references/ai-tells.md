@@ -70,14 +70,8 @@ Cap at one โดย per paragraph. Prefer ด้วย, ผ่าน, จาก
 Thai ถูก- / โดน- carry adversative reading. Native writers use them for genuinely
 unfortunate events and re-cast everything else to active.
 
-Per Prasithrathsint 2001 on Thai passive variants, the two adversative markers
-have distinct registers / force:
-
-- `โดน` — strongly adversative, colloquial. Use when the action is genuinely
-  unwanted (`โดนแฮก`, `โดนปฏิเสธ`, `โดนวิจารณ์รุนแรง`).
-- `ถูก` — neutral-to-mild adversative, more formal. Use for institutional /
-  procedural undesirables (`ถูกประเมิน`, `ถูกตรวจสอบ`, `ถูกปฏิเสธ` in formal
-  context).
+- `โดน` — strongly adversative, colloquial (`โดนแฮก`, `โดนปฏิเสธ`).
+- `ถูก` — neutral-mild adversative, formal (`ถูกประเมิน`, `ถูกตรวจสอบ`).
 - Active voice — everything else.
 
 - **Bad**: `ข้อมูลจะถูกส่งไปยังเซิร์ฟเวอร์โดยไคลเอนต์ และจะถูกประมวลผลโดยระบบ`
