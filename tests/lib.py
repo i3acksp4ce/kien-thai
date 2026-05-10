@@ -22,10 +22,11 @@ WORKSPACE = ROOT / "workspace"
 
 # Bare-mode invocations. Skills are injected via prompt prepend, never via
 # the backend's own skill-loading machinery — so the only delta between
-# `with_skill` and `baseline` is the prompt.
+# `with_skill` and `baseline` is the prompt. Output-format flags emit usage
+# stats (token counts + cache hit/miss) for per-pass instrumentation.
 BACKENDS: dict[str, list[str]] = {
-    "claude": ["claude", "--disable-slash-commands", "-p"],
-    "codex": ["codex", "exec"],
+    "claude": ["claude", "--disable-slash-commands", "--output-format", "json", "-p"],
+    "codex": ["codex", "exec", "--json"],
 }
 
 CONFIGS = ("with_skill", "baseline")
@@ -71,6 +72,36 @@ def next_iteration_dir() -> Path:
 
 def backend_available(backend: str) -> bool:
     return shutil.which(BACKENDS[backend][0]) is not None
+
+
+def parse_backend_output(backend: str, stdout: str) -> tuple[str, dict]:
+    """Extract (text, usage) from a backend's stdout.
+
+    claude --output-format json: single JSON object with `result` + `usage`.
+    codex --json: JSONL stream; agent_message item carries text, turn.completed
+    carries usage.
+    """
+    if backend == "claude":
+        data = json.loads(stdout)
+        return data.get("result", ""), data.get("usage", {})
+    if backend == "codex":
+        text = ""
+        usage: dict = {}
+        for line in stdout.splitlines():
+            if not line.strip():
+                continue
+            try:
+                ev = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if ev.get("type") == "item.completed":
+                item = ev.get("item", {})
+                if item.get("type") == "agent_message":
+                    text = item.get("text", text)
+            elif ev.get("type") == "turn.completed":
+                usage = ev.get("usage", {}) or usage
+        return text, usage
+    raise ValueError(f"unknown backend: {backend}")
 
 
 _FENCE_RE = re.compile(r"^(\s*)(```|~~~)")

@@ -19,6 +19,7 @@ from lib import (
     kien_thai_bundle,
     load_evals,
     next_iteration_dir,
+    parse_backend_output,
     wrap_markdown,
 )
 
@@ -39,21 +40,26 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize("config", CONFIGS)
 
 
-def _invoke(backend: str, prompt: str) -> tuple[str, int, float]:
+def _invoke(backend: str, prompt: str) -> tuple[str, dict, int, float]:
+    """Run backend on prompt; return (text, usage, rc, duration)."""
     cmd = [*BACKENDS[backend], prompt]
     t0 = time.monotonic()
     proc = subprocess.run(
         cmd, capture_output=True, text=True, timeout=TIMEOUT_S, env={**os.environ}
     )
-    return proc.stdout, proc.returncode, time.monotonic() - t0
+    dur = time.monotonic() - t0
+    if proc.returncode != 0:
+        return proc.stdout, {}, proc.returncode, dur
+    text, usage = parse_backend_output(backend, proc.stdout)
+    return text, usage, proc.returncode, dur
 
 
-def _run_once(backend: str, prompt: str, out_dir: Path, label: str) -> tuple[str, float]:
+def _run_once(backend: str, prompt: str, out_dir: Path, label: str) -> tuple[str, float, dict]:
     (out_dir / f"{label}-prompt.txt").write_text(prompt, encoding="utf-8")
-    stdout, rc, dur = _invoke(backend, prompt)
-    assert rc == 0, f"{backend} {label} exited {rc}: {stdout[:500]}"
-    assert stdout.strip(), f"{backend} {label} empty output"
-    return stdout, dur
+    text, usage, rc, dur = _invoke(backend, prompt)
+    assert rc == 0, f"{backend} {label} exited {rc}: {text[:500]}"
+    assert text.strip(), f"{backend} {label} empty output"
+    return text, dur, usage
 
 
 def _audit_prompt(prose: str, bundle: str, register: str) -> str:
@@ -95,9 +101,9 @@ def _is_clean(audit: str) -> bool:
 
 def _run_baseline(backend: str, eval_case: Eval, out_dir: Path) -> dict:
     prompt = build_prompt(eval_case, "baseline", "")
-    stdout, dur = _run_once(backend, prompt, out_dir, "input")
-    (out_dir / "output.md").write_text(wrap_markdown(stdout), encoding="utf-8")
-    return {"duration_s": round(dur, 2)}
+    text, dur, usage = _run_once(backend, prompt, out_dir, "input")
+    (out_dir / "output.md").write_text(wrap_markdown(text), encoding="utf-8")
+    return {"duration_s": round(dur, 2), "usage": usage}
 
 
 def _run_loop(backend: str, eval_case: Eval, out_dir: Path) -> dict:
@@ -108,24 +114,38 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path) -> dict:
     audit_bundle = kien_thai_bundle(register=register, mode="audit")
 
     initial_prompt = build_prompt(eval_case, "with_skill", draft_bundle)
-    prose, dur0 = _run_once(backend, initial_prompt, out_dir, "pass-0")
+    prose, dur0, usage0 = _run_once(backend, initial_prompt, out_dir, "pass-0")
     (out_dir / "pass-0.md").write_text(wrap_markdown(prose), encoding="utf-8")
-    passes: list[dict] = [{"pass": 0, "kind": "initial", "duration_s": round(dur0, 2)}]
+    passes: list[dict] = [
+        {"pass": 0, "kind": "initial", "duration_s": round(dur0, 2), "usage": usage0}
+    ]
 
     converged = False
     last_pass = 0
     for i in range(1, MAX_LOOP + 1):
-        audit, audit_dur = _run_once(backend, _audit_prompt(prose, audit_bundle, register), out_dir, f"pass-{i}-audit")
+        audit, audit_dur, audit_usage = _run_once(
+            backend, _audit_prompt(prose, audit_bundle, register), out_dir, f"pass-{i}-audit"
+        )
         (out_dir / f"pass-{i}-audit.md").write_text(audit.strip() + "\n", encoding="utf-8")
         clean = _is_clean(audit)
-        passes.append({"pass": i, "kind": "audit", "duration_s": round(audit_dur, 2), "clean": clean})
+        passes.append({
+            "pass": i, "kind": "audit",
+            "duration_s": round(audit_dur, 2),
+            "clean": clean, "usage": audit_usage,
+        })
         last_pass = i
         if clean:
             converged = True
             break
-        prose, fix_dur = _run_once(backend, _fix_prompt(prose, audit, audit_bundle, register), out_dir, f"pass-{i}-fix")
+        prose, fix_dur, fix_usage = _run_once(
+            backend, _fix_prompt(prose, audit, audit_bundle, register), out_dir, f"pass-{i}-fix"
+        )
         (out_dir / f"pass-{i}.md").write_text(wrap_markdown(prose), encoding="utf-8")
-        passes.append({"pass": i, "kind": "fix", "duration_s": round(fix_dur, 2)})
+        passes.append({
+            "pass": i, "kind": "fix",
+            "duration_s": round(fix_dur, 2),
+            "usage": fix_usage,
+        })
 
     (out_dir / "output.md").write_text(wrap_markdown(prose), encoding="utf-8")
     return {"loop_passes": last_pass, "converged": converged, "passes": passes}
