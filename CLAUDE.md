@@ -63,6 +63,9 @@ tighten an existing one. **Resist this.** Trace first:
    a concrete citation or counter-example, and keep it provisional.
 5. **Document the trace** in `iteration-N/feedback.md` so the rule's origin survives.
 
+External contributors follow the same logic via [`CONTRIBUTING.md`](CONTRIBUTING.md)
+— that's the public-facing version of this section.
+
 ---
 
 ## Authoring the skill
