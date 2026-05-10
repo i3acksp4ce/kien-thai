@@ -136,16 +136,192 @@ def wrap_markdown(text: str, width: int = 90) -> str:
     return "\n".join(out)
 
 
-def kien_thai_bundle() -> str:
-    """SKILL.md + every references/*.md, framed for prompt injection.
+# --- Skill bundle preprocessor ----------------------------------------------
+#
+# kien_thai_bundle() builds the prompt-ready skill text. It does several
+# runtime cuts so source files stay human-readable but the bundle stays lean:
+#
+# - drop YAML frontmatter (skill-discovery metadata, useless in prompt)
+# - skip SKIP_REFS files (human-facing redirectors)
+# - strip default `· mechanical · all-registers · hard` metadata from rule lines
+# - register-scope register.md and examples.md when `register` is supplied
+# - mode='audit' drops draft-time workflow sections from SKILL.md
+#
+# Source files keep the verbose form (consistency test parses them).
 
-    kode-thai's protocol requires loading kien-thai in full (skill + every
-    references/*.md) — both audit and fix passes need depth, not mechanical
-    scanning.
+SKIP_REFS = frozenset({"anti-patterns.md"})  # human-facing stub redirector
+
+REGISTER_HEADERS: dict[str, tuple[str, ...]] = {
+    "explainer": ("Register 1",),
+    "marketing-saas-sme": ("Register 2", "2.1"),
+    "marketing-b2b-formal": ("Register 2", "2.2"),
+    "marketing-fintech-warm": ("Register 2", "2.3"),
+    "marketing-retail-tech": ("Register 2", "2.4"),
+    "personal-blog": ("Register 3",),
+    "news": ("Register 4",),
+    "academic": ("Register 5",),
+}
+
+_FRONTMATTER_RE = re.compile(r"\A---\n.*?\n---\n+", re.DOTALL)
+_DEFAULT_META_RE = re.compile(
+    r"^(`[a-z0-9][a-z0-9/_-]*`)\s+·\s+\S+\s+·\s+\S+\s+·\s+\S+\s*$",
+    re.MULTILINE,
+)
+_WORKFLOW_HEADINGS = (
+    "## Workflow when asked to write Thai prose",
+    "## When asked to edit Thai prose",
+    "## When asked to translate English to Thai",
+)
+_EXAMPLE_REGISTER_RE = re.compile(
+    r"^<!--\s*register:\s*([a-z0-9-]+)\s*-->\s*$", re.MULTILINE
+)
+
+
+def _strip_frontmatter(text: str) -> str:
+    return _FRONTMATTER_RE.sub("", text, count=1)
+
+
+def _strip_default_meta(text: str) -> str:
+    """Drop default `· mechanical · all-registers · hard` from rule headers."""
+    def repl(m: re.Match[str]) -> str:
+        line = m.group(0)
+        slug = m.group(1)
+        # Parse the four · separated fields after slug.
+        parts = [p.strip() for p in line[len(slug):].split("·")]
+        # parts[0] is empty (just the leading separator gap); rest are fields.
+        fields = [p for p in parts if p]
+        # fields = [type, scope, severity]
+        defaults = {"mechanical", "all-registers", "hard", "craft"}
+        # craft files have type=craft default; preserve only non-default fields
+        kept = [f for f in fields if f not in defaults]
+        if not kept:
+            return slug
+        return f"{slug} · " + " · ".join(kept)
+    return _DEFAULT_META_RE.sub(repl, text)
+
+
+def _strip_dead_audit_checklist(text: str) -> str:
+    """Drop dead `audit-checklist.md` references (file deleted iter-2 prep)."""
+    out_lines = []
+    for line in text.splitlines(keepends=True):
+        if "audit-checklist.md" in line:
+            continue
+        out_lines.append(line)
+    return "".join(out_lines)
+
+
+def _strip_workflow_sections(text: str) -> str:
+    """Drop draft-time workflow sections (audit/fix passes don't need them)."""
+    lines = text.splitlines(keepends=True)
+    out: list[str] = []
+    skip = False
+    for line in lines:
+        stripped = line.rstrip("\n")
+        if stripped in _WORKFLOW_HEADINGS:
+            skip = True
+            continue
+        if skip and stripped.startswith("## ") and stripped not in _WORKFLOW_HEADINGS:
+            skip = False
+        if not skip:
+            out.append(line)
+    return "".join(out)
+
+
+def _scope_register_md(text: str, register: str) -> str:
+    """Keep only the active register's sections; drop the others.
+
+    Always-keep `## ` sections: Quick register decision, Voice attributes,
+    Person-arity, Cross-register: when to shift, Coherence, Default.
+    Per-register `## Register N — ...` sections kept only if matching.
+    Marketing sub-registers (`### 2.X`) under Marketing-family kept by match.
     """
-    parts = [SKILL_PATH.read_text(encoding="utf-8")]
+    keys = REGISTER_HEADERS.get(register, ())
+    if not keys:
+        return text  # unknown register, ship full file
+
+    lines = text.splitlines(keepends=True)
+    out: list[str] = []
+    in_register_section = False
+    keep_register_section = True
+    in_marketing_subreg = False
+    keep_marketing_subreg = True
+
+    for line in lines:
+        stripped = line.lstrip()
+        if stripped.startswith("## Register "):
+            in_register_section = True
+            in_marketing_subreg = False
+            # Keep this section if its heading mentions one of our keys.
+            keep_register_section = any(k in line for k in keys)
+            if keep_register_section:
+                out.append(line)
+            continue
+        if in_register_section and stripped.startswith("## "):
+            in_register_section = False
+            in_marketing_subreg = False
+        if in_register_section and "Register 2" in keys[0] and stripped.startswith("### "):
+            # Marketing sub-register subsection
+            in_marketing_subreg = True
+            # Keep if heading number matches our sub-key (e.g. "2.1")
+            sub_key = keys[1] if len(keys) > 1 else None
+            keep_marketing_subreg = bool(sub_key and sub_key in line)
+            if keep_register_section and keep_marketing_subreg:
+                out.append(line)
+            continue
+        if in_register_section:
+            if "Register 2" in keys[0] and in_marketing_subreg:
+                if keep_register_section and keep_marketing_subreg:
+                    out.append(line)
+            elif keep_register_section:
+                out.append(line)
+            continue
+        out.append(line)
+    return "".join(out)
+
+
+def _scope_examples_md(text: str, register: str) -> str:
+    """Keep only the example tagged with the active register."""
+    # Split on `<!-- register: xxx -->` markers. Header (text before first
+    # marker) is always kept.
+    chunks = _EXAMPLE_REGISTER_RE.split(text)
+    # chunks: [header, reg1, body1, reg2, body2, ...]
+    if len(chunks) < 3:
+        return text
+    out = [chunks[0]]
+    for i in range(1, len(chunks), 2):
+        if chunks[i] == register:
+            out.append(f"<!-- register: {chunks[i]} -->\n")
+            out.append(chunks[i + 1])
+    return "".join(out)
+
+
+def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
+    """Build the prompt-ready skill bundle.
+
+    register: optional register slug; when set, register.md and examples.md
+        are scoped to the active register.
+    mode: 'draft' (pass-0) keeps workflow sections; 'audit' drops them.
+    """
+    skill = SKILL_PATH.read_text(encoding="utf-8")
+    skill = _strip_frontmatter(skill)
+    skill = _strip_dead_audit_checklist(skill)
+    if mode == "audit":
+        skill = _strip_workflow_sections(skill)
+    skill = _strip_default_meta(skill)
+    parts: list[str] = [skill]
+
     for ref in sorted((KIEN_THAI_DIR / "references").glob("*.md")):
-        parts.append(f"\n\n## reference: {ref.name}\n\n{ref.read_text(encoding='utf-8')}")
+        if ref.name in SKIP_REFS:
+            continue
+        body = ref.read_text(encoding="utf-8")
+        body = _strip_dead_audit_checklist(body)
+        body = _strip_default_meta(body)
+        if register:
+            if ref.name == "register.md":
+                body = _scope_register_md(body, register)
+            elif ref.name == "examples.md":
+                body = _scope_examples_md(body, register)
+        parts.append(f"\n\n## reference: {ref.name}\n\n{body}")
     return "".join(parts)
 
 

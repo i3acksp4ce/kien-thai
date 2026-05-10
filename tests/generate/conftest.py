@@ -16,6 +16,7 @@ from lib import (
     Eval,
     backend_available,
     build_prompt,
+    kien_thai_bundle,
     load_evals,
     next_iteration_dir,
     wrap_markdown,
@@ -56,29 +57,28 @@ def _run_once(backend: str, prompt: str, out_dir: Path, label: str) -> tuple[str
 
 
 def _audit_prompt(prose: str, bundle: str, register: str) -> str:
+    # bundle is already register-scoped (see kien_thai_bundle(register=...)).
     return (
         "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
         "<skill>\n" + bundle + "\n</skill>\n\n"
-        f"prose นี้เป็น register `{register}` — ใช้ scope ตาม `register.md` "
-        "(โดยเฉพาะ craft rules ที่มี register-scoped exemption)\n\n"
+        f"prose นี้เป็น register `{register}`\n\n"
         "งาน: อ่าน prose ทั้งหมดให้จบก่อน แล้วค่อย flag issues — อย่าสแกนทีละบรรทัด. "
         "Pre-check: scan `forbidden-phrases.md` blocklist กับ prose "
         "(เฉพาะ occurrence ที่ไม่ได้อยู่ใน backtick — use/mention exemption). "
         "จากนั้น audit ตามกฎใน skill เต็มชุด. "
         "สำหรับทุก issue ให้ cite ด้วย slug ก่อน (เช่น `f4/targhak-closure`, "
-        "`wrong-classifier`, `f6/ko-resumptive`); ใช้ `#NN` ได้เฉพาะ rule "
-        "ที่ยังไม่ได้ย้ายเป็น slug. ยกข้อความที่ผิดมาประกอบทุกครั้ง. "
+        "`wrong-classifier`, `f6/ko-resumptive`); ยกข้อความที่ผิดมาประกอบทุกครั้ง. "
         "ถ้าผ่านทุกข้อ ให้ตอบบรรทัดเดียวว่า `CLEAN` ห้าม output prose\n\n"
         "<prose>\n" + prose + "\n</prose>"
     )
 
 
 def _fix_prompt(prose: str, audit: str, bundle: str, register: str) -> str:
+    # bundle is already register-scoped.
     return (
         "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
         "<skill>\n" + bundle + "\n</skill>\n\n"
-        f"prose นี้เป็น register `{register}` — ใช้ scope ตาม `register.md` "
-        "(โดยเฉพาะ craft rules ที่มี register-scoped exemption)\n\n"
+        f"prose นี้เป็น register `{register}`\n\n"
         "issue ที่ต้องแก้:\n\n" + audit + "\n\n"
         "prose ปัจจุบัน:\n\n<prose>\n" + prose + "\n</prose>\n\n"
         "งาน: แก้ prose ตาม issue ข้างบน output เฉพาะ prose ที่แก้แล้ว "
@@ -93,24 +93,29 @@ def _is_clean(audit: str) -> bool:
     return txt.splitlines()[0].strip().upper().startswith("CLEAN")
 
 
-def _run_baseline(backend: str, eval_case: Eval, out_dir: Path, skill_text: str) -> dict:
-    prompt = build_prompt(eval_case, "baseline", skill_text)
+def _run_baseline(backend: str, eval_case: Eval, out_dir: Path) -> dict:
+    prompt = build_prompt(eval_case, "baseline", "")
     stdout, dur = _run_once(backend, prompt, out_dir, "input")
     (out_dir / "output.md").write_text(wrap_markdown(stdout), encoding="utf-8")
     return {"duration_s": round(dur, 2)}
 
 
-def _run_loop(backend: str, eval_case: Eval, out_dir: Path, bundle: str) -> dict:
-    initial_prompt = build_prompt(eval_case, "with_skill", bundle)
+def _run_loop(backend: str, eval_case: Eval, out_dir: Path) -> dict:
+    register = eval_case.register
+    # Two register-scoped bundles: 'draft' for pass-0 (keeps workflow sections),
+    # 'audit' for audit/fix passes (drops draft-time advice).
+    draft_bundle = kien_thai_bundle(register=register, mode="draft")
+    audit_bundle = kien_thai_bundle(register=register, mode="audit")
+
+    initial_prompt = build_prompt(eval_case, "with_skill", draft_bundle)
     prose, dur0 = _run_once(backend, initial_prompt, out_dir, "pass-0")
     (out_dir / "pass-0.md").write_text(wrap_markdown(prose), encoding="utf-8")
     passes: list[dict] = [{"pass": 0, "kind": "initial", "duration_s": round(dur0, 2)}]
 
-    register = eval_case.register
     converged = False
     last_pass = 0
     for i in range(1, MAX_LOOP + 1):
-        audit, audit_dur = _run_once(backend, _audit_prompt(prose, bundle, register), out_dir, f"pass-{i}-audit")
+        audit, audit_dur = _run_once(backend, _audit_prompt(prose, audit_bundle, register), out_dir, f"pass-{i}-audit")
         (out_dir / f"pass-{i}-audit.md").write_text(audit.strip() + "\n", encoding="utf-8")
         clean = _is_clean(audit)
         passes.append({"pass": i, "kind": "audit", "duration_s": round(audit_dur, 2), "clean": clean})
@@ -118,7 +123,7 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path, bundle: str) -> dict
         if clean:
             converged = True
             break
-        prose, fix_dur = _run_once(backend, _fix_prompt(prose, audit, bundle, register), out_dir, f"pass-{i}-fix")
+        prose, fix_dur = _run_once(backend, _fix_prompt(prose, audit, audit_bundle, register), out_dir, f"pass-{i}-fix")
         (out_dir / f"pass-{i}.md").write_text(wrap_markdown(prose), encoding="utf-8")
         passes.append({"pass": i, "kind": "fix", "duration_s": round(fix_dur, 2)})
 
@@ -127,16 +132,16 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path, bundle: str) -> dict
 
 
 @pytest.fixture
-def run_eval(iteration_dir: Path, skill_text: str):
+def run_eval(iteration_dir: Path):
     def _run(backend: str, eval_case: Eval, config: str) -> Path:
         if not backend_available(backend):
             pytest.skip(f"{backend} not on PATH")
         out_dir = iteration_dir / eval_case.name / backend / config
         out_dir.mkdir(parents=True, exist_ok=True)
         if config == "baseline":
-            extra = _run_baseline(backend, eval_case, out_dir, skill_text)
+            extra = _run_baseline(backend, eval_case, out_dir)
         else:
-            extra = _run_loop(backend, eval_case, out_dir, skill_text)
+            extra = _run_loop(backend, eval_case, out_dir)
         (out_dir / "meta.json").write_text(
             json.dumps(
                 {
