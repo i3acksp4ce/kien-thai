@@ -30,8 +30,10 @@ maintaining cohesion, pacing prose, and pivoting between ideas. When you preserv
 English mechanics in Thai words, the result reads as translated AI, even when every
 word is grammatical.
 
-Internalize these seven frames first. The granular rules in `references/anti-patterns.md`
-become applications of the frames — many of them auto-resolve once the frames are right.
+Internalize these seven frames first. The granular rules in
+`references/ai-tells.md` (mechanical Thai-correctness), `references/grammar.md`
+(surface grammar), and `references/craft.md` (voice / taste preferences) become
+applications of the frames — many of them auto-resolve once the frames are right.
 
 ### Frame 1 — Topic-comment over subject-verb-object
 
@@ -47,7 +49,7 @@ reader produces unprompted.
 Heuristic: if the English subject is heavy, abstract, or really the patient of the
 verb, front it as topic in Thai.
 
-Covers anti-patterns #6 (ถูก-passive), #11 (การที่...นั้น), #12 (การที่...ทำให้).
+Covers anti-patterns #6 (ถูก-passive), #12 (การที่...ทำให้).
 
 ### Frame 2 — Condition, time, and frame go first
 
@@ -305,15 +307,21 @@ Minimum checklist:
 
 ## References — read on demand
 
-- `references/anti-patterns.md` — full catalog of AI tells with bad/good Thai
-  examples. Each rule cross-references the frame it violates. Consult when
-  self-editing or when uncertain whether a pattern is AI-shaped.
-- `references/style-rules.md` — positive rules, ทับศัพท์ four-bucket guide,
+- `references/ai-tells.md` — mechanical Thai-correctness violations. Hard rules
+  applying across registers. Consult when self-editing or when uncertain whether
+  a pattern is AI-shaped.
+- `references/grammar.md` — surface Thai grammar: classifiers, modal markers,
+  function-word distinctions, verb-level calques. Hard rules.
+- `references/craft.md` — voice / taste / register-conditional preferences. Soft
+  rules with scope notes.
+- `references/style-rules.md` — positive style rules, ทับศัพท์ four-bucket guide,
   translation craft rules. Consult when drafting.
-- `references/register.md` — the four registers in detail, particle/pronoun/heading
-  conventions per register. Consult before drafting.
-- `references/examples.md` — before/after worked rewrites across registers. Consult
-  for pattern-matching.
+- `references/register.md` — register family + voice + person-arity. Consult
+  before drafting; pick register and voice first.
+- `references/examples.md` — before/after worked rewrites across registers.
+  Consult for pattern-matching.
+- `references/audit-checklist.md` — condensed grep-able checklist for kode-thai
+  audit pass.
 
 ## Important: when in doubt, ask the user
 
