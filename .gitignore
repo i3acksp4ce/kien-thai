@@ -31,3 +31,4 @@ __pycache__/
 !.rtk/filters.toml
 .inbox.log
 .questions.log
+.claude
