@@ -55,23 +55,30 @@ def _run_once(backend: str, prompt: str, out_dir: Path, label: str) -> tuple[str
     return stdout, dur
 
 
-def _audit_prompt(prose: str, bundle: str) -> str:
+def _audit_prompt(prose: str, bundle: str, register: str) -> str:
     return (
         "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
         "<skill>\n" + bundle + "\n</skill>\n\n"
-        "งาน: ใช้ `audit-checklist.md` ใน skill เป็น entry point — เดินตามส่วน "
-        "Mechanical ทีละข้อก่อน แล้วค่อยทำ Craft (filter ตาม register ของ prose). "
-        "สำหรับทุก violation ระบุ rule slug (เช่น `wrong-classifier`, "
-        "`missing-cha-modal`) หรือ #NN พร้อมยกข้อความที่ผิด. "
+        f"prose นี้เป็น register `{register}` — ใช้ scope ตาม `register.md` "
+        "(โดยเฉพาะ craft rules ที่มี register-scoped exemption)\n\n"
+        "งาน: อ่าน prose ทั้งหมดให้จบก่อน แล้วค่อย flag issues — อย่าสแกนทีละบรรทัด. "
+        "Pre-check: scan `forbidden-phrases.md` blocklist กับ prose "
+        "(เฉพาะ occurrence ที่ไม่ได้อยู่ใน backtick — use/mention exemption). "
+        "จากนั้น audit ตามกฎใน skill เต็มชุด. "
+        "สำหรับทุก issue ให้ cite ด้วย slug ก่อน (เช่น `f4/targhak-closure`, "
+        "`wrong-classifier`, `f6/ko-resumptive`); ใช้ `#NN` ได้เฉพาะ rule "
+        "ที่ยังไม่ได้ย้ายเป็น slug. ยกข้อความที่ผิดมาประกอบทุกครั้ง. "
         "ถ้าผ่านทุกข้อ ให้ตอบบรรทัดเดียวว่า `CLEAN` ห้าม output prose\n\n"
         "<prose>\n" + prose + "\n</prose>"
     )
 
 
-def _fix_prompt(prose: str, audit: str, bundle: str) -> str:
+def _fix_prompt(prose: str, audit: str, bundle: str, register: str) -> str:
     return (
         "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
         "<skill>\n" + bundle + "\n</skill>\n\n"
+        f"prose นี้เป็น register `{register}` — ใช้ scope ตาม `register.md` "
+        "(โดยเฉพาะ craft rules ที่มี register-scoped exemption)\n\n"
         "issue ที่ต้องแก้:\n\n" + audit + "\n\n"
         "prose ปัจจุบัน:\n\n<prose>\n" + prose + "\n</prose>\n\n"
         "งาน: แก้ prose ตาม issue ข้างบน output เฉพาะ prose ที่แก้แล้ว "
@@ -99,10 +106,11 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path, bundle: str) -> dict
     (out_dir / "pass-0.md").write_text(wrap_markdown(prose), encoding="utf-8")
     passes: list[dict] = [{"pass": 0, "kind": "initial", "duration_s": round(dur0, 2)}]
 
+    register = eval_case.register
     converged = False
     last_pass = 0
     for i in range(1, MAX_LOOP + 1):
-        audit, audit_dur = _run_once(backend, _audit_prompt(prose, bundle), out_dir, f"pass-{i}-audit")
+        audit, audit_dur = _run_once(backend, _audit_prompt(prose, bundle, register), out_dir, f"pass-{i}-audit")
         (out_dir / f"pass-{i}-audit.md").write_text(audit.strip() + "\n", encoding="utf-8")
         clean = _is_clean(audit)
         passes.append({"pass": i, "kind": "audit", "duration_s": round(audit_dur, 2), "clean": clean})
@@ -110,7 +118,7 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path, bundle: str) -> dict
         if clean:
             converged = True
             break
-        prose, fix_dur = _run_once(backend, _fix_prompt(prose, audit, bundle), out_dir, f"pass-{i}-fix")
+        prose, fix_dur = _run_once(backend, _fix_prompt(prose, audit, bundle, register), out_dir, f"pass-{i}-fix")
         (out_dir / f"pass-{i}.md").write_text(wrap_markdown(prose), encoding="utf-8")
         passes.append({"pass": i, "kind": "fix", "duration_s": round(fix_dur, 2)})
 

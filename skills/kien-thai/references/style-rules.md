@@ -1,6 +1,6 @@
 # Positive style rules
 
-Counterpart to `anti-patterns.md`. These are rules to apply, not patterns to avoid.
+Positive style rules. Apply these when drafting.
 
 Inline-code Thai examples may exceed the 90-column rule when the example itself is
 longer than that — they're treated as atomic, like URLs.

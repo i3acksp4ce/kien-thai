@@ -106,9 +106,9 @@ verb it's translating. If the English verb is idiomatic-physical (burst / drop /
 cap / throttle), the Thai equivalent is usually a different verb, not the literal
 physical one.
 
-### `สามารถ ... ได้` modal frame (positive rule)
+### 46. `สามารถ ... ได้` modal frame (positive rule)
 
-`samat-dai-modal` · mechanical · all-registers · soft
+`capability-modal` · mechanical · all-registers · hard
 
 Thai expresses "can / is able to" with the discontinuous frame `สามารถ + V + ได้`.
 AI sometimes uses bare verbs or overuses one half of the frame. Both halves work
@@ -118,9 +118,9 @@ together; for emphatic capability, use both.
 - **Good**: `ระบบสามารถ query ได้ผ่าน API` (full frame)
 - **Acceptable (informal)**: `ระบบ query ได้ผ่าน API` (only `ได้`)
 
-### `ใน` vs `ของ` for time periods (positive rule)
+### 47. `ใน` vs `ของ` for time periods (positive rule)
 
-`time-period-nai` · mechanical · all-registers · hard
+`time-period` · mechanical · all-registers · hard
 
 For time periods (centuries, decades, eras), Thai uses `ใน` — *during* the period —
 not `ของ` (which marks possession or relation).

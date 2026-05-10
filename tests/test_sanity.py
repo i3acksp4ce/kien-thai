@@ -12,7 +12,7 @@ def test_evals_json_loads():
     assert data["skill_name"] == "kien-thai"
     assert isinstance(data["evals"], list) and data["evals"], "no evals defined"
     for e in data["evals"]:
-        assert {"id", "name", "prompt"} <= e.keys()
+        assert {"id", "name", "prompt", "register"} <= e.keys()
 
 
 def test_skill_file_present():
@@ -23,7 +23,7 @@ def test_skill_file_present():
 
 
 def test_skill_injection_differs_from_baseline(skill_text: str):
-    sample = Eval(id=0, name="dummy", prompt="ทดสอบ")
+    sample = Eval(id=0, name="dummy", prompt="ทดสอบ", register="explainer")
     base = build_prompt(sample, "baseline", skill_text)
     injected = build_prompt(sample, "with_skill", skill_text)
     assert base != injected, "with_skill prompt identical to baseline"

@@ -36,11 +36,19 @@ class Eval:
     id: int
     name: str
     prompt: str
+    register: str
 
 
 def load_evals() -> list[Eval]:
     data = json.loads(EVALS_FILE.read_text(encoding="utf-8"))
-    return [Eval(**e) for e in data["evals"]]
+    evals: list[Eval] = []
+    for e in data["evals"]:
+        if "register" not in e:
+            raise ValueError(
+                f"eval {e.get('name', e.get('id'))!r} missing required `register` field"
+            )
+        evals.append(Eval(**e))
+    return evals
 
 
 def latest_iteration() -> Path | None:
@@ -131,9 +139,9 @@ def wrap_markdown(text: str, width: int = 90) -> str:
 def kien_thai_bundle() -> str:
     """SKILL.md + every references/*.md, framed for prompt injection.
 
-    kode-thai's protocol requires loading kien-thai in full (skill + all four
-    references) — most misses surface against the granular anti-patterns, not
-    the seven frames alone.
+    kode-thai's protocol requires loading kien-thai in full (skill + every
+    references/*.md) — both audit and fix passes need depth, not mechanical
+    scanning.
     """
     parts = [SKILL_PATH.read_text(encoding="utf-8")]
     for ref in sorted((KIEN_THAI_DIR / "references").glob("*.md")):

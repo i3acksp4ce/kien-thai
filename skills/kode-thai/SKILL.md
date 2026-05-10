@@ -15,17 +15,22 @@ new awkward seam appears. Loop until clean.
 
 ## Protocol
 
-1. Load `kien-thai` in full — `SKILL.md` plus all four references
-   (`anti-patterns.md`, `style-rules.md`, `register.md`, `examples.md`). Don't
-   skip references. Most misses surface against the granular anti-patterns, not
-   the seven frames alone.
+1. Load `kien-thai` in full — `SKILL.md` plus all seven references
+   (`ai-tells.md`, `craft.md`, `grammar.md`, `style-rules.md`, `register.md`,
+   `examples.md`, `forbidden-phrases.md`). Don't skip references. Both audit and
+   fix passes need depth — this is a deep language-analysis job, not mechanical
+   scanning.
 
 2. Read the target file end-to-end before editing anything. Skim-and-fix
    produces shallow passes.
 
-3. Audit pass. List every issue with a citation to the offending rule — frame
-   number (1–7), anti-pattern number (#NN), or named style rule. No issue
-   without a citation. If you can't cite a rule, you don't have an issue.
+3. Audit pass. Deep-read end-to-end first, then list every issue. Cite each
+   issue with a slug (e.g., `f4/targhak-closure`, `wrong-classifier`,
+   `f6/ko-resumptive`); `#NN` is fallback for any rule not yet migrated to slug
+   form. Quote the offending text inline. As a pre-check, scan
+   `forbidden-phrases.md` against the prose — un-backticked occurrences only
+   (use/mention exemption). If everything passes, single line `CLEAN` only —
+   no prose, no commentary.
 
 4. Fix pass. Apply the listed edits.
 

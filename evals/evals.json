@@ -4,11 +4,13 @@
     {
       "id": 1,
       "name": "tech-doc-short",
+      "register": "explainer",
       "prompt": "เขียนคำอธิบายภาษาไทยสั้นๆ (3-4 ย่อหน้า) สำหรับ developer ว่า rate limiting คืออะไร ทำงานยังไง และเมื่อไหร่ควรใช้ algorithm แบบ token bucket เทียบกับ leaky bucket"
     },
     {
       "id": 2,
       "name": "marketing-blurb",
+      "register": "marketing-saas-sme",
       "prompt": "เขียน landing page copy ภาษาไทย (หัวข้อ + ย่อหน้าเปิด + bullet 3 ข้อ) สำหรับ SaaS ที่ช่วยร้านอาหารเล็กๆ จัดการ stock วัตถุดิบและคำนวณต้นทุนต่อจาน กลุ่มเป้าหมายคือเจ้าของร้านอายุ 30-45 ที่ไม่ใช่สาย tech"
     }
   ]
