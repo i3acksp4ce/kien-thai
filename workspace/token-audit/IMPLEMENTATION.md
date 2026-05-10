@@ -105,20 +105,98 @@ exercised in this single cell — full eval will surface more.
 
 ## Open items
 
-- **Full eval regression in flight** (iter-5). Same 4 cells as iter-3.
-  Compare convergence + citation quality cell-by-cell. Particularly
-  watch codex tech-doc-short — if it now converges within MAX_LOOP=5
-  (vs iter-3 hitting the cap), that's the strongest validation.
-
 - **iter-3 review backlog**. The original review queue per
   `workspace/iteration-3/RESUME.md` is unaffected — those outputs
   are still there and still merit review. The implementation just
-  changed what the *next* eval run will produce.
+  changed what the *next* eval run produced.
 
-- **Stages 3 + 4 of the roadmap**: prompt caching instrumentation +
-  two-tier injection (slim fix-pass bundle). Not started. Stages 1+2
-  give the bulk of low-risk wins; Stage 3 is measurement-gated and
-  Stage 4 is the biggest architectural shift.
+## iter-5 regression — RESULTS
+
+Full `pytest -m generate` against the same 4 cells as iter-3.
+Compares like-for-like (same evals, same backends), measures
+convergence shift after Stage 1+2 cuts. iter-5 used the pre-Stage-3
+code (no instrumentation), so no usage stats — that lands in iter-6.
+
+Convergence comparison:
+
+| Cell                    | iter-3      | iter-5      | Verdict |
+| ----------------------- | ----------- | ----------- | ------- |
+| marketing-blurb/claude  | 2 ✓        | 2 ✓        | stable  |
+| marketing-blurb/codex   | 2 ✓        | 1 ✓        | improved |
+| tech-doc-short/claude   | 1 ✓        | 2 ✓        | sharper audit |
+| tech-doc-short/codex    | **5 ✗**    | **2 ✓**    | **fixed** |
+
+The headline iter-3 failure (codex tech-doc hitting MAX_LOOP=5
+without converging) **now converges in 2 passes**.
+
+Why: iter-3's noisier bundle (anti-patterns stub, dead audit-checklist
+refs, default-metadata clutter, all 5 register sections + all 5
+example registers, full draft-time workflow on audit) likely
+confused codex's auditor — it found different issues each pass and
+got stuck in a fix→re-audit cycle. iter-5's register-scoped, mode-
+specific bundle gives the auditor a stable rule set; findings
+stabilize, fix converges.
+
+Bundle byte-size comparison (codex tech-doc-short cell):
+
+| Pass            | iter-3       | iter-5       |
+| --------------- | -----------: | -----------: |
+| pass-0 prompt   | 107,545 B    |  75,503 B    |
+| pass-1 audit    | 110,962 B    |  74,833 B    |
+
+**~30% per-pass byte reduction**, ~25% per-pass token reduction at
+0.5 tok/byte for Thai-heavy content.
+
+**Total bytes sent to codex on this cell**:
+- iter-3: 11 invocations × ~107K = ~1.18MB (uncached)
+- iter-5: 4 invocations × ~75K  = ~302KB (uncached)
+- **74% total reduction** — combined effect of fewer passes (cleaner
+  convergence) and smaller per-pass bundle.
+
+## Stage 3 + 4 — landed in this session
+
+Stage 3 (instrumentation):
+- `BACKENDS` updated with `--output-format json` (claude) and
+  `--json` (codex).
+- `parse_backend_output()` extracts text + usage from each backend's
+  output format.
+- `_invoke()` returns `(text, usage, rc, dur)`; usage lands in each
+  pass's meta.json.
+- 2 unit tests cover both parsers.
+- End-to-end smoke test confirmed claude returns
+  `cache_read_input_tokens=18183` after warm-up — cache is working
+  for the eval flow.
+
+Stage 4 (slim fix-pass bundle):
+- `_build_rules_index()` walks ai-tells/craft/grammar/style-rules,
+  maps slug → full rule block.
+- `extract_cited_slugs()` parses audit output for slug refs (order-
+  preserving, deduplicated).
+- `kien_thai_slim_fix_bundle(register, cited_slugs)` builds:
+  SKILL.md (workflow stripped) + active register + forbidden-phrases
+  + only the cited rule blocks.
+- `_run_loop` extracts cited slugs after each audit, feeds slim
+  bundle to the matching fix invocation. `cited_slugs` lands in
+  meta.json per-pass.
+- 3 new tests cover slug extraction, slim bundle filtering, and
+  graceful unknown-slug handling.
+
+Slim fix-bundle measurements (explainer register):
+- audit pass:  51,817 chars
+- slim, 1 cited rule  : 20,186 chars (39%)
+- slim, 3 cited rules : 21,489 chars (41%)
+- slim, 5 cited rules : 22,056 chars (43%)
+
+Per fix pass: ~30K chars / ~16K tokens cut on top of Stage 1+2.
+
+## Total state at end of session
+
+12 commits since iter-3 review save. Default pytest 20/20.
+Stages 1+2+3+4 all wired. iter-5 validated Stage 1+2 with the
+codex tech-doc-short case fixed. Stage 3+4 not yet exercised in
+real eval — iter-6 will validate.
+
+Ready for next eval generation: `uv run pytest -m generate`.
 
 ## Architectural notes for next session
 
