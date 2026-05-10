@@ -34,6 +34,14 @@ Common technical-noun classifiers:
 
 If unsure, omit the count (`เก็บ token เพิ่ม`) over picking a wrong classifier.
 
+**Register-aware selection** (per Singnoi 2001 + Hundius & Kölver 1983):
+in conversational, personal-blog, and explainer registers, generic classifiers
+`อัน` and `ตัว` are accepted shortcuts that native speakers themselves use when
+the precise classifier is awkward or unfamiliar. In News, Academic, and
+Marketing/B2B-formal, prefer the precise classifier (`เครื่อง`, `รายการ`,
+`บรรทัด`). The "wrong classifier" signal applies sharpest in formal registers;
+conversational allows graceful defaults.
+
 ### 42. Missing `จะ` modal/future marker
 
 `missing-cha-modal` · mechanical · all-registers · hard

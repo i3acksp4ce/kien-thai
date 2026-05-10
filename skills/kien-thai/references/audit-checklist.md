@@ -63,7 +63,9 @@ filtered by the piece's register (see `register.md` scope).
 
 ### Surface grammar  *(`grammar.md`)*
 
-- [ ] Correct classifier (ลักษณนาม) (#41)
+- [ ] Correct classifier (ลักษณนาม) (#41) — register-aware: `อัน`/`ตัว`
+      shortcuts acceptable in conversational/explainer/personal-blog; precise
+      classifier required in News, Academic, Marketing/B2B-formal
 - [ ] จะ on future/modal clauses (#42)
 - [ ] Function words correct: จะ/จน, เมื่อ/เวลา, กับ-after-เหมาะ (#43)
 - [ ] No verb-level English calque: ระเบิด / ทิ้ง / etc. (#44)
@@ -103,8 +105,11 @@ filtered by the piece's register (see `register.md` scope).
 
 ## Forbidden phrase blocklist (grep targets)
 
-These should never appear in any register. Run as a literal grep over the output
-before shipping.
+These should never appear in any register **as use** (in the model's own prose).
+They may appear as **mention** when wrapped in backticks or inside markdown
+quote markers — for example, when skill documentation or examples.md discusses
+the pattern itself. When auditing, grep for **un-backticked** occurrences only;
+backticked or quoted strings are use-vs-mention exempt.
 
 - `ในยุคปัจจุบัน`
 - `ในโลกปัจจุบัน` / `ในโลกที่`

@@ -76,10 +76,20 @@ Cap at one โดย per paragraph. Prefer ด้วย, ผ่าน, จาก
 
 ## Passive and agency  *(F1)*
 
-### 6. ถูก- passive on actions with no real agent
+### 6. ถูก- / โดน- passive on actions with no real agent
 
-Thai ถูก- carries adversative reading. Native writers use it for genuinely unfortunate
-events (ถูกวิจารณ์, ถูกปฏิเสธ, ถูกแฮก) and re-cast everything else to active.
+Thai ถูก- / โดน- carry adversative reading. Native writers use them for genuinely
+unfortunate events and re-cast everything else to active.
+
+Per Prasithrathsint 2001 on Thai passive variants, the two adversative markers
+have distinct registers / force:
+
+- `โดน` — strongly adversative, colloquial. Use when the action is genuinely
+  unwanted (`โดนแฮก`, `โดนปฏิเสธ`, `โดนวิจารณ์รุนแรง`).
+- `ถูก` — neutral-to-mild adversative, more formal. Use for institutional /
+  procedural undesirables (`ถูกประเมิน`, `ถูกตรวจสอบ`, `ถูกปฏิเสธ` in formal
+  context).
+- Active voice — everything else.
 
 - **Bad**: `ข้อมูลจะถูกส่งไปยังเซิร์ฟเวอร์โดยไคลเอนต์ และจะถูกประมวลผลโดยระบบ`
 - **Good**: `ไคลเอนต์ส่งข้อมูลไปที่เซิร์ฟเวอร์ แล้วระบบประมวลผลต่อ`

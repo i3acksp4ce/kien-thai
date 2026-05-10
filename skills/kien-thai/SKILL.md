@@ -76,7 +76,12 @@ snap or genuinely terminal statements.
 Heuristic: drop mid-paragraph periods; let space carry the boundary. Keep periods
 only where a snap or finality is genuinely intended.
 
-Covers anti-pattern #37 (period spam — see `references/anti-patterns.md`).
+The Royal Institute's *หลักเกณฑ์การเว้นวรรค* formalizes a two-tier space system —
+clause-internal vs sentence boundary. Modern keyboards emit a single ASCII space
+either way, so the distinction surfaces as visual rhythm. Treat: short single
+space within a clause; paragraph break at sentence boundaries.
+
+Covers anti-pattern #37 (period spam — see `references/ai-tells.md`).
 
 ### Frame 4 — Closure via sentence-final particles
 
@@ -85,6 +90,12 @@ clauses cleanly: `ด้วย` (also/too — closes additive thoughts), `แล
 transition), `ไป` (movement away/done), `อยู่` (ongoing state), `เลย` (intensification
 or "right then"), `ก็แล้วกัน` (let's just leave it / decision), `อยู่ดี`
 (still / nonetheless), `ต่างหาก` (contrastive correction — "actually X, not Y").
+
+Note on `แล้ว` variants (per Olsson 2013 on Thai iamitive): `แล้ว` alone marks
+completion / "by now". `X แล้ว ก็ Y` adds sequence + pacing (see Frame 6).
+`เสร็จแล้ว` is the perfective-completion variant — action finished, with finality
+beyond just temporal completion. Pick the form that matches whether the close
+needs pure completion, sequenced flow, or finished-action force.
 
 When AI omits these because the English source has no equivalent token, Thai
 sentences feel dangling — like the writer trailed off.
@@ -150,10 +161,11 @@ clauses where English would use no connective:
 - Choppy: `ถ่ายรูปบิลจากตลาด ระบบอ่านรายการให้เอง`
 - Bridged: `ถ่ายรูปบิลแล้วระบบจะอ่านรายการให้เอง`
 
-**Sub-pattern: ก็ as topic-resumptive bridge.** When a sentence states a topic and
-then offers a comment that would otherwise feel clipped, ก็ at the start of the
-comment gives the natural "as expected / belongs together" beat. AI tends to write
-the comment without ก็ and produce a snap that lands wrong.
+**Sub-pattern: ก็ as topic-resumptive bridge** (formalized in Takahashi 2023 on
+ก็ as a pragmatic particle). When a sentence states a topic and then offers a
+comment that would otherwise feel clipped, ก็ at the start of the comment gives
+the natural "as expected / belongs together" beat. AI tends to write the comment
+without ก็ and produce a snap that lands wrong.
 
 - Clipped: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน เป็นความตั้งใจ`
 - Bridged: `ในรายการนี้ ไม่มีคอลัมนิสต์ดังคนไหน ก็เป็นความตั้งใจ`
@@ -322,6 +334,13 @@ Minimum checklist:
   Consult for pattern-matching.
 - `references/audit-checklist.md` — condensed grep-able checklist for kode-thai
   audit pass.
+
+Citation-grade backing for many rules (Iwasaki & Ingkaphirom, Smyth, Higbie &
+Thinsan, Li & Thompson, Prasithrathsint, Takahashi, Olsson, Thai Discourse
+Treebank, Singnoi, Royal Institute spacing manual, Marcel Barang) lives in
+`corpus/curated/scholarly/<source-slug>.md` — author/year extracts with direct
+rule mappings. Corpus prose is gitignored due to copyright; the index in
+`corpus/README.md` lists what's available locally.
 
 ## Important: when in doubt, ask the user
 
