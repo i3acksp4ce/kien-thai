@@ -3,9 +3,7 @@
 Word/phrase-level Thai grammar — hard rules, all registers. Distinct from the
 discourse frames in SKILL.md.
 
-### 41. Wrong classifier (ลักษณนาม)
-
-`wrong-classifier` · mechanical · all-registers · hard
+### `wrong-classifier` *(mechanical · all-registers · hard)*
 
 Thai requires a classifier when counting or specifying a noun. AI defaults to `ใบ`
 for "thing" or drops the classifier entirely. Each noun has an established
@@ -30,9 +28,7 @@ If unsure, omit the count (`เก็บ token เพิ่ม`) over picking a 
 **Register-aware**: conversational/personal-blog/explainer accept generic `อัน`/
 `ตัว`; News/Academic/B2B-formal prefer the precise classifier.
 
-### 42. Missing `จะ` modal/future marker
-
-`missing-cha-modal` · mechanical · all-registers · hard
+### `missing-cha-modal` *(mechanical · all-registers · hard)*
 
 English present tense covers future, modal, and habitual readings. Thai uses `จะ`
 to mark future or hypothetical/modal clauses. AI omits it when the English source
@@ -48,9 +44,7 @@ rather than the intended modal.
 - **Bad**: `พอเริ่มยิงทีก็ระเบิดได้เต็มความจุ`
 - **Good**: `พอจะเริ่มยิงทีก็ยิงได้เต็มความจุ` / `ตอนที่เริ่มยิงก็จะยิงได้เต็มความจุ`
 
-### 43. Function-word confusion (จะ / จน / ก็ / กับ / เมื่อ)
-
-`function-word-confusion` · mechanical · all-registers · hard
+### `function-word-confusion` *(mechanical · all-registers · hard)*
 
 Short connectives carry distinct meanings; AI substitutes them based on shape rather
 than function.
@@ -75,12 +69,10 @@ Heuristic: when a short connective feels off, check whether AI picked the
 register-formal cousin (`เมื่อ`) where the natural-register cousin (`เวลา` /
 `ตอนที่`) fits better.
 
-### 44. Verb-level calque
-
-`verb-calque` · mechanical · all-registers · hard
+### `verb-calque` *(mechanical · all-registers · hard)*
 
 Translating English verbs literally without checking whether Thai uses the same
-verb for the same action. Distinct from idiom calque (style-rules #27) — this is
+verb for the same action. Distinct from idiom calque (style-rules `idiom-localize`) — this is
 at the bare verb.
 
 - **Bad**: `ระเบิดได้เต็มความจุ` (calque of "burst")
@@ -94,9 +86,7 @@ verb it's translating. If the English verb is idiomatic-physical (burst / drop /
 cap / throttle), the Thai equivalent is usually a different verb, not the literal
 physical one.
 
-### 46. `สามารถ ... ได้` modal frame (positive rule)
-
-`capability-modal` · mechanical · all-registers · hard
+### `capability-modal` *(mechanical · all-registers · hard)*
 
 Thai expresses "can / is able to" with the discontinuous frame `สามารถ + V + ได้`.
 AI sometimes uses bare verbs or overuses one half of the frame. Both halves work
@@ -106,9 +96,7 @@ together; for emphatic capability, use both.
 - **Good**: `ระบบสามารถ query ได้ผ่าน API` (full frame)
 - **Acceptable (informal)**: `ระบบ query ได้ผ่าน API` (only `ได้`)
 
-### 47. `ใน` vs `ของ` for time periods (positive rule)
-
-`time-period` · mechanical · all-registers · hard
+### `time-period` *(mechanical · all-registers · hard)*
 
 For time periods (centuries, decades, eras), Thai uses `ใน` — *during* the period —
 not `ของ` (which marks possession or relation).

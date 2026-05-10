@@ -173,14 +173,11 @@ def wrap_markdown(text: str, width: int = 90) -> str:
 # runtime cuts so source files stay human-readable but the bundle stays lean:
 #
 # - drop YAML frontmatter (skill-discovery metadata, useless in prompt)
-# - skip SKIP_REFS files (human-facing redirectors)
-# - strip default `· mechanical · all-registers · hard` metadata from rule lines
+# - strip default meta `*(mechanical · all-registers · hard)*` etc. from rule headings
 # - register-scope register.md and examples.md when `register` is supplied
 # - mode='audit' drops draft-time workflow sections from SKILL.md
 #
 # Source files keep the verbose form (consistency test parses them).
-
-SKIP_REFS = frozenset({"anti-patterns.md"})  # human-facing stub redirector
 
 REGISTER_HEADERS: dict[str, tuple[str, ...]] = {
     "explainer": ("Register 1",),
@@ -195,7 +192,7 @@ REGISTER_HEADERS: dict[str, tuple[str, ...]] = {
 
 _FRONTMATTER_RE = re.compile(r"\A---\n.*?\n---\n+", re.DOTALL)
 _DEFAULT_META_RE = re.compile(
-    r"^(`[a-z0-9][a-z0-9/_-]*`)\s+·\s+\S+\s+·\s+\S+\s+·\s+\S+\s*$",
+    r"^(### `[a-z0-9][a-z0-9/_-]*`)\s+\*\(([^)]+)\)\*\s*$",
     re.MULTILINE,
 )
 _WORKFLOW_HEADINGS = (
@@ -213,21 +210,20 @@ def _strip_frontmatter(text: str) -> str:
 
 
 def _strip_default_meta(text: str) -> str:
-    """Drop default `· mechanical · all-registers · hard` from rule headers."""
+    r"""Drop default meta from rule headings.
+
+    Matches `### \`slug\` *(type · scope · severity)*`. When all fields are
+    default, collapses to `### \`slug\``. Non-default fields are preserved.
+    """
     def repl(m: re.Match[str]) -> str:
-        line = m.group(0)
-        slug = m.group(1)
-        # Parse the four · separated fields after slug.
-        parts = [p.strip() for p in line[len(slug):].split("·")]
-        # parts[0] is empty (just the leading separator gap); rest are fields.
-        fields = [p for p in parts if p]
-        # fields = [type, scope, severity]
-        defaults = {"mechanical", "all-registers", "hard", "craft"}
-        # craft files have type=craft default; preserve only non-default fields
+        heading = m.group(1)
+        meta_inner = m.group(2)
+        fields = [p.strip() for p in meta_inner.split("·") if p.strip()]
+        defaults = {"mechanical", "all-registers", "hard", "craft", "style", "soft"}
         kept = [f for f in fields if f not in defaults]
         if not kept:
-            return slug
-        return f"{slug} · " + " · ".join(kept)
+            return heading
+        return f"{heading} *({' · '.join(kept)})*"
     return _DEFAULT_META_RE.sub(repl, text)
 
 
@@ -342,8 +338,6 @@ def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
     parts: list[str] = [skill]
 
     for ref in sorted((KIEN_THAI_DIR / "references").glob("*.md")):
-        if ref.name in SKIP_REFS:
-            continue
         body = ref.read_text(encoding="utf-8")
         body = _strip_dead_audit_checklist(body)
         body = _strip_default_meta(body)

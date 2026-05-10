@@ -12,9 +12,7 @@ grammar rules.
 
 ## Headlines and openers
 
-### 17. Cliché headlines
-
-`cliche-headline` · craft · all-registers · soft
+### `cliche-headline` *(craft · all-registers · soft)*
 
 - **Bad**: `ทุกสิ่งที่คุณต้องรู้เกี่ยวกับ X`
 - **Good**: question pair (`X คืออะไร / Y ได้จริงไหม`) / specific pain frame /
@@ -24,9 +22,7 @@ Note: this is closer to "effective writing" advice than a Thai-specific rule.
 Listed here because Thai SaaS/SEO content homogenizes around these clichés just
 as English does.
 
-### 45. Definition-first SEO opening
-
-`definition-first-seo` · craft · marketing · soft
+### `definition-first-seo` *(craft · marketing · soft)*
 
 `X คือ ...` as the first sentence is the SEO-blog default — homogenizes openings
 across SaaS, fintech, and accounting tutorials. Replace with reader-symptom or
@@ -41,9 +37,7 @@ is the goal, not for marketing or conversion-oriented copy.
 
 ## Closings
 
-### 18. โดยสรุป + recap
-
-`recap-closing` · craft · all-registers · soft
+### `recap-closing` *(craft · all-registers · soft)*
 
 Real Thai writing rarely closes with "in summary." This is more a craft preference
 than a hard rule — `โดยสรุป` is grammatically fine, just lower-quality writing in
@@ -54,9 +48,7 @@ most modern Thai prose.
 - **Good (explainer)**: `เพื่อให้คุณมีชีวิตทางการเงินที่ดีขึ้น`
 - **Good (synthesis)**: reframe the original question — don't summarize.
 
-### 19. Imperative product CTAs (Explainer / Marketing-B2B-formal / Marketing-fintech-warm)
-
-`cta-bang` · craft · scoped · soft
+### `cta-bang` *(craft · scoped · soft)*
 
 - **Bad**: `รีบสมัครเลย!` / `อย่ารอช้า!`
 - **Good (advisory)**: `กู้เท่าที่จำเป็นและชำระคืนไหว` / `ผู้ลงทุนควรทำความเข้าใจก่อนตัดสินใจ`
@@ -72,9 +64,7 @@ instead* — they're not direct rephrasings of the Bad.
 
 ## Intensifiers and lists
 
-### 20. Empty intensifiers
-
-`empty-intensifier` · craft · all-registers · soft
+### `empty-intensifier` *(craft · all-registers · soft)*
 
 Style preference, not a correctness rule. Real Thai prose substitutes a number,
 named example, or Thai-native intensification rather than `อย่าง + abstract noun`.
@@ -82,18 +72,14 @@ named example, or Thai-native intensification rather than `อย่าง + abs
 - **Bad**: `อย่างมหาศาล / อย่างน่าทึ่ง / อย่างไม่น่าเชื่อ / อย่างมีประสิทธิภาพ / อย่างมาก`
 - **Good**: substitute a number, a named example, or `ยิ่ง X เท่าไหร่ ยิ่ง Y เท่านั้น`.
 
-### 21. Symmetric tricolons
-
-`symmetric-tricolon` · craft · all-registers · soft
+### `symmetric-tricolon` *(craft · all-registers · soft)*
 
 `รวดเร็ว ปลอดภัย และมีประสิทธิภาพ` — AI's signature. Asymmetric, specific lists
 read more native.
 
 - **Good** (uneven, specific): `เร็วขึ้นจาก 800ms เหลือ ~120ms และ memory จะไม่บวมเหมือนเดิม`
 
-### 24. Generic emotional reassurance (Explainer / Marketing-B2B-formal / Marketing-fintech-warm)
-
-`generic-reassurance` · craft · scoped · soft
+### `generic-reassurance` *(craft · scoped · soft)*
 
 - **Bad**: `ไม่ต้องกังวล เป็นเรื่องที่เข้าใจได้`
 - **Good**: specifics — what the reader concretely should do next.
@@ -105,23 +91,17 @@ pivot is acceptable when paired with a concrete next-step
 
 ## Sentence-level shape
 
-### 33. Monotone sentence length
-
-`monotone-length` · craft · all-registers · soft
+### `monotone-length` *(craft · all-registers · soft)*
 
 AI homogenizes around ~20 words. Real Thai prose mixes 6-word and 35-word sentences
 in the same paragraph.
 
-### 34. Heading-Heading-bullet-bullet with no prose
-
-`bulletless-prose-skip` · craft · all-registers · soft
+### `bulletless-prose-skip` *(craft · all-registers · soft)*
 
 Real long-form has 2–4 sentence prose paragraphs between headings. AI skips straight
 to bullets.
 
-### 35. Bullet-dump every list of 2
-
-`bullet-dump-short-list` · craft · all-registers · soft
+### `bullet-dump-short-list` *(craft · all-registers · soft)*
 
 Commit to prose for 2–3 items; switch to bullets only at 4+ or when items are
 parallel-shaped.

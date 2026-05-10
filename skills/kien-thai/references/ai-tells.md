@@ -6,9 +6,7 @@ Register-conditional rules tagged `· register`. Companions: `craft.md` (soft),
 
 ## Connectives and transitions  *(F6, F7)*
 
-### 1. ซึ่ง-stacking
-
-`chueung-stacking` · mechanical · all-registers · hard
+### `chueung-stacking` *(mechanical · all-registers · hard)*
 
 AI uses ซึ่ง to glue every dependent clause. Native writers use a period or restructure.
 
@@ -18,9 +16,7 @@ AI uses ซึ่ง to glue every dependent clause. Native writers use a period
 Budget: at most **one ซึ่ง per sentence**, and prefer ที่ when the antecedent is
 concrete.
 
-### 2. ทั้งนี้ + อีกทั้ง + นอกจากนี้ stacked
-
-`formal-connective-stack` · mechanical · all-registers · hard
+### `formal-connective-stack` *(mechanical · all-registers · hard)*
 
 AI piles them; humans pick one or skip.
 
@@ -30,9 +26,7 @@ AI piles them; humans pick one or skip.
 `ทั้งนี้` in real bank writing appears almost exclusively near the disclaimer/CTA. Not
 as a paragraph opener.
 
-### 3. Mechanical "อย่างไรก็ตาม" at every contrast
-
-`yangrai-kotam-overuse` · mechanical · all-registers · hard
+### `yangrai-kotam-overuse` *(mechanical · all-registers · hard)*
 
 Humans use แต่, แต่ว่า, ทว่า sparingly, or just a new sentence.
 
@@ -41,9 +35,7 @@ Humans use แต่, แต่ว่า, ทว่า sparingly, or just a new 
 
 Heuristic: drop "however" in roughly half its English occurrences.
 
-### 4. โดย-clause sprawl
-
-`doi-sprawl` · mechanical · all-registers · hard
+### `doi-sprawl` *(mechanical · all-registers · hard)*
 
 `โดยที่... โดยการ... โดยมี...` chains.
 
@@ -52,9 +44,7 @@ Heuristic: drop "however" in roughly half its English occurrences.
 
 Cap at one โดย per paragraph. Prefer ด้วย, ผ่าน, จาก, with, or just no connective.
 
-### 5. ในขณะที่ for English contrast
-
-`nai-khanathi-contrast` · mechanical · all-registers · hard
+### `nai-khanathi-contrast` *(mechanical · all-registers · hard)*
 
 `ในขณะที่` is mainly temporal in Thai. For contrast, use แต่, ส่วน, กลับ.
 
@@ -63,9 +53,7 @@ Cap at one โดย per paragraph. Prefer ด้วย, ผ่าน, จาก
 
 ## Passive and agency  *(F1)*
 
-### 6. ถูก- / โดน- passive on actions with no real agent
-
-`non-adversative-thuk` · mechanical · all-registers · hard
+### `non-adversative-thuk` *(mechanical · all-registers · hard)*
 
 Thai ถูก- / โดน- carry adversative reading. Native writers use them for genuinely
 unfortunate events and re-cast everything else to active.
@@ -80,9 +68,7 @@ unfortunate events and re-cast everything else to active.
 - **Bad**: `หนังสือเล่มนี้ถูกเขียนโดยแฮรารี`
 - **Good**: `หนังสือเล่มนี้แฮรารีเป็นคนเขียน` / `แฮรารีเขียนหนังสือเล่มนี้`
 
-### 7. "ถูกพิจารณาว่าเป็น" / "ได้รับการพิจารณาว่าเป็น"
-
-`is-considered-calque` · mechanical · all-registers · hard
+### `is-considered-calque` *(mechanical · all-registers · hard)*
 
 Calque of "is considered (to be)."
 
@@ -90,27 +76,21 @@ Calque of "is considered (to be)."
 
 ## Nominalization and padding (calque shapes)
 
-### 8. ทำการ + verb
-
-`tham-kan-padding` · mechanical · all-registers · hard
+### `tham-kan-padding` *(mechanical · all-registers · hard)*
 
 Pure padding.
 
 - **Bad**: `ทำการติดตั้ง / ทำการรัน / ทำการตรวจสอบ / ทำการศึกษาเรื่องนี้`
 - **Good**: `ติดตั้ง / รัน / เช็ค / ศึกษาเรื่องนี้`
 
-### 9. การ- nominalization of every verb
-
-`kan-nominalization` · mechanical · all-registers · hard
+### `kan-nominalization` *(mechanical · all-registers · hard)*
 
 - **Bad**: `การทำการทดสอบและการทำการ deploy ของระบบ`
 - **Good**: `เทสและ deploy ระบบ` / `ตอน deploy กับตอนเทส`
 
 Reserve การ- for genuinely abstract topics (การปฏิวัติ, การเรียนรู้) and for headings.
 
-### 10. มีความ + adjective
-
-`mi-khwam-padding` · mechanical · all-registers · hard
+### `mi-khwam-padding` *(mechanical · all-registers · hard)*
 
 - **Bad**: `โค้ดนี้มีความซับซ้อนและมีความยากในการ maintain`
 - **Good**: `โค้ดนี้ซับซ้อนและดูแลยาก`
@@ -120,12 +100,10 @@ Reserve การ- for genuinely abstract topics (การปฏิวัติ
 
 Reserve มีความ for genuine emphasis.
 
-Counter-exception: see #38 — `เป็นความ + V` (predicate-noun, e.g. `เป็นความตั้งใจ`)
+Counter-exception: see `dangling-additive-frame` — `เป็นความ + V` (predicate-noun, e.g. `เป็นความตั้งใจ`)
 is required Thai grammar, not padding. Don't strip it to a bare verb.
 
-### 12. การที่...ทำให้... causal chain
-
-`garn-thi-tham-hai` · mechanical · all-registers · hard
+### `garn-thi-tham-hai` *(mechanical · all-registers · hard)*
 
 Calque of "the fact that X causes Y."
 
@@ -134,27 +112,21 @@ Calque of "the fact that X causes Y."
 
 Topicalize the noun, pick a vivid verb, drop การที่.
 
-### 13. ในเรื่องของ X / ในส่วนของ X as topic markers
-
-`nai-rueang-khong-topic` · mechanical · all-registers · hard
+### `nai-rueang-khong-topic` *(mechanical · all-registers · hard)*
 
 Calques of "regarding / as for." Often unnecessary.
 
 - **Bad**: `ในเรื่องของเศรษฐกิจ ประเทศไทยกำลัง...`
 - **Good**: `เศรษฐกิจไทยกำลัง...` / `ส่วนเศรษฐกิจ ประเทศไทย...`
 
-### 14. X ของ Y ของ Z chains
-
-`khong-chain` · mechanical · all-registers · hard
+### `khong-chain` *(mechanical · all-registers · hard)*
 
 - **Bad**: `การพัฒนาของระบบเศรษฐกิจของประเทศไทย`
 - **Good**: `การพัฒนาเศรษฐกิจไทย`
 
 Thai compounds by juxtaposition, not by ของ.
 
-### 39. `ที่มี + adjective` padding when noun-noun compound exists
-
-`thi-mi-padding` · mechanical · all-registers · hard
+### `thi-mi-padding` *(mechanical · all-registers · hard)*
 
 AI calques English `[noun] that has [quality]` patterns into `[noun]ที่มี[คุณ]`.
 Thai usually compounds noun-noun directly without `ที่มี` scaffolding.
@@ -165,14 +137,12 @@ Thai usually compounds noun-noun directly without `ที่มี` scaffolding.
 - **Bad**: `บทความที่มีความน่าสนใจ`
 - **Good**: `บทความที่น่าสนใจ` (drop `มี + ความ`; `ที่ + adj` stays when no noun-noun option)
 
-This compounds with anti-pattern #10 (มีความ + adj). When you see `ที่มี + ความ + adj`,
+This compounds with anti-pattern `mi-khwam-padding` (มีความ + adj). When you see `ที่มี + ความ + adj`,
 both layers are usually padding — strip both.
 
 ## Banned panorama openers
 
-### 15. "ในยุคปัจจุบัน / ในโลกที่..." panorama
-
-`panorama-opener` · mechanical · all-registers · hard
+### `panorama-opener` *(mechanical · all-registers · hard)*
 
 Banned. Real writers open with a fact, a confession, a symptom, a question.
 
@@ -182,23 +152,17 @@ Banned. Real writers open with a fact, a confession, a symptom, a question.
 - **Good (explainer)**: `มีเงินใช้แค่เดือนชนเดือน ไม่เคยเหลือเก็บ — เคยรู้สึกแบบนี้ไหม`
 - **Good (question hook)**: `เคยสงสัยไหมว่าทำไม API ที่ดูเร็วบนเครื่องตัวเอง พอขึ้น production ถึงช้า`
 
-### 16. "เป็นที่ทราบกันดีว่า / เป็นที่รู้กันว่า"
-
-`assert-consensus-opener` · mechanical · all-registers · hard
+### `assert-consensus-opener` *(mechanical · all-registers · hard)*
 
 Real writers don't assert consensus they have to declare. They show the symptom.
 
 ## Padding and overhedging
 
-### 22. "ไม่ว่าจะเป็น A B หรือ C" overuse
-
-`mai-wa-cha-pen-list` · mechanical · all-registers · hard
+### `mai-wa-cha-pen-list` *(mechanical · all-registers · hard)*
 
 Used sparingly in real copy; AI defaults to it for any list.
 
-### 23. Over-hedging
-
-`over-hedging` · mechanical · all-registers · hard
+### `over-hedging` *(mechanical · all-registers · hard)*
 
 `อาจจะมีความเป็นไปได้ที่จะ...` / `อาจจะ...ก็เป็นไปได้ว่า...อาจ`
 
@@ -206,9 +170,7 @@ Used sparingly in real copy; AI defaults to it for any list.
 
 ## Pronouns and politeness  *(F5, register)*
 
-### 25. ครับ/ค่ะ on every sentence
-
-`khrap-kha-in-body` · mechanical · register · hard
+### `khrap-kha-in-body` *(mechanical · register · hard)*
 
 Wrong register for body copy of explainers, tech docs, marketing. Real bank explainers
 (SCB, ttb, Krungsri body) use **zero** ครับ/ค่ะ. Particles appear in: quoted speakers,
@@ -217,16 +179,12 @@ personal blog openings/sign-offs, social/chat copy.
 - **Bad (explainer)**: `การออมเงินสำคัญมากครับ คุณควรเริ่มเก็บตั้งแต่วันนี้ครับ`
 - **Good (explainer)**: `การออมเงินสำคัญ ยิ่งเริ่มเร็วเท่าไหร่ยิ่งดี`
 
-### 26. ท่าน as default pronoun
-
-`than-pronoun` · mechanical · all-registers · hard
+### `than-pronoun` *(mechanical · all-registers · hard)*
 
 Reads as legal/old-bank copy. Default is **คุณ** (instructional/direct) or **เรา**
 (concept-teaching).
 
-### 27. Avoiding ผม/เรา to sound "objective"
-
-`first-person-avoidance` · mechanical · register · hard
+### `first-person-avoidance` *(mechanical · register · hard)*
 
 In personal blog / dev war-story register, dropping first-person reads as translated
 press release.
@@ -234,9 +192,7 @@ press release.
 - **Bad**: `จึงทำการศึกษาและทดลองใช้งาน`
 - **Good**: `ผมเลยลองเล่นดู` / `เราเลยเอามาลองที่ทีมก่อน`
 
-### 28. Explicit pronominal subjects in every sentence
-
-`pronoun-spam` · mechanical · all-registers · hard
+### `pronoun-spam` *(mechanical · all-registers · hard)*
 
 English needs *we / you / it*; Thai drops them once topic is set. The drop is
 context-dependent — when the topic carries through, repeating the pronoun reads
@@ -247,25 +203,19 @@ adds nothing but English-shape.
 - **Bad**: `เราใช้ Redis เก็บ session เราพบว่าเรา query เร็วขึ้น`
 - **Good**: `เราใช้ Redis เก็บ session พบว่า query เร็วขึ้น`
 
-### 29. Dummy "มัน" for English "it"
-
-`dummy-man` · mechanical · all-registers · hard
+### `dummy-man` *(mechanical · all-registers · hard)*
 
 - **Bad**: `มันเป็นที่ชัดเจนว่า...`
 - **Good**: `เห็นได้ชัดว่า...` / `ชัดเจนว่า...`
 
-### 30. สำหรับ for broad English "for"
-
-`samrap-broad-for` · mechanical · all-registers · hard
+### `samrap-broad-for` *(mechanical · all-registers · hard)*
 
 - **Bad**: `สำหรับผมแล้ว ผมคิดว่า...`
 - **Good**: `ผมคิดว่า...` / `ในความเห็นของผม...`
 
 ## Punctuation  *(F3, Style)*
 
-### 31. Comma-glued apposition
-
-`comma-apposition` · mechanical · all-registers · hard
+### `comma-apposition` *(mechanical · all-registers · hard)*
 
 Thai uses spaces for apposition, not commas. For foreign academic/expert names on
 first mention, prefix with a title (`คุณ` / `อาจารย์` / `ดร.`).
@@ -273,29 +223,23 @@ first mention, prefix with a title (`คุณ` / `อาจารย์` / `ด
 - **Bad**: `แฮรารี, นักประวัติศาสตร์ชาวอิสราเอล, แย้งว่า...`
 - **Good**: `คุณแฮรารี นักประวัติศาสตร์ชาวอิสราเอล แย้งว่า...` (spaces only, title prefix)
 
-### 32. English em-dashes / semicolons
-
-`em-dash-semicolon` · mechanical · all-registers · hard
+### `em-dash-semicolon` *(mechanical · all-registers · hard)*
 
 Thai prose rarely uses `—` or `;`. Real writers use bare relative clauses
 (ซึ่ง / ที่), paragraph breaks, or just whitespace. Periods are off-default —
-see #37.
+see `mid-paragraph-period`.
 
 - **Bad**: `แนวคิดนี้ — ซึ่งเริ่มต้นในศตวรรษที่ 18 — ได้เปลี่ยนโลก`
 - **Good**: `แนวคิดนี้ซึ่งเริ่มต้นในศตวรรษที่ 18 ได้เปลี่ยนโลก` (bare relative clause)
 
-### 36. "หนึ่งใน + ที่ + superlative" stacking
-
-`nueng-nai-superlative` · mechanical · all-registers · hard
+### `nueng-nai-superlative` *(mechanical · all-registers · hard)*
 
 Calque of "one of the most ___ X."
 
 - **Bad**: `เขาเป็นหนึ่งในนักเศรษฐศาสตร์ที่มีอิทธิพลมากที่สุดในศตวรรษที่ 20`
 - **Good**: `เขาคือนักเศรษฐศาสตร์ผู้ทรงอิทธิพลที่สุดคนหนึ่งในศตวรรษที่ 20`
 
-### 37. Periods are not Thai sentence boundaries  *(F3)*
-
-`mid-paragraph-period` · mechanical · all-registers · hard
+### `mid-paragraph-period` *(mechanical · all-registers · hard)*
 
 Modern Thai prose **does not use periods mid-paragraph.** Sentence boundaries are
 carried by spaces and paragraph breaks. AI inserts periods because the English
@@ -310,9 +254,7 @@ than a budget.
 
 ## Closure  *(F4)*
 
-### 38. Missing closure particle on additive frames
-
-`dangling-additive-frame` · mechanical · all-registers · hard
+### `dangling-additive-frame` *(mechanical · all-registers · hard)*
 
 Thai uses sentence-final particles (`ด้วย`, `แล้ว`, `ไป`, `อยู่`, `เลย`,
 `ก็แล้วกัน`, `อยู่ดี`) to wrap clauses. English has no equivalent, so AI omits
@@ -331,25 +273,23 @@ flips meaning to imperative.
 - **Good (predicate-noun)**: `ที่ผมไม่ตอบเขา เป็นความตั้งใจ`
 - **Good (explicit subject)**: `ที่ผมไม่ตอบเขา ผมตั้งใจ`
 
-This is the inverse of rule #10 — `มีความ + adj` is bureaucratic padding,
+This is the inverse of rule `mi-khwam-padding` — `มีความ + adj` is bureaucratic padding,
 but `เป็นความ + V` is required grammar.
 
-### 40. Missing seam connectives (F4, F6, F7)
-
-`seam-connective-missing` · mechanical · all-registers · hard
+### `seam-connective-missing` *(mechanical · all-registers · hard)*
 
 Umbrella for a family of AI tells: omitting Thai's between-clause beats because
 the English source has none. Different particles per seam type, but the underlying
 pattern is one.
 
 - **Contrastive correction** (`ไม่ได้ X อยู่ที่/เป็น/คือ Y`) → close with `ต่างหาก`
-  (Frame 4). #38 above covers the additive variant.
+  (Frame 4). `dangling-additive-frame` above covers the additive variant.
 
   - **Bad**: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุน`
   - **Good**: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุนต่างหาก`
 
 - **Result + means/exception** (`X. ไม่ต้อง Y`) → bridge with `โดย` / `ด้วย` / `ก็`.
-  Cap one `โดย` per paragraph (#4) — that single use is fine.
+  Cap one `โดย` per paragraph (`doi-sprawl`) — that single use is fine.
 
   - **Bad**: `เห็นภาพจริงของร้านตัวเอง ไม่ต้องเปิด Excel`
   - **Good**: `เห็นภาพจริงของร้านตัวเอง โดยไม่ต้องเปิด Excel`

@@ -15,11 +15,10 @@ rules in `references/ai-tells.md` (mechanical), `references/grammar.md`
 (surface), and `references/craft.md` (taste) become applications of the
 frames — many auto-resolve once the frames are right.
 
-### Frame 1 — Topic-comment over subject-verb-object
+### `f1` *(frame · all-registers · structural)*
 
-`f1` · frame · all-registers · structural
-
-English defaults to SVO. Thai often fronts the topic (whatever the sentence is *about*)
+**Frame 1 — Topic-comment over subject-verb-object.** English defaults to SVO.
+Thai often fronts the topic (whatever the sentence is *about*)
 and then comments on it. When the English source has a heavy subject ("the fact that
 X is..."), calquing it into Thai produces `การที่...นั้น...` chains that no Thai
 reader produces unprompted.
@@ -31,13 +30,12 @@ reader produces unprompted.
 Heuristic: if the English subject is heavy, abstract, or really the patient of the
 verb, front it as topic in Thai.
 
-Covers anti-patterns #6 (ถูก-passive), #12 (การที่...ทำให้).
+Covers `non-adversative-thuk` (ถูก-passive) and `garn-thi-tham-hai` (การที่...ทำให้).
 
-### Frame 2 — Condition, time, and frame go first
+### `f2` *(frame · all-registers · structural)*
 
-`f2` · frame · all-registers · structural
-
-English puts conditions and time-frames after the main clause: "X happens when Y" /
+**Frame 2 — Condition, time, and frame go first.** English puts conditions and
+time-frames after the main clause: "X happens when Y" /
 "X if Y". Thai prefers the inverse: condition first, main clause after.
 
 - English: `The DB starts timing out when traffic spikes.`
@@ -47,10 +45,9 @@ English puts conditions and time-frames after the main clause: "X happens when Y
 Common Thai openers for fronted conditions/times: `พอ...ก็...`, `ถ้า...จะ...`,
 `เมื่อ...`, `ตอน...`, `หาก...`.
 
-### Frame 3 — Sentence boundaries via space and paragraph, not period
+### `f3` *(frame · all-registers · structural)*
 
-`f3` · frame · all-registers · structural
-
+**Frame 3 — Sentence boundaries via space and paragraph, not period.**
 English uses a period after every sentence. Modern Thai web writing
 (blog, marketing, explainer, news) uses periods sparingly. Sentence boundaries are
 carried by spaces and paragraph breaks; periods are reserved for end-of-paragraph
@@ -67,13 +64,12 @@ clause-internal vs sentence boundary. Modern keyboards emit a single ASCII space
 either way, so the distinction surfaces as visual rhythm. Treat: short single
 space within a clause; paragraph break at sentence boundaries.
 
-Covers anti-pattern #37 (period spam — see `references/ai-tells.md`).
+Covers `mid-paragraph-period` (period spam — see `references/ai-tells.md`).
 
-### Frame 4 — Closure via sentence-final particles
+### `f4` *(frame · all-registers · structural)*
 
-`f4` · frame · all-registers · structural
-
-English doesn't need closure particles. Thai uses a small inventory of them to wrap
+**Frame 4 — Closure via sentence-final particles.** English doesn't need
+closure particles. Thai uses a small inventory of them to wrap
 clauses cleanly: `ด้วย` (also/too — closes additive thoughts), `แล้ว` (completion,
 transition), `ไป` (movement away/done), `อยู่` (ongoing state), `เลย` (intensification
 or "right then"), `ก็แล้วกัน` (let's just leave it / decision), `อยู่ดี`
@@ -103,11 +99,10 @@ that closes the "actually it's Y, not X" thought.
 - Dangling: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุน`
 - Closed: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุนต่างหาก`
 
-### Frame 5 — Cohesion via zero anaphora and demonstratives
+### `f5` *(frame · all-registers · structural)*
 
-`f5` · frame · all-registers · structural
-
-English needs explicit pronouns: *it / they / he / she / this / that*. Thai has three
+**Frame 5 — Cohesion via zero anaphora and demonstratives.** English needs
+explicit pronouns: *it / they / he / she / this / that*. Thai has three
 main strategies that AI underuses:
 
 1. **Zero anaphora** (`f5/zero-anaphora`) — once the topic is established, drop the subject entirely.
@@ -132,17 +127,16 @@ main strategies that AI underuses:
 robot-prose when the referent isn't recoverable from context. If a clause starts
 with a connective (`เพราะ...`, `ดังนั้น...`, `ส่วน...`) and immediately presents a
 verb without a topic, restore reference via a demonstrative bridge or a
-topic-comment restructure rather than reaching for `มัน` (banned by anti-pattern #29).
+topic-comment restructure rather than reaching for `มัน` (banned by `dummy-man`).
 
 - Robot: `เพราะรับประกัน output rate`
 - Native (bridge): `เพราะแบบนี้ output rate จะคงที่`
 - Native (restored topic): `algorithm นี้รับประกัน output rate`
 
-### Frame 6 — Pacing via ก็
+### `f6` *(frame · all-registers · structural)*
 
-`f6` · frame · all-registers · structural
-
-`ก็` is a uniquely Thai pacing particle. It marks expectation, sequence, mild
+**Frame 6 — Pacing via ก็.** `ก็` is a uniquely Thai pacing particle. It marks
+expectation, sequence, mild
 concession, and "as expected" causation. English has no direct equivalent, so AI
 drops it, and Thai prose without ก็ reads choppy or robotic.
 
@@ -168,11 +162,10 @@ without ก็ and produce a snap that lands wrong.
 Use ก็ as breath/rhythm, not as a connective replacement. Don't force it where it
 doesn't fit; do allow it where Thai naturally wants the beat.
 
-### Frame 7 — Pivots via question, demonstrative, or simple แต่
+### `f7` *(frame · all-registers · structural)*
 
-`f7` · frame · all-registers · structural
-
-English pivots between ideas using formal connectives: *however*, *moreover*,
+**Frame 7 — Pivots via question, demonstrative, or simple แต่.** English pivots
+between ideas using formal connectives: *however*, *moreover*,
 *on the other hand*, *furthermore*. Thai prose pivots more often via:
 
 1. **Rhetorical question** (`f7/question-pivot`) — `แล้วถ้า X ล่ะ?`, `นั่นแปลว่ายังไง?`, `ทำไมถึงเป็นแบบนั้น?`.

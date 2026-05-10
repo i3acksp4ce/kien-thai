@@ -25,5 +25,5 @@ or quoted strings are use-vs-mention exempt.
 - `ในเรื่องของ` / `ในส่วนของ`
 - `อย่างมีประสิทธิภาพ` / `อย่างมาก` / `อย่างมหาศาล`
 - `โดยสรุปแล้ว` / `กล่าวโดยสรุป`
-- `รีบ...เลย!` (imperative product CTAs — except scoped per #19)
+- `รีบ...เลย!` (imperative product CTAs — except scoped per `cta-bang`)
 - `นั่นเอง!` (fake-friendly closer)
