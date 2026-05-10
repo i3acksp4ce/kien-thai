@@ -1,14 +1,7 @@
 # Surface Thai grammar
 
-Sentence-level Thai grammar issues that AI gets wrong because the English source
-has no equivalent surface marker. Distinct from the discourse frames — these
-operate at the word/phrase level. Each rule here is a hard correctness rule
-applying to all registers.
-
-Each rule has a stable slug (in `code` font under the heading) plus inline
-metadata: type · scope · severity. Future cross-references should prefer the
-slug (`grammar.md#wrong-classifier`) over the numeric ID (`grammar.md #41`),
-since slugs survive renumbering.
+Word/phrase-level Thai grammar — hard rules, all registers. Distinct from the
+discourse frames in SKILL.md.
 
 ### 41. Wrong classifier (ลักษณนาม)
 
@@ -34,13 +27,8 @@ Common technical-noun classifiers:
 
 If unsure, omit the count (`เก็บ token เพิ่ม`) over picking a wrong classifier.
 
-**Register-aware selection** (per Singnoi 2001 + Hundius & Kölver 1983):
-in conversational, personal-blog, and explainer registers, generic classifiers
-`อัน` and `ตัว` are accepted shortcuts that native speakers themselves use when
-the precise classifier is awkward or unfamiliar. In News, Academic, and
-Marketing/B2B-formal, prefer the precise classifier (`เครื่อง`, `รายการ`,
-`บรรทัด`). The "wrong classifier" signal applies sharpest in formal registers;
-conversational allows graceful defaults.
+**Register-aware**: conversational/personal-blog/explainer accept generic `อัน`/
+`ตัว`; News/Academic/B2B-formal prefer the precise classifier.
 
 ### 42. Missing `จะ` modal/future marker
 

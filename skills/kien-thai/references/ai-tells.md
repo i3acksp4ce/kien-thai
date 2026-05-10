@@ -1,31 +1,8 @@
 # AI tells in Thai prose (mechanical)
 
-Mechanical violations of Thai-natural prose: AI shapes the output around an English
-structural mark that Thai doesn't use, or omits a Thai mark that's required.
-Correctness rules, not voice preferences.
-
-Companion files:
-
-- `craft.md` — voice / taste / register-conditional preferences (the soft side).
-- `grammar.md` — surface Thai grammar (classifiers, modals, function words, verb
-  calques). Also mechanical, just below the discourse-frame layer.
-- `audit-checklist.md` — condensed grep-able list for kode-thai audit pass.
-
-Each rule cross-references the **discourse frame** it violates (see `SKILL.md`):
-
-- F1 — Topic-comment over SVO
-- F2 — Condition / time / frame goes first
-- F3 — Sentence boundaries via space and paragraph, not period
-- F4 — Closure via sentence-final particles
-- F5 — Cohesion via zero anaphora and demonstratives
-- F6 — Pacing via ก็
-- F7 — Pivots via question / demonstrative / simple แต่
-
-Some rules are register-mechanical (correctness depends on register). Those are
-labeled **register**.
-
-Inline-code Thai examples may exceed the 90-column rule when the example itself is
-longer than that — they're treated as atomic, like URLs.
+Mechanical Thai-correctness rules. Cross-references to Frames F1–F7 in SKILL.md.
+Register-conditional rules tagged `· register`. Companions: `craft.md` (soft),
+`grammar.md` (surface). Inline-code Thai examples may exceed the 90-column rule.
 
 ## Connectives and transitions  *(F6, F7)*
 
