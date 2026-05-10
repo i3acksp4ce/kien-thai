@@ -189,14 +189,79 @@ Slim fix-bundle measurements (explainer register):
 
 Per fix pass: ~30K chars / ~16K tokens cut on top of Stage 1+2.
 
+## iter-6 — Stage 4 regression, reverted
+
+iter-6 ran with Stages 1+2+3+4 active. Convergence shifted:
+
+| Cell                    | iter-5 (S1+2) | iter-6 (S1-4) |
+| ----------------------- | ------------- | ------------- |
+| marketing-blurb/claude  | 2 ✓          | 1 ✓          |
+| marketing-blurb/codex   | 1 ✓          | 2 ✓          |
+| tech-doc-short/claude   | 2 ✓          | 2 ✓          |
+| tech-doc-short/codex    | **2 ✓**      | **5 ✗**      |
+
+**Codex tech-doc regressed back to MAX_LOOP=5**. The same cell that
+Stages 1+2 *fixed* was re-broken by Stage 4.
+
+Telemetry from iter-6 codex tech-doc-short:
+
+```
+pass-1 fix: cited [f5/zero-anaphora, seam-connective-missing, function-word-confusion]
+pass-2 fix: cited [f3, f7/demo-pivot]                            ← different rules
+pass-3 fix: cited [f6/ko-pacing, seam-connective-missing]        ← different again
+pass-4 fix: cited [wrong-classifier, f1/topic-comment]           ← different again
+pass-5 fix: cited [f5/zero-anaphora]                             ← still finding things
+```
+
+Each pass-N audit cites a different rule than pass-(N-1) — the fixer
+patches the cited issue but introduces a new one, audit catches it
+next pass. Classic thrash.
+
+Diagnosis: slim fix bundle drops sibling-rule context. When the
+fixer addresses `f5/zero-anaphora`, it doesn't know about `f6/ko-pacing`
+or `wrong-classifier` — so its restructuring can land a new
+violation. iter-5 with the full audit bundle on fix passes had the
+fixer aware of all rules while patching, so fixes were holistic.
+
+**Action taken**: reverted `_run_loop` to use the audit bundle on
+fix passes. `kien_thai_slim_fix_bundle()` and `extract_cited_slugs()`
+remain in `lib.py` and are unit-tested — kept as latent capability
+for a future re-introduction with one of:
+- A 1-line slug index of all rules (so fixer knows what else exists).
+- File-level intros (preamble of each rule file) carried alongside
+  cited rules.
+- Conditional slim mode (only kick in when audit cites ≥4 rules,
+  where the slim path is most worthwhile).
+
+This regression is the kind iter 08-synthesis explicitly warned
+about: "biggest win, biggest implementation cost. Defer until
+Stages 1–3 are validated." I jumped ahead under autonomous-mode
+direction; the validation invalidated.
+
+Telemetry data from iter-6 is still useful — first eval run with
+usage stats per pass. Notable:
+- claude cache_read after warm-up: ~18K tokens (stable).
+- codex cache: smaller (6528 baseline) and TTL appears variable
+  (24960 read on some passes, falls back to 6528 on others). Codex
+  cache TTL is shorter than Anthropic's; cross-cell reuse limited.
+
+Stage 3 instrumentation works as designed.
+
 ## Total state at end of session
 
-12 commits since iter-3 review save. Default pytest 20/20.
-Stages 1+2+3+4 all wired. iter-5 validated Stage 1+2 with the
-codex tech-doc-short case fixed. Stage 3+4 not yet exercised in
-real eval — iter-6 will validate.
+15 commits since iter-3 review save. Default pytest 20/20.
 
-Ready for next eval generation: `uv run pytest -m generate`.
+**Active**: Stages 1+2 (mechanical cuts + register scoping) + Stage 3
+(usage telemetry).
+
+**Latent**: Stage 4 helpers (slim fix bundle, slug extraction) live
+in `lib.py` with tests but aren't wired into `_run_loop`. Re-wire
+when a richer fix-bundle design lands.
+
+iter-5 (Stage 1+2 only) is the current quality baseline — codex
+tech-doc-short converges in 2 passes vs iter-3's MAX_LOOP failure.
+Next eval run will combine Stage 1+2 + telemetry; that's the
+right artifact for review.
 
 ## Architectural notes for next session
 

@@ -139,13 +139,16 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path) -> dict:
         if clean:
             converged = True
             break
-        # Slim fix bundle: parse cited slugs from audit, ship only those rules
-        # (plus SKILL.md frames + active register). Fixer doesn't need the
-        # full rule catalog — it has a closed list of issues to address.
+        # Fix passes use the full audit bundle. Slim fix-bundle was tried in
+        # iter-6 (Stage 4 of the token-audit roadmap) and regressed codex
+        # tech-doc convergence from 2 passes (iter-5 baseline) back to
+        # MAX_LOOP=5 — fix introduced new issues each pass without sibling-
+        # rule context. kien_thai_slim_fix_bundle is kept as latent capability
+        # for re-introduction once a richer index lands (e.g. SKILL frames +
+        # all rule slugs in a 1-line index, plus expansion of cited slugs).
         cited = extract_cited_slugs(audit)
-        fix_bundle = kien_thai_slim_fix_bundle(register, cited)
         prose, fix_dur, fix_usage = _run_once(
-            backend, _fix_prompt(prose, audit, fix_bundle, register), out_dir, f"pass-{i}-fix"
+            backend, _fix_prompt(prose, audit, audit_bundle, register), out_dir, f"pass-{i}-fix"
         )
         (out_dir / f"pass-{i}.md").write_text(wrap_markdown(prose), encoding="utf-8")
         passes.append({
