@@ -50,8 +50,9 @@ tighten an existing one. **Resist this.** Trace first:
 
 1. **Find the offending pattern** in the output.
 2. **Map it to existing rules** — which rule was supposed to prevent this? Is it in
-   `anti-patterns.md`, `style-rules.md`, `register.md`, or `examples.md`? If it's in
-   none, that's a real gap.
+   `ai-tells.md` (mechanical), `craft.md` (soft), `grammar.md` (surface),
+   `style-rules.md`, `register.md`, or `examples.md`? If it's in none, that's a real
+   gap.
 3. **If a rule exists but didn't fire**: ask why. Was it buried? Phrased weakly?
    Conflicting with another rule? Wrong register applied? Fix the existing rule's
    wording, prominence, or anchoring example — don't pile on a new rule that says
@@ -73,22 +74,27 @@ itself.
 
 ```
 skills/kien-thai/
-├── SKILL.md
+├── SKILL.md                 # frames + person-arity + workflow
 └── references/
-    ├── anti-patterns.md     # AI tells to avoid
-    ├── style-rules.md       # positive style rules
-    ├── register.md          # formality selection
-    └── examples.md          # before/after rewrites
+    ├── ai-tells.md          # mechanical Thai-correctness violations (hard)
+    ├── grammar.md           # surface grammar (classifiers, modals, calques)
+    ├── craft.md             # voice/taste preferences (soft)
+    ├── style-rules.md       # positive style rules + ทับศัพท์ guide
+    ├── register.md          # 5 register families + person-arity
+    ├── examples.md          # before/after, register-tagged
+    ├── forbidden-phrases.md # blocklist for audit pre-check
+    └── anti-patterns.md     # human-facing redirector — excluded from bundle
 skills/kode-thai/
 └── SKILL.md                 # audit-loop trigger over kien-thai
 evals/evals.json             # eval prompts (tech doc + marketing)
 tests/
-├── lib.py                   # shared helpers (paths, BACKENDS, build_prompt)
-├── conftest.py              # skill_text fixture
-├── test_sanity.py           # plumbing, default-on
+├── lib.py                   # bundle preprocessor, BACKENDS, parsers
+├── conftest.py              # skill_text fixture (unscoped, default)
+├── test_sanity.py           # plumbing + bundle preprocessor coverage
+├── test_skill_consistency.py # cross-ref + slug uniqueness checks
 ├── test_quant.py            # advisory heuristics, -m evaluate
 └── generate/
-    ├── conftest.py          # run_eval fixture, parametrize
+    ├── conftest.py          # run_eval fixture, register-scoped two-tier
     ├── test_claude.py       # -m generate
     └── test_codex.py        # -m generate
 workspace/                   # gitignored: iteration-N/<eval>/<backend>/<config>/
@@ -100,10 +106,15 @@ Two-stage, per skill-creator doctrine — subjective prose is judged by humans, 
 assertions.
 
 - **Stage 1 (generate)**: `pytest -m generate` invokes
-  `claude --bare --disable-slash-commands -p` and `codex exec` in their bare modes.
+  `claude --disable-slash-commands --output-format json -p` and `codex exec --json`.
   Skill is injected via prompt prepend (only diff between with_skill and baseline).
+  Bundle is register-scoped via `kien_thai_bundle(register, mode)` and uses
+  two-tier injection — pass-0 ('draft' mode) keeps workflow sections, audit
+  passes drop them, fix passes get a slim bundle of only audit-cited rules.
   Outputs land in
   `iteration-N/<eval>/<backend>/<config>/{output.md,prompt.txt,meta.json}`.
+  meta.json tracks per-pass usage (cache hits, input/output tokens) plus
+  `cited_slugs` per fix pass.
 - **Stage 2 (review)**: human + Claude review artifacts inline in the chat. No browser
   viewer (yet). Cross-check across backends to mitigate self-judge bias. Consolidated
   notes go to `iteration-N/feedback.md` and graduate into `references/*.md`.
@@ -125,8 +136,16 @@ is missing.
 
 ### Locked decisions — tooling
 
-- Backends: claude + codex, both in bare modes (no skill auto-loading).
-- Skill injection: full SKILL.md content prepended to prompt under `<skill>...</skill>`.
+- Backends: claude + codex, both in bare modes (no skill auto-loading), JSON
+  output for usage telemetry.
+- Skill injection: register-scoped bundle prepended under `<skill>...</skill>`.
+  Source files keep verbose form (consistency test parses them); preprocessor
+  in `tests/lib.py:kien_thai_bundle` strips frontmatter, dead refs, default
+  metadata, and filters by register at bundle time.
+- Two-tier injection: pass-0 (draft) → full register-scoped bundle. Audit
+  passes → drop draft-time workflow sections. Fix passes →
+  `kien_thai_slim_fix_bundle` ships SKILL.md + active register +
+  forbidden-phrases + only audit-cited rule blocks.
 - Python: 3.13+ via `uv`. pytest 9 + pytest-xdist.
 
 ---
