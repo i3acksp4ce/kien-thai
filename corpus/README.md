@@ -30,6 +30,7 @@ later analysis needs context the snippet drops.
 | `bank-longform/`          | educational advisory, no body particles  |
 | `newspaper-feature/`      | literary analytical long-form            |
 | `translation/`            | confident essayist, hybrid vocabulary    |
+| `scholarly/`              | reference grammars, linguistics papers, translation-craft essays |
 
 ## Per-entry frontmatter
 
@@ -55,7 +56,9 @@ pages (likely calqued).
 
 ## Curation index
 
-40 curated entries across 8 categories as of 2026-05-10.
+52 curated entries across 9 categories as of 2026-05-10. Scholarly entries
+follow a different frontmatter schema (`author`, `work`, `relevance`) — see
+the per-entry files for the actual layout.
 
 ### bank-longform (5)
 
@@ -121,3 +124,35 @@ pages (likely calqued).
 - `salforest-irb-forum-opentalk` — multi-speaker NGO-feature, named experts
 - `salforest-sme-sustainability` — development-economics analytical
 - `salforest-us-mass-layoff` — foreign-affairs analysis, numbered "ประการ"
+
+### scholarly (12)
+
+Reference grammars, linguistics papers, and translation-craft sources backing
+kien-thai rules with citation-grade evidence. Per-entry frontmatter uses
+`author` / `work` / `relevance` instead of the prose-corpus schema.
+
+- `iwasaki-ingkaphirom-reference-grammar` — Cambridge functional grammar;
+  chapter 30 "Discourse" is the core reference for topic-comment, zero
+  anaphora, particles
+- `smyth-essential-grammar` — Routledge pedagogical reference; mood particles,
+  aspect, register
+- `higbie-thinsan-thai-grammar` — Orchid Press spoken-Thai reference; explicit
+  formal-vs-spoken register pairings
+- `li-thompson-topic-prominent` — Li & Thompson (1976) typological framework
+  underpinning Frame 1 (topic-prominence)
+- `prasithrathsint-thuk-passive` — establishment of neutral passive vs
+  persistence of adversative ถูก; backs anti-pattern #6
+- `takahashi-koo-pragmatic-particle` — interpersonal uses of ก็; backs Frame 6
+  topic-resumptive bridge
+- `olsson-iamitive-laew` — typological grouping of แล้ว as iamitive; backs
+  Frame 4 closure with แล้ว
+- `thai-discourse-treebank-tacl` — TACL 2024 corpus on Thai connectives;
+  backs anti-pattern #1 (ซึ่ง-stacking) with the Expansion.GenExpansion sense
+- `aclanthology-thai-classifiers` — Singnoi 2001 + Hundius/Kölver 1983
+  classifier taxonomy; backs anti-pattern #41
+- `thai-language-com-spacing` — Slayden + thai-notes + Royal Institute
+  spacing manual; backs Frame 3 + anti-pattern #37
+- `wikipedia-thai-language-grammar` — tertiary aggregator with primary-source
+  crosscheck quotes for register / passive / classifier / pro-drop rules
+- `barang-thai-literary-translation` — Marcel Barang's translation principles;
+  backs translation-craft rules #27, #31

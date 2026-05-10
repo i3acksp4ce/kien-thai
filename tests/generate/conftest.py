@@ -59,9 +59,11 @@ def _audit_prompt(prose: str, bundle: str) -> str:
     return (
         "ใช้แนวทางการเขียนต่อไปนี้:\n\n"
         "<skill>\n" + bundle + "\n</skill>\n\n"
-        "งาน: ตรวจ Thai prose ข้างล่างนี้ตามกฎใน skill list issue ที่เจอ "
-        "พร้อมอ้าง rule ที่ผิด (frame 1-7, anti-pattern #NN, หรือชื่อ style rule) "
-        "ถ้าหา issue ไม่เจอเลย ให้ตอบบรรทัดเดียวว่า `CLEAN` ห้าม output prose\n\n"
+        "งาน: ใช้ `audit-checklist.md` ใน skill เป็น entry point — เดินตามส่วน "
+        "Mechanical ทีละข้อก่อน แล้วค่อยทำ Craft (filter ตาม register ของ prose). "
+        "สำหรับทุก violation ระบุ rule slug (เช่น `wrong-classifier`, "
+        "`missing-cha-modal`) หรือ #NN พร้อมยกข้อความที่ผิด. "
+        "ถ้าผ่านทุกข้อ ให้ตอบบรรทัดเดียวว่า `CLEAN` ห้าม output prose\n\n"
         "<prose>\n" + prose + "\n</prose>"
     )
 
