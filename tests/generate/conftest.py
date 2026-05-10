@@ -16,7 +16,9 @@ from lib import (
     Eval,
     backend_available,
     build_prompt,
+    extract_cited_slugs,
     kien_thai_bundle,
+    kien_thai_slim_fix_bundle,
     load_evals,
     next_iteration_dir,
     parse_backend_output,
@@ -137,14 +139,20 @@ def _run_loop(backend: str, eval_case: Eval, out_dir: Path) -> dict:
         if clean:
             converged = True
             break
+        # Slim fix bundle: parse cited slugs from audit, ship only those rules
+        # (plus SKILL.md frames + active register). Fixer doesn't need the
+        # full rule catalog — it has a closed list of issues to address.
+        cited = extract_cited_slugs(audit)
+        fix_bundle = kien_thai_slim_fix_bundle(register, cited)
         prose, fix_dur, fix_usage = _run_once(
-            backend, _fix_prompt(prose, audit, audit_bundle, register), out_dir, f"pass-{i}-fix"
+            backend, _fix_prompt(prose, audit, fix_bundle, register), out_dir, f"pass-{i}-fix"
         )
         (out_dir / f"pass-{i}.md").write_text(wrap_markdown(prose), encoding="utf-8")
         passes.append({
             "pass": i, "kind": "fix",
             "duration_s": round(fix_dur, 2),
             "usage": fix_usage,
+            "cited_slugs": cited,
         })
 
     (out_dir / "output.md").write_text(wrap_markdown(prose), encoding="utf-8")
