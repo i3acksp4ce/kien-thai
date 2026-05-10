@@ -27,3 +27,5 @@ __pycache__/
 
 .rtk/
 !.rtk/filters.toml
+.inbox.log
+.questions.log
