@@ -52,3 +52,72 @@ particles, connectives, cadence, person-arity choices the sample demonstrates.
 Per CLAUDE.md locked decisions: no celebrity columnists, no FMCG/insurance ad
 sensationalism, no retail flash-sale copy, no translated foreign SaaS landing
 pages (likely calqued).
+
+## Curation index
+
+40 curated entries across 8 categories as of 2026-05-10.
+
+### bank-longform (5)
+
+- `krungsri-loy-krathong-asean` — encyclopedic-neutral, zero person-arity
+- `krungsri-online-scammer-report` — light "เรา"-victim frame + imperatives
+- `ttb-emergency-saving` — bank-warm hybrid "เรา" + "คุณ", coach-tone
+- `ttb-finance-planning` — neutral-bank, age-bracket structured, formula-as-prose
+- `ttb-spend-smart-stress-less` — bank-warm coach with `…` ellipsis closer
+
+### marketing/b2b-formal (5)
+
+- `aws-thailand-agentcore` — enterprise-tech "คุณ"-explainer + dev "เรา"
+- `aws-thailand-custom-agents` — SDK-tutorial "คุณ"+"เรา", em-dash layout
+- `aws-thailand-spip-security` — first-person "ผม" + ครับ tutorial variant
+- `bluebik-homepage` — third-person institutional, English-Thai code-switch
+- `wisesight-homepage` — light "คุณ"+"ของเรา", verb-first imperatives
+
+### marketing/fintech-warm (5)
+
+- `krungsri-ai-art` — lifestyle-tutorial, mid-conversational
+- `krungsri-ai-automation` — bank-as-business-content, no warmth particles
+- `krungsri-chatgpt-horoscope` — most slang-vivid (มูเตลู), online-Thai voice
+- `scb-just4u-ai` — product-feature warm-pro, mixed "เรา"/"คุณ"
+- `scb-multi-skill` — conversational lifestyle-coach, vivid colloquial
+
+### marketing/retail-tech (5)
+
+- `lalamove-2025-results` — corporate annual-results press release
+- `lalamove-khonkaen-expansion` — regional-expansion + executive quote
+- `lalamove-sme-shipping-cost` — data-driven press release with statistics
+- `lalamove-soft-skills-workshop` — PR-press with quoted speakers, third-person
+- `lalamove-suburban-delivery` — practical-direct merchant blog, "!" + "สาย-" slang
+
+### marketing/saas-sme (5)
+
+- `flowaccount-food-cost` — definition-first SEO-tutorial, third-person
+- `flowaccount-online-selling` — listicle-style "10 tips", numbered imperative
+- `foodstory-homepage` — fragment-tile SaaS landing, no person-arity
+- `page365-homepage` — testimonial-driven, ครับ/ค่ะ inside customer quotes
+- `peakaccount-stamp-duty` — accounting-tutorial mid-formal, no English
+
+### tech-writing (5)
+
+- `somkiat-architect-ivory-tower` — opinion-essay with "!!" + "สวัสดี" closer
+- `somkiat-bun-testing` — lower-volume release-note explainer, "อีกด้วย" tic
+- `somkiat-high-test-low-quality` — diagnosis essay with "นั่นเอง" tic
+- `somkiat-openai-cli` — short release-note, "ได้เลย" cadence repeated
+- `somkiat-tech-radar-34` — opinionated commentary, "!!" emphasis high
+
+### newspaper-feature (6)
+
+- `the101-city-for-all` — academic-feature with inline citations
+- `thematter-friendship-break-up` — soft lifestyle feature with "นะ" warmth
+- `thematter-job-scams` — analytical-feature with `'...'` concept-quoting
+- `thematter-why-we-work` — philosophical-explainer with "เรา"-hypothetical
+- `way-prasert-mirror-iran` — first-person "ผม" memoir-essay, "ครับ" closer
+- `way-prasert-oil-pm25` — diary-style essay, spouse-frame, op-ed cadence
+
+### translation (5)
+
+- `salforest-ai-research` — academic translator, bracketed-bilingual gloss
+- `salforest-financing-renew` — opinion-essay with affective formal register
+- `salforest-irb-forum-opentalk` — multi-speaker NGO-feature, named experts
+- `salforest-sme-sustainability` — development-economics analytical
+- `salforest-us-mass-layoff` — foreign-affairs analysis, numbered "ประการ"

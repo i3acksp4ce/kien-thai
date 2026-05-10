@@ -15,7 +15,8 @@ from pathlib import Path
 from pythainlp.tokenize import word_tokenize
 
 ROOT = Path(__file__).parent.parent
-SKILL_PATH = ROOT / "skills" / "kien-thai" / "SKILL.md"
+KIEN_THAI_DIR = ROOT / "skills" / "kien-thai"
+SKILL_PATH = KIEN_THAI_DIR / "SKILL.md"
 EVALS_FILE = ROOT / "evals" / "evals.json"
 WORKSPACE = ROOT / "workspace"
 
@@ -125,6 +126,19 @@ def wrap_markdown(text: str, width: int = 90) -> str:
         else:
             out.extend(_wrap_paragraph(line, width))
     return "\n".join(out)
+
+
+def kien_thai_bundle() -> str:
+    """SKILL.md + every references/*.md, framed for prompt injection.
+
+    kode-thai's protocol requires loading kien-thai in full (skill + all four
+    references) — most misses surface against the granular anti-patterns, not
+    the seven frames alone.
+    """
+    parts = [SKILL_PATH.read_text(encoding="utf-8")]
+    for ref in sorted((KIEN_THAI_DIR / "references").glob("*.md")):
+        parts.append(f"\n\n## reference: {ref.name}\n\n{ref.read_text(encoding='utf-8')}")
+    return "".join(parts)
 
 
 def build_prompt(eval_case: Eval, config: str, skill_text: str) -> str:

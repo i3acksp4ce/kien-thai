@@ -82,7 +82,7 @@ English doesn't need closure particles. Thai uses a small inventory of them to w
 clauses cleanly: `ด้วย` (also/too — closes additive thoughts), `แล้ว` (completion,
 transition), `ไป` (movement away/done), `อยู่` (ongoing state), `เลย` (intensification
 or "right then"), `ก็แล้วกัน` (let's just leave it / decision), `อยู่ดี`
-(still / nonetheless).
+(still / nonetheless), `ต่างหาก` (contrastive correction — "actually X, not Y").
 
 When AI omits these because the English source has no equivalent token, Thai
 sentences feel dangling — like the writer trailed off.
@@ -93,9 +93,15 @@ sentences feel dangling — like the writer trailed off.
 Especially watch for `ไม่ได้...อย่างเดียว`, `ไม่ใช่แค่...`, `ไม่เพียงแต่...` frames —
 they almost always need a closure particle to finish the implicit "also Y".
 
+Contrastive correction frames (`ไม่ได้ X อยู่ที่/เป็น/คือ Y`) take `ต่างหาก` — Thai's
+emphatic-correction particle that closes the "actually it's Y, not X" thought.
+
+- Dangling: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุน`
+- Closed: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุนต่างหาก`
+
 ### Frame 5 — Cohesion via zero anaphora and demonstratives
 
-English needs explicit pronouns: *it / they / he / she / this / that*. Thai has two
+English needs explicit pronouns: *it / they / he / she / this / that*. Thai has three
 main strategies that AI underuses:
 
 1. **Zero anaphora** — once the topic is established, drop the subject entirely.
@@ -105,9 +111,26 @@ main strategies that AI underuses:
    reference the noun by demonstrative + classifier when needed
    (`คนนี้`, `เคสนั้น`, `ปัญหานั้น`). AI overuses `มัน`, `เขา`, `พวกเขา` because they
    map to English `it / he / they`.
+3. **Demonstrative as inter-clause bridge** — between clauses where English would
+   repeat the subject, Thai uses a demonstrative referring back to the just-stated
+   fact: `ตรงนี้แหละที่...`, `นี่คือเหตุผลที่...`, `ส่วนนี้...`. Especially valuable
+   for problem→solution pivots (see also Frame 7).
+
+   - Dangling: `ของค้างก็กลายเป็นต้นทุนเงียบ ระบบนี้ช่วย...`
+   - Bridged: `ของค้างก็กลายเป็นต้นทุนเงียบ ตรงนี้แหละที่ระบบช่วยได้`
 
 - Calqued: `เราต้องเข้าใจว่าเราอยู่ในโลกที่เราสร้างขึ้นมาเอง มันมีกฎของมันเอง`
 - Native: `ต้องเข้าใจว่าโลกที่เราอยู่ คือโลกที่สร้างขึ้นเอง มีกฎของตัวมันเอง`
+
+**Caveat — zero anaphora has limits.** Aggressive subject-drop creates subjectless
+robot-prose when the referent isn't recoverable from context. If a clause starts
+with a connective (`เพราะ...`, `ดังนั้น...`, `ส่วน...`) and immediately presents a
+verb without a topic, restore reference via a demonstrative bridge or a
+topic-comment restructure rather than reaching for `มัน` (banned by anti-pattern #29).
+
+- Robot: `เพราะรับประกัน output rate`
+- Native (bridge): `เพราะแบบนี้ output rate จะคงที่`
+- Native (restored topic): `algorithm นี้รับประกัน output rate`
 
 ### Frame 6 — Pacing via ก็
 
@@ -119,7 +142,11 @@ drops it, and Thai prose without ก็ reads choppy or robotic.
 - With ก็: `พอ traffic ขึ้น DB ก็เริ่มอืด`
 
 Common patterns: `พอ X ก็ Y`, `X แล้ว ก็ Y`, `ถ้า X ก็ Y`, `เลย...ก็...`,
-`X ไม่ทัน ก็เลย Y`.
+`X ไม่ทัน ก็เลย Y`. Standalone `แล้ว` (without `ก็`) also bridges sequenced action
+clauses where English would use no connective:
+
+- Choppy: `ถ่ายรูปบิลจากตลาด ระบบอ่านรายการให้เอง`
+- Bridged: `ถ่ายรูปบิลแล้วระบบจะอ่านรายการให้เอง`
 
 **Sub-pattern: ก็ as topic-resumptive bridge.** When a sentence states a topic and
 then offers a comment that would otherwise feel clipped, ก็ at the start of the
@@ -132,18 +159,52 @@ the comment without ก็ and produce a snap that lands wrong.
 Use ก็ as breath/rhythm, not as a connective replacement. Don't force it where it
 doesn't fit; do allow it where Thai naturally wants the beat.
 
-### Frame 7 — Pivots via rhetorical question
+### Frame 7 — Pivots via question, demonstrative, or simple แต่
 
 English pivots between ideas using formal connectives: *however*, *moreover*,
-*on the other hand*, *furthermore*. Thai prose pivots more often via rhetorical
-questions: `แล้วถ้า X ล่ะ?`, `นั่นแปลว่ายังไง?`, `ทำไมถึงเป็นแบบนั้น?`.
+*on the other hand*, *furthermore*. Thai prose pivots more often via:
+
+1. **Rhetorical question** — `แล้วถ้า X ล่ะ?`, `นั่นแปลว่ายังไง?`, `ทำไมถึงเป็นแบบนั้น?`.
+2. **Demonstrative bridge** — `ตรงนี้แหละ...`, `นี่คือเหตุผลที่...` (see also Frame 5).
+3. **Simple `แต่`** — replaces `อย่างไรก็ตาม` in roughly half of its English occurrences.
 
 - AI pivot: `อย่างไรก็ตาม การใช้งานในระดับ production มีข้อจำกัด`
 - Native pivot: `แต่พอเอาขึ้น production จริง ก็มีอะไรให้ปวดหัวอีก`
 - Native (question pivot): `แล้วถ้าโหลดเพิ่มอีกสิบเท่าล่ะ? ตรงนี้แหละที่เริ่มน่าสนใจ`
 
+**Special case — problem-list to solution pivot.** After listing 2–3 reader
+pain-points, AI tends to dive straight into the product/solution clause without a
+pivot, producing bullet-list cadence. Insert a question pivot, demonstrative bridge,
+or contrastive `แต่` to mark the shift.
+
+- Bullet-cadence: `ของหมดก็เสียยอดขาย ของค้างก็กลายเป็นต้นทุนเงียบ ระบบนี้ช่วย...`
+- Pivoted (question): `ของหมดก็เสียยอดขาย ของค้างก็กลายเป็นต้นทุนเงียบ — แล้วทำไงให้คุมของได้แม่น?`
+- Pivoted (demonstrative): `ของหมดก็เสียยอดขาย ของค้างก็กลายเป็นต้นทุนเงียบ ตรงนี้แหละที่ระบบนี้ช่วยได้`
+
 Heuristic: every "however" you'd write, ask whether a question or just `แต่` would
 do better. Drop one in two.
+
+## Person-arity (apply before drafting any piece with a reader)
+
+In any piece, identify three roles. Most critical for Marketing copy.
+
+- **1st person — speaker**. Marketing: brand as `เรา`. Personal blog: author as
+  `ผม`/`ดิฉัน`. News/reference: no first-person.
+- **2nd person — addressee**. Marketing: reader as `คุณ` directly. **Never substitute
+  the audience's demographic noun** (`เจ้าของร้าน`, `ผู้ใช้`, `นักลงทุน`,
+  `ผู้ประกอบการ`) for `คุณ` in body copy. Demographic nouns belong in headers and
+  category framing, not as the active 2nd-person referent.
+- **3rd person — product, concept, third party**. Marketing: `ระบบนี้`,
+  `เครื่องมือนี้`, `แอปนี้`.
+
+- Bad (3rd-person address substitutes demographic noun):
+  `เครื่องมือนี้ทำให้เจ้าของร้านเห็นภาพจริงของร้านตัวเอง`
+- Good (direct 2nd-person):
+  `ระบบนี้ช่วยให้คุณเห็นภาพจริงของร้านได้ทันที`
+
+Don't mix `เรา` and `คุณ` within the same paragraph (Krungsri pattern). Body in
+`เรา` when teaching a concept; advisory line shifts to `คุณ` for action. See
+`references/register.md` for register-specific person-arity defaults.
 
 ## Stylistic conventions (apply on top of the frames)
 
@@ -174,15 +235,25 @@ Once the frames are right, these surface-level conventions fine-tune the voice.
 
 ## Workflow when asked to write Thai prose
 
-1. **Identify register** before writing. Ask if unclear. Four registers live in
-   `references/register.md`:
+1. **Identify register and voice** before writing. ASK if either is unclear. Five
+   register families live in `references/register.md`:
    - **News / reference** — no first-person, no particles, active voice
-   - **Explainer / bank long-form / tech doc** — no particles, problem-first,
-     `เรา`/`คุณ` address
-   - **Personal blog / dev war-story** — first-person ผม, conversational, ครับ at
-     openings and sign-offs
+   - **Explainer** — bank/tech long-form, no particles, problem-first, `เรา`/`คุณ`
+     address
+   - **Marketing (family)** — SaaS-SME / B2B-formal / fintech-warm / retail-tech
+     sub-registers; person-arity required
+   - **Personal blog / dev war-story** — first-person `ผม` *or* `ดิฉัน` per gender,
+     ครับ/ค่ะ at openings and sign-offs only. **ASK gender if not stated** — don't
+     silently default to `ผม`.
    - **Academic long-form** — no particles, longer sentences acceptable, synthesis
      closings
+
+   Voice attributes (gender, brand mood, formality level) are orthogonal to
+   register — pick both.
+
+1.5. **Identify person-arity** for any piece with a reader, especially Marketing.
+   1st (brand `เรา`) / 2nd (reader `คุณ` — never demographic noun) / 3rd (product).
+   See Person-arity section above.
 
 2. **Draft frame-first.** Before picking words, ask:
    - What's the topic? Is it fronted (Frame 1)?

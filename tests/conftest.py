@@ -6,9 +6,9 @@ from __future__ import annotations
 
 import pytest
 
-from lib import SKILL_PATH
+from lib import kien_thai_bundle
 
 
 @pytest.fixture(scope="session")
 def skill_text() -> str:
-    return SKILL_PATH.read_text(encoding="utf-8")
+    return kien_thai_bundle()

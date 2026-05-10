@@ -180,7 +180,9 @@ bureaucratic.
 
 27. **Localize idioms; preserve metaphors.** "It's raining cats and dogs" →
     `ฝนตกหนักมาก` (meaning, not idiom). But authorial extended metaphors get a
-    calque-coined term, kept consistent throughout.
+    calque-coined term, kept consistent throughout. For bare-verb calques
+    (e.g. "burst" → ระเบิด, "drop" → ทิ้ง, "cap" → ปิดฝา), see anti-pattern #44 —
+    Thai often uses a different verb for the same action.
 
 28. **Numeric placement.** English: `in 2019 the law was passed.` In Thai narrative,
     dates often trail: `กฎหมายฉบับนี้ประกาศใช้เมื่อปี 2019`.
