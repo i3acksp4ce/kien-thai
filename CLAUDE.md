@@ -66,6 +66,32 @@ tighten an existing one. **Resist this.** Trace first:
 External contributors follow the same logic via [`CONTRIBUTING.md`](CONTRIBUTING.md)
 — that's the public-facing version of this section.
 
+> **Workspace outputs are evidence, not artifacts.** Eval outputs under
+> `workspace/iteration-N/<eval>/<backend>/<config>/` (`output.md`, `pass-N.md`,
+> prompts, meta) are gitignored generation evidence — what the model produced under
+> the current skill bundle. Read them to derive rules, register-tagged exemplars,
+> and judgements. **Do not edit them.** The "find a bug, fix the file" reflex from
+> normal coding work does not apply here: the bug is in the model's behavior, the
+> fix is in the skill content. Edits to gitignored outputs vanish on the next
+> regeneration and produce nothing durable.
+>
+> The tracked, durable artifacts are: `skills/kien-thai/references/*.md` (rules),
+> `references/examples.md` (before/after exemplars), `notes/judgements/`
+> (retrospective calls), and `workspace/iteration-N/feedback.md` (per-iteration
+> trace — note: feedback files at the iteration root are tracked; only the eval
+> subdirectories are ignored). When a corrected version of an output line teaches a
+> generalizable pattern, lift it into `references/examples.md` with the trace — that
+> is where "before → after" content lives durably.
+
+> **1-by-1 review protocol.** When chakrit invokes "1-by-1" on a stretch of review
+> work, discuss each item to resolution one at a time and **log agreed edits to a
+> task batch** as decisions are reached. Do not apply edits mid-discussion. Actual
+> work — file edits, skill additions, commits — starts only after all items in the
+> queue have been discussed. The point is to keep the discussion thread coherent
+> without context-switching into file edits between items. Confusing 1-by-1 with
+> propose-then-wait (which permits per-item apply on approval) is a recurring
+> failure mode; under 1-by-1, even approved items get queued, not applied.
+
 ---
 
 ## Authoring the skill
