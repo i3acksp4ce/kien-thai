@@ -51,6 +51,31 @@ Cap at one โดย per paragraph. Prefer ด้วย, ผ่าน, จาก
 - **Bad**: `ในขณะที่ A เชื่อ X, B เชื่อ Y`
 - **Good**: `A เชื่อ X แต่ B เชื่อ Y` / `A เชื่อ X ส่วน B กลับเชื่อ Y`
 
+### `whenever-calque` *(mechanical · all-registers · hard)*
+
+English "whenever" maps to two distinct Thai constructions; AI defaults to one
+without checking intent.
+
+- **`ทีไร`** = per-instance if-then habituality. "Each time X, Y happens."
+  Requires a per-instance closure on the right clause — see grammar
+  `tirai-frame-closure`.
+- **`ไม่ว่าจะ…เมื่อไหร่`** = universal quantification. "No matter when X, Y."
+  Requires `ก็จะ` linker on the consequent — see grammar `frame-scoped-ko`.
+
+The two are not synonyms. English collapses them into "whenever"; Thai forces
+the choice.
+
+- **Bad (universal-intent forced into `ทีไร`)**: `โทรหาเขาทีไร เขารับเสมอ`
+- **Good**: `ไม่ว่าจะโทรหาเขาเมื่อไหร่ เขาก็จะรับสายเสมอ`
+
+- **Bad (per-instance-intent forced into bare `เมื่อไหร่`)**:
+  `ปิดบัญชีสิ้นเดือนเมื่อไหร่ ตัวเลขไม่ตรง`
+- **Good**: `ปิดบัญชีสิ้นเดือนทีไร ตัวเลขไม่เคยตรงสักที`
+
+Heuristic: if the sentence describes a *habit* with per-instance frustration or
+expectation, use `ทีไร`. If it describes a *universal guarantee* across all
+possible times, use `ไม่ว่าจะ…เมื่อไหร่ … ก็จะ`.
+
 ## Passive and agency  *(F1)*
 
 ### `non-adversative-thuk` *(mechanical · all-registers · hard)*

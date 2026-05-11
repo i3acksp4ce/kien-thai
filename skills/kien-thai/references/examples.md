@@ -139,3 +139,87 @@ CTA แบบสั่งให้ซื้อสินค้า
 ตัด first-person `เรา` ทิ้ง ทำการเปิดตัว เหลือ `เปิดตัว` ตัด ถูก-passive ทิ้ง
 ตัวเลขรูปธรรม `80%` มาแทน `อย่างมีประสิทธิภาพ` ใส่วันที่และ tier ที่ชัดเจน
 แทน `ทั้งนี้` ลอย ๆ ปลอด particle active voice ทั้งย่อหน้า
+
+<!-- register: marketing-saas-sme -->
+## Example 6: `ตัวเลข` + cognitive verb + `ทีไร` closure
+
+จาก iteration-7 marketing-blurb review. ประเด็นสองชั้น: verb-object
+collocation ผิด register และ frame `ทีไร` ไม่ปิด.
+
+### Before (AI-Thai)
+
+> เปิดร้านมาหลายปี ลูกค้าก็เข้าเรื่อย ๆ แต่พอปิดบัญชีสิ้นเดือนทีไร ตัวเลขไม่ตรงกับที่รู้สึก
+
+**Tells**: `ตัวเลข + รู้สึก` คาลค์จาก "the numbers don't match what I
+feel". subject เชิงปริมาณ (`ตัวเลข`, `ยอด`, `ราคา`, `ต้นทุน`) ไม่คู่กับ
+verb เชิงอารมณ์ — ต้องคู่กับ verb เชิงคาดหมาย (`คาด` ตรงสุด, `คิด` รอง
+ลงมา, `หวัง`). frame `แต่พอ X ทีไร Y` ลงท้ายเฉย ๆ ไม่ได้ — `ทีไร` ต้องการ
+per-instance closure: `ไม่เคย…สักที` / `ไม่เคย…เลย` (negative-frustration)
+หรือ `ทุกที` (positive).
+
+### After
+
+> เปิดร้านมาหลายปี ลูกค้าก็เข้าเรื่อย ๆ แต่พอปิดบัญชีสิ้นเดือนทีไร ตัวเลขไม่เคยตรงกับที่คาดสักที
+
+**Fixes**: เปลี่ยน `รู้สึก` → `คาด` (verb เชิงคาดหมาย คู่กับ subject เชิง
+ปริมาณ). เติม `ไม่เคย…สักที` ปิด frame `ทีไร`. หมายเหตุ: `ไม่เคยซ้ำสักที`
+ก็คาลค์ — `ซ้ำ` = repeat ไม่ใช่ match; verb ที่ใช้แทน "match" คือ `ตรง`.
+
+<!-- register: marketing-saas-sme -->
+## Example 7: hedge-stack collapse + person-deixis continuity
+
+จาก iteration-7 marketing-blurb review. ปัญหาคนละชั้น: hedge ซ้อนหลายตัว
+ใน marketing register และ person-deixis ขาดต่อเนื่อง.
+
+### Before (AI-Thai)
+
+> วัตถุดิบขึ้นราคาทุกอาทิตย์ จานเดิมที่เคยกำไรดี ตอนนี้น่าจะขาดทุนอยู่ด้วยซ้ำ แต่ไม่มีใครรู้
+> เพราะไม่เคยมีเวลานั่งคิดต้นทุนต่อจานจริง ๆ
+
+**Tells**: `น่าจะ X อยู่ด้วยซ้ำ` ซ้อน modal (`น่าจะ`) + progressive (`อยู่`)
++ emphatic (`ด้วยซ้ำ`) — register marketing ต้องการ assertion ไม่ใช่ hedge.
+`แต่ไม่มีใครรู้` ดึง third-party `ใคร` เข้ามาในย่อหน้าที่กำลังเดิน
+implicit-2nd-person mode (ไม่มี `คุณ` ขึ้นมาเลยจนถึงย่อหน้าถัดไป) — person
+deixis ขาดความต่อเนื่อง ผู้อ่านสะดุดว่า "*ใคร* ที่ว่าคือใคร".
+
+### After
+
+> วัตถุดิบขึ้นราคาทุกอาทิตย์ จานเดิมที่เคยกำไรดี ตอนนี้กลายเป็นขาดทุนโดยไม่รู้ตัว
+> เพราะไม่เคยมีเวลามานั่งคิดต้นทุนต่อจานจริง ๆ
+
+**Fixes**: hedge stack ยุบเป็น assertion (`น่าจะขาดทุนอยู่ด้วยซ้ำ` →
+`กลายเป็นขาดทุน`). afterthought tail (`แต่ไม่มีใครรู้`) เปลี่ยนเป็น
+modifier (`โดยไม่รู้ตัว`) — เก็บ implicit-2nd-person ไว้ (*คุณ* ไม่รู้ตัว).
+เติม `มา` หน้า `นั่งคิด` ให้ได้ shading ของ "intentional come-and-do" ที่
+register marketing-SME ใช้.
+
+<!-- register: marketing-saas-sme -->
+## Example 8: constitutive vs causal `ก็` + frame closures
+
+จาก iteration-7 marketing-blurb review. ปัญหาคู่: `ก็` ใช้ผิด relation type
+และ closure-binding scope ของหลาย frame ในประโยคเดียว.
+
+### Before (AI-Thai)
+
+> ราคาวัตถุดิบขยับเมื่อไหร่ ต้นทุนต่อจานก็ขยับตาม คุณเห็นกำไรจริงของแต่ละเมนูได้ทันที
+
+**Tells**: `ก็` mark consequence ในคู่ causal (ฝน→เปียก, deploy→bug). แต่
+`ต้นทุน ↔ ราคาวัตถุดิบ` เป็น constitutive relation — ต้นทุน *คือ* ราคา
+วัตถุดิบรวมกัน ไม่ใช่ *ผลจาก* ราคาวัตถุดิบ. ใส่ `ก็` ใน constitutive pair
+อ่านสะดุด เหมือนพูด "ถ้าฝน, น้ำก็ด้วย" — ในเมื่อน้ำ *คือ* ฝน ไม่ต้อง mark
+consequence. ลำดับ closure ทั้งประโยค: clause 2 ขาด `ทันที` ปิด frame
+`เมื่อไหร่`; clause 3 ขาด `จะ` + closer สำหรับ universal promise.
+
+### After
+
+> ราคาวัตถุดิบขยับเมื่อไหร่ ต้นทุนต่อจานขยับตามทันที คุณจะเห็นกำไรที่แท้จริงของเมนูเสมอ
+
+**Fixes**: ตัด `ก็` ทิ้ง (constitutive pair ไม่ต้องการ consequence marker).
+เติม `ทันที` ปิด frame `เมื่อไหร่` ที่ clause 2 — `ทันที` คือ closer
+สำหรับ immediate-consequence ของ `เมื่อไหร่`. clause 3 ใส่ `จะ…เสมอ` เป็น
+universal-promise frame แยกของตัวเอง (`คุณจะ` future + `เสมอ`
+universal-aspect modify `เห็นกำไร`). adjective intensification `จริง` →
+`ที่แท้จริง` คือ marketing-register move ที่ทำให้ value-prop เป็นคำสัญญา
+ของ truth-guarantee — ไม่ใช่แค่ feature description. หมายเหตุ
+closer-binding: `เสมอ` ใน clause 3 ไม่ได้ pair กับ `เมื่อไหร่` ที่ clause
+1 — `ทันที` ปิด `เมื่อไหร่` ไปแล้ว สอง clauses ก่อน.

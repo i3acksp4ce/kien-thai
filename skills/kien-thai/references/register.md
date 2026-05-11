@@ -63,6 +63,24 @@ Marketing example:
 Don't mix `เรา` and `คุณ` within the same paragraph (Krungsri pattern). Body in
 `เรา` when teaching a concept; advisory line shifts to `คุณ` for action.
 
+**Deixis continuity** — once a deixis frame is established for a stretch of
+prose (including the **zero / implicit-2nd-person** frame, where no pronoun is
+named but the reader is the implied addressee), the rest of the passage must
+hold it. AI tends to slip an indefinite-someone (`ใคร`, `คน`, `ใครๆ`) into
+passages running in implicit-2nd-person mode, because English freely
+interpolates "no one" / "someone" without breaking address. Thai readers track
+deixis tighter — the slip reads as a fragment with a missing subject.
+
+- **Bad** (third-party `ใคร` dropped into implicit-2nd-person passage):
+  `จานเดิมที่เคยกำไรดี ตอนนี้กลายเป็นขาดทุน แต่ไม่มีใครรู้`
+- **Good** (deixis stays implicit-2nd-person; *you* don't realize):
+  `จานเดิมที่เคยกำไรดี ตอนนี้กลายเป็นขาดทุนโดยไม่รู้ตัว`
+
+When the surrounding passage has no explicit `คุณ` yet but is clearly
+addressing the reader, treat the frame as implicit-2nd-person and keep all
+references inside that frame. Promote a loose afterthought tail to a modifier
+(`โดยไม่รู้ตัว`, `โดยไม่ทันสังเกต`) rather than introducing a third party.
+
 ## Register 1 — Explainer
 
 Default for tech docs, README/API reference, bank educational long-form, B2B-formal
