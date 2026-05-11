@@ -45,3 +45,86 @@ independently and check whether they co-vary or are orthogonal to register.
 **Landing place.** New dimension in `references/register.md` (feature-by-
 register matrix), or a separate formality axis layered on top of the
 existing register taxonomy.
+
+---
+
+## Hedge-stack collapse pattern in marketing register
+
+**Question.** Is `น่าจะ X อยู่ด้วยซ้ำ` (modal + progressive + emphatic stack)
+a recurring AI failure mode in marketing-register output, or a one-off?
+Does the broader pattern — multi-particle hedge stacking specifically in
+copy that should assert — generalize beyond this stack shape?
+
+**Hypothesis.** AI defaults to hedge-stacking in marketing register
+because the training data conflates "warmth" with "softening." Native
+marketing copy asserts (`กลายเป็นขาดทุน`) and reserves hedging for
+disclaimer-adjacent lines, not body-pain-point claims.
+
+**Provenance so far.** One instance — iteration-7 marketing-blurb L4
+(claude/with_skill): `ตอนนี้น่าจะขาดทุนอยู่ด้วยซ้ำ`. Chakrit's rewrite
+collapsed to `ตอนนี้กลายเป็นขาดทุน`.
+
+**Scope to investigate.** Look at iteration-1 through iteration-7
+marketing outputs for other instances of multi-particle hedge stacks
+(`อาจจะ … คงจะ … น่าจะ …`, `อาจ … อยู่ … บ้าง …`, etc.) in body copy
+that's making a pain-point claim. If the pattern is recurring, encode as
+a marketing-register rule.
+
+**Landing place.** Either extend `ai-tells.md#over-hedging` (which
+currently covers `อาจ`-stacking) or new `register.md` marketing entry
+specifically about pain-point assertion vs hedging.
+
+---
+
+## Personification verbs on inanimate / system subjects
+
+**Question.** Is `ทน` the only personification verb AI mis-applies to
+non-human subjects, or part of a broader class? Candidate verbs:
+`ทรมาน`, `เหน็ดเหนื่อย`, `อดทน`, `เครียด`, `สบาย`, `กล้า`, `รู้`.
+
+**Hypothesis.** AI applies a wider set of human-only or animate-only
+verbs to systems/abstractions because English freely personifies
+("the system *suffers* under load," "the server *gets tired*"). Thai
+constrains animacy more tightly.
+
+**Provenance so far.** One instance — iteration-7 tech-doc-short
+(claude/with_skill): `downstream ทนรับ burst ได้แค่ไหน`. Chakrit's
+rewrite: `downstream รองรับ burst`.
+
+**Scope to investigate.** Look at tech-doc and explainer outputs from
+iterations 1–7 for verbs marked as requiring animate subjects but
+applied to system-state subjects. Cross-check against a list of Thai
+animacy-restricted verbs.
+
+**Landing place.** `grammar.md` new entry "animacy-restricted verbs," or
+folded into `ai-tells.md` as a calque-pattern entry. If only a handful
+of verbs are involved, an explicit list works; if it's open-ended, a
+heuristic rule may be needed.
+
+---
+
+## Closer-binding scope reading discipline
+
+**Question.** Where does the "read closure-binding scope before judging
+pair-compatibility" discipline belong? It's a review-process rule, not a
+prose-content rule.
+
+**Hypothesis.** Belongs in `skills/kien-thai/SKILL.md` review workflow
+(applies to both generation-time self-review and audit-pass) rather than
+`skills/kode-thai/SKILL.md` (audit-loop only). Generation-time
+self-review benefits equally from getting binding scope right before
+calling a pair incompatible.
+
+**Provenance so far.** One instance — iteration-7 marketing-blurb L11
+variant E reading: Claude misparsed `เมื่อไหร่ + เสมอ` as a direct pair
+when `ทันที` had already closed `เมื่อไหร่` and `เสมอ` belonged to a
+separate `จะ…เสมอ` frame.
+
+**Scope to investigate.** See whether other audit-pass misreads in
+iter-7 outputs (across the un-reviewed remaining 10) involve similar
+binding-scope errors. If yes, the discipline lands in the audit-loop
+side; if also at generation time, it lands in the kien-thai workflow.
+
+**Landing place.** TBD between `skills/kien-thai/SKILL.md` workflow
+section, `skills/kode-thai/SKILL.md` audit pass, or a new checklist
+file under `skills/`. Pick after seeing more instances.
