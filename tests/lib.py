@@ -177,7 +177,7 @@ def wrap_markdown(text: str, width: int = 90) -> str:
 # - register-scope register.md and examples.md when `register` is supplied
 # - mode='audit' drops draft-time workflow sections from SKILL.md
 #
-# Source files keep the verbose form (consistency test parses them).
+# Source files keep the verbose form (consistency test parses metadata).
 
 REGISTER_HEADERS: dict[str, tuple[str, ...]] = {
     "explainer": ("Register 1",),
@@ -225,16 +225,6 @@ def _strip_default_meta(text: str) -> str:
             return heading
         return f"{heading} *({' · '.join(kept)})*"
     return _DEFAULT_META_RE.sub(repl, text)
-
-
-def _strip_dead_audit_checklist(text: str) -> str:
-    """Drop dead `audit-checklist.md` references (file deleted iter-2 prep)."""
-    out_lines = []
-    for line in text.splitlines(keepends=True):
-        if "audit-checklist.md" in line:
-            continue
-        out_lines.append(line)
-    return "".join(out_lines)
 
 
 def _strip_workflow_sections(text: str) -> str:
@@ -331,7 +321,6 @@ def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
     """
     skill = SKILL_PATH.read_text(encoding="utf-8")
     skill = _strip_frontmatter(skill)
-    skill = _strip_dead_audit_checklist(skill)
     if mode == "audit":
         skill = _strip_workflow_sections(skill)
     skill = _strip_default_meta(skill)
@@ -339,7 +328,6 @@ def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
 
     for ref in sorted((KIEN_THAI_DIR / "references").glob("*.md")):
         body = ref.read_text(encoding="utf-8")
-        body = _strip_dead_audit_checklist(body)
         body = _strip_default_meta(body)
         if register:
             if ref.name == "register.md":

@@ -89,11 +89,6 @@ def test_bundle_audit_mode_drops_workflow():
     assert "When asked to translate" not in audit
 
 
-def test_bundle_excludes_anti_patterns():
-    bundle = kien_thai_bundle()
-    assert "## reference: anti-patterns.md" not in bundle
-
-
 def test_bundle_strips_frontmatter():
     bundle = kien_thai_bundle()
     assert not bundle.startswith("---"), "frontmatter not stripped"

@@ -141,18 +141,18 @@ kien-thai rules with citation-grade evidence. Per-entry frontmatter uses
 - `li-thompson-topic-prominent` — Li & Thompson (1976) typological framework
   underpinning Frame 1 (topic-prominence)
 - `prasithrathsint-thuk-passive` — establishment of neutral passive vs
-  persistence of adversative ถูก; backs anti-pattern #6
+  persistence of adversative ถูก; backs `non-adversative-thuk`
 - `takahashi-koo-pragmatic-particle` — interpersonal uses of ก็; backs Frame 6
-  topic-resumptive bridge
+  topic-resumptive bridge (`f6/ko-resumptive`)
 - `olsson-iamitive-laew` — typological grouping of แล้ว as iamitive; backs
-  Frame 4 closure with แล้ว
+  Frame 4 closure with แล้ว (`f4/laeo-completion`)
 - `thai-discourse-treebank-tacl` — TACL 2024 corpus on Thai connectives;
-  backs anti-pattern #1 (ซึ่ง-stacking) with the Expansion.GenExpansion sense
+  backs `chueung-stacking` with the Expansion.GenExpansion sense
 - `aclanthology-thai-classifiers` — Singnoi 2001 + Hundius/Kölver 1983
-  classifier taxonomy; backs anti-pattern #41
+  classifier taxonomy; backs `wrong-classifier`
 - `thai-language-com-spacing` — Slayden + thai-notes + Royal Institute
-  spacing manual; backs Frame 3 + anti-pattern #37
+  spacing manual; backs Frame 3 + `mid-paragraph-period`
 - `wikipedia-thai-language-grammar` — tertiary aggregator with primary-source
   crosscheck quotes for register / passive / classifier / pro-drop rules
 - `barang-thai-literary-translation` — Marcel Barang's translation principles;
-  backs translation-craft rules #27, #31
+  backs `idiom-localize` and `source-fidelity`

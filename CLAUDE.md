@@ -19,8 +19,8 @@ A skills repo (open-source target) teaching Claude to write Thai prose that:
 
 Two skills:
 
-- `skills/kien-thai/` — content rules: 7 frames + anti-patterns + style +
-  register + examples.
+- `skills/kien-thai/` — content rules: 7 frames + ai-tells + grammar +
+  craft + style-rules + register + examples + forbidden-phrases.
 - `skills/kode-thai/` — audit-loop trigger that invokes kien-thai to
   convergence.
 
@@ -111,8 +111,7 @@ skills/kien-thai/
     ├── style-rules.md       # positive style rules + ทับศัพท์ guide
     ├── register.md          # 5 register families + person deixis
     ├── examples.md          # before/after, register-tagged
-    ├── forbidden-phrases.md # blocklist for audit pre-check
-    └── anti-patterns.md     # human-facing redirector — excluded from bundle
+    └── forbidden-phrases.md # blocklist for audit pre-check
 skills/kode-thai/
 └── SKILL.md                 # audit-loop trigger over kien-thai
 evals/evals.json             # eval prompts (tech doc + marketing)
@@ -138,12 +137,11 @@ assertions.
   `claude --disable-slash-commands --output-format json -p` and `codex exec --json`.
   Skill is injected via prompt prepend (only diff between with_skill and baseline).
   Bundle is register-scoped via `kien_thai_bundle(register, mode)` and uses
-  two-tier injection — pass-0 ('draft' mode) keeps workflow sections, audit
-  passes drop them, fix passes get a slim bundle of only audit-cited rules.
+  two-tier injection — pass-0 ('draft' mode) keeps workflow sections; audit
+  and fix passes share the same 'audit' bundle with workflow sections dropped.
   Outputs land in
   `iteration-N/<eval>/<backend>/<config>/{output.md,prompt.txt,meta.json}`.
-  meta.json tracks per-pass usage (cache hits, input/output tokens) plus
-  `cited_slugs` per fix pass.
+  meta.json tracks per-pass usage (cache hits, input/output tokens).
 - **Stage 2 (review)**: human + Claude review artifacts inline in the chat. No browser
   viewer (yet). Cross-check across backends to mitigate self-judge bias. Consolidated
   notes go to `iteration-N/feedback.md` and graduate into `references/*.md`.
