@@ -119,10 +119,16 @@ outputs are evidence, not artifacts"), not a retrospective judgement.
 
 ## Followups
 
-- Review the remaining 10 outputs (codex backends, baselines, news-feature-bts both backends).
-- Propose individual skill edits per rule candidate marked "Action: Propose"
-  in the trace table — each one needs wording approval before encoding.
-- Lift L3, L4–5, L11 before/after pairs into `references/examples.md` as
-  register-tagged exemplars.
+- Review the remaining 10 outputs (codex backends, baselines, news-feature-bts
+  both backends) — un-reviewed in iter-7 session.
 - Resolve the xdist iteration-dir split before the next `-n N` generation
   run (see `notes/work-queue.md`).
+
+## Done
+
+- Rule candidates marked "Action: Propose" — landed in `grammar.md`
+  (`quant-subject-cog-verb`, `tirai-frame-closure`, `frame-scoped-ko`),
+  `ai-tells.md` (`whenever-calque`), `register.md` (deixis-continuity
+  block).
+- L3, L4–5, L11 before/after pairs lifted into `references/examples.md`
+  as Examples 6–8 (register-tagged marketing-saas-sme).

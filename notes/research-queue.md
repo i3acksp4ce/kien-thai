@@ -48,31 +48,32 @@ existing register taxonomy.
 
 ---
 
-## Hedge-stack collapse pattern in marketing register
+## Hedge-stack pattern beyond `น่าจะ X อยู่ด้วยซ้ำ`
 
-**Question.** Is `น่าจะ X อยู่ด้วยซ้ำ` (modal + progressive + emphatic stack)
-a recurring AI failure mode in marketing-register output, or a one-off?
-Does the broader pattern — multi-particle hedge stacking specifically in
-copy that should assert — generalize beyond this stack shape?
+**Question.** Does the broader multi-particle hedge-stack pattern in
+marketing-register body copy generalize beyond the one stack shape now
+captured in `over-hedging`?
 
 **Hypothesis.** AI defaults to hedge-stacking in marketing register
 because the training data conflates "warmth" with "softening." Native
 marketing copy asserts (`กลายเป็นขาดทุน`) and reserves hedging for
 disclaimer-adjacent lines, not body-pain-point claims.
 
-**Provenance so far.** One instance — iteration-7 marketing-blurb L4
-(claude/with_skill): `ตอนนี้น่าจะขาดทุนอยู่ด้วยซ้ำ`. Chakrit's rewrite
-collapsed to `ตอนนี้กลายเป็นขาดทุน`.
+**Status so far.** The `น่าจะ X อยู่ด้วยซ้ำ` instance from iter-7
+marketing-blurb L4 landed in `ai-tells.md#over-hedging` as the marketing
+example. The general "does multi-particle stacking in pain-point copy
+generalize?" question is still unanswered.
 
 **Scope to investigate.** Look at iteration-1 through iteration-7
 marketing outputs for other instances of multi-particle hedge stacks
 (`อาจจะ … คงจะ … น่าจะ …`, `อาจ … อยู่ … บ้าง …`, etc.) in body copy
-that's making a pain-point claim. If the pattern is recurring, encode as
-a marketing-register rule.
+making a pain-point claim. If the pattern is recurring with different
+stack shapes, promote `over-hedging` to a register-aware rule (or split
+into a marketing-specific entry in `register.md`).
 
-**Landing place.** Either extend `ai-tells.md#over-hedging` (which
-currently covers `อาจ`-stacking) or new `register.md` marketing entry
-specifically about pain-point assertion vs hedging.
+**Landing place.** Extend `ai-tells.md#over-hedging` with more attested
+stack shapes, or new `register.md` marketing entry specifically about
+pain-point assertion vs hedging.
 
 ---
 
