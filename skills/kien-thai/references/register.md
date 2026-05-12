@@ -63,13 +63,15 @@ Marketing example:
 Don't mix `เรา` and `คุณ` within the same paragraph (Krungsri pattern). Body in
 `เรา` when teaching a concept; advisory line shifts to `คุณ` for action.
 
-**Deixis continuity** — once a deixis frame is established for a stretch of
-prose (including the **zero / implicit-2nd-person** frame, where no pronoun is
-named but the reader is the implied addressee), the rest of the passage must
-hold it. AI tends to slip an indefinite-someone (`ใคร`, `คน`, `ใครๆ`) into
-passages running in implicit-2nd-person mode, because English freely
-interpolates "no one" / "someone" without breaking address. Thai readers track
-deixis tighter — the slip reads as a fragment with a missing subject.
+### `deixis-continuity` *(mechanical · all-registers · hard)*
+
+Once a deixis frame is established for a stretch of prose — including the
+**zero / implicit-2nd-person** frame, where no pronoun is named but the reader
+is the implied addressee — the rest of the passage must hold it. AI tends to
+slip an indefinite-someone (`ใคร`, `คน`, `ใครๆ`) into passages running in
+implicit-2nd-person mode, because English freely interpolates "no one" /
+"someone" without breaking address. Thai readers track deixis tighter — the
+slip reads as a fragment with a missing subject.
 
 - **Bad** (third-party `ใคร` dropped into implicit-2nd-person passage):
   `จานเดิมที่เคยกำไรดี ตอนนี้กลายเป็นขาดทุน แต่ไม่มีใครรู้`
@@ -149,7 +151,8 @@ Source corpus: FoodStory, Page365, FlowAccount, PEAK Account.
 Voice: warm-direct, addresses non-tech SMB owners.
 
 **Punctuation as warmth**: `!` allowed once, at hook or CTA. Soft particle close
-(`ได้เลย`, `ก็แล้วกัน`, `ต่างหาก`) preferred over bare clipped CTAs.
+(`ได้เลย`, `ก็แล้วกัน`) preferred over bare clipped CTAs. (`ต่างหาก` is
+contrastive correction, not CTA close — see `f4/targhak-closure`.)
 
 **Openers**: pain symptom (`ขายดีทุกวัน แต่พอสิ้นเดือนเงินไม่เหลือ`), question hook
 (`เคยรู้สึกไหมว่า...`).
@@ -332,10 +335,12 @@ Some pieces shift register intentionally:
 
 ## Coherence within a passage
 
+### `register-drift` *(mechanical · all-registers · hard)*
+
 Once you pick a register, sustain it. AI tends to drift — using a casual form
 (`คนไหน`, `ยังไง`, `เยอะ`) in one sentence and a formal counterpart
-(`คนใดคนหนึ่ง`, `อย่างไร`, `จำนวนมาก`) in the next. Native readers feel the wobble
-even when each sentence in isolation is fine.
+(`คนใดคนหนึ่ง`, `อย่างไร`, `จำนวนมาก`) in the next. Native readers feel the
+wobble even when each sentence in isolation is fine.
 
 Common casual ↔ formal pairs to keep consistent within one passage:
 
@@ -347,9 +352,9 @@ Common casual ↔ formal pairs to keep consistent within one passage:
 - `ตอนนี้` ↔ `ขณะนี้` / `ในปัจจุบัน`
 - `อยากรู้` ↔ `ต้องการทราบ`
 
-Pick one column for the whole passage and stay there. Switching mid-paragraph reads
-as AI register-drift; switching at section/heading breaks is fine if intentional
-(see Cross-register section above).
+Pick one column for the whole passage and stay there. Switching mid-paragraph
+reads as AI register-drift; switching at section/heading breaks is fine if
+intentional (see Cross-register section above).
 
 ## Default if unclear
 

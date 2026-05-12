@@ -97,7 +97,9 @@ unfortunate events and re-cast everything else to active.
 
 Calque of "is considered (to be)."
 
-- **Good**: `ถือกันว่าเป็น...` / `นับว่าเป็น...` / `คนมองว่าเป็น...`
+- **Bad**: `แนวคิดนี้ถูกพิจารณาว่าเป็นหนึ่งในแนวคิดที่สำคัญที่สุด`
+- **Good**: `ถือกันว่าแนวคิดนี้สำคัญมาก` / `นับว่าเป็นแนวคิดสำคัญ` /
+  `คนมองว่าเป็นแนวคิดสำคัญ`
 
 ## Nominalization and padding (calque shapes)
 
@@ -162,8 +164,8 @@ Thai usually compounds noun-noun directly without `ที่มี` scaffolding.
 - **Bad**: `บทความที่มีความน่าสนใจ`
 - **Good**: `บทความที่น่าสนใจ` (drop `มี + ความ`; `ที่ + adj` stays when no noun-noun option)
 
-This compounds with anti-pattern `mi-khwam-padding` (มีความ + adj). When you see `ที่มี + ความ + adj`,
-both layers are usually padding — strip both.
+This compounds with `mi-khwam-padding` (มีความ + adj). When you see
+`ที่มี + ความ + adj`, both layers are usually padding — strip both.
 
 ## Banned panorama openers
 
@@ -181,17 +183,33 @@ Banned. Real writers open with a fact, a confession, a symptom, a question.
 
 Real writers don't assert consensus they have to declare. They show the symptom.
 
+- **Bad**: `เป็นที่ทราบกันดีว่าการออมเงินสำคัญต่อชีวิตทางการเงิน` /
+  `ปฏิเสธไม่ได้ว่า AI กำลังเปลี่ยนวงการนี้`
+- **Good (symptom)**: `เก็บเงินไม่ค่อยอยู่? เคยรู้สึกว่าทำไมเงินหายเร็วจัง` /
+  `ทีมที่ใช้ AI ช่วยเขียน code เริ่มเห็นผลแล้ว`
+
 ## Padding and overhedging
 
 ### `mai-wa-cha-pen-list` *(mechanical · all-registers · hard)*
 
-Used sparingly in real copy; AI defaults to it for any list.
+`ไม่ว่าจะเป็น A, B, หรือ C` reads as translated catalog. Used sparingly in real
+copy; AI defaults to it for any 2–3 item enumeration.
+
+- **Bad**: `ไม่ว่าจะเป็นการลงทุนในหุ้น กองทุนรวม หรือพันธบัตร`
+- **Good**: `หุ้น กองทุนรวม หรือพันธบัตร` (bare enumeration) /
+  `ทั้งหุ้น กองทุนรวม และพันธบัตร` (totalizing)
 
 ### `over-hedging` *(mechanical · all-registers · hard)*
 
-`อาจจะมีความเป็นไปได้ที่จะ...` / `อาจจะ...ก็เป็นไปได้ว่า...อาจ`
+Hedge stacks (`อาจจะมีความเป็นไปได้ที่จะ...`,
+`อาจจะ...ก็เป็นไปได้ว่า...อาจ`) and the marketing-register cousin
+`น่าจะ X อยู่ด้วยซ้ำ` (modal + progressive + emphatic) read timid. Native
+copy asserts and reserves a singular `อาจ` for genuine uncertainty.
 
-- **Good**: `น่าจะ` once, or just assert. ttb hedges with a singular `อาจ`, not stacked.
+- **Bad (stacked)**: `อาจจะมีความเป็นไปได้ที่ราคาจะปรับขึ้น`
+- **Bad (marketing hedge stack)**: `จานเดิมที่เคยกำไรดี ตอนนี้น่าจะขาดทุนอยู่ด้วยซ้ำ`
+- **Good (single hedge)**: `ราคาอาจปรับขึ้น`
+- **Good (assertion)**: `จานเดิมที่เคยกำไรดี ตอนนี้กลายเป็นขาดทุน`
 
 ## Pronouns and politeness  *(F5, register)*
 
@@ -266,16 +284,29 @@ Calque of "one of the most ___ X."
 
 ### `mid-paragraph-period` *(mechanical · all-registers · hard)*
 
-Modern Thai prose **does not use periods mid-paragraph.** Sentence boundaries are
-carried by spaces and paragraph breaks. AI inserts periods because the English
-training data conventions carry over. Result: prose with the rhythm of a typewriter.
+AI snaps periods after every short clause because English training data carries
+over — result: prose with the rhythm of a typewriter. Native Thai prose
+carries most sentence boundaries with spaces and paragraph breaks; periods
+land on three legitimate moves only.
 
-- **Bad (period spam)**: `ระบบทำงานเร็วขึ้น. ใช้ memory น้อยลง. ทีมพอใจมาก.`
-- **Good**: `ระบบทำงานเร็วขึ้น ใช้ memory น้อยลง ทีมพอใจมาก`
+- **Bad (AI typewriter density)**: `ระบบทำงานเร็วขึ้น. ใช้ memory น้อยลง. ทีมพอใจมาก.`
+- **Good (space-separated, default)**: `ระบบทำงานเร็วขึ้น ใช้ memory น้อยลง ทีมพอใจมาก`
 
-Reserve periods for end-of-paragraph snap or genuinely terminal statements where
-finality is intended (`เท่านี้ก่อน.`). Otherwise: never. This is closer to a ban
-than a budget.
+Legitimate period moves:
+
+1. **End-of-paragraph snap.** Final period before the paragraph break,
+   especially when finality is intended (`เท่านี้ก่อน.`).
+2. **Fragment-snap close** (personal-blog only). A short fragment after a long
+   sentence, with a period giving the punch (`...DB ล่ม. ปวดหัวมาก.`).
+3. **Distinct-sentence boundary inside a paragraph** when two long sentences
+   carry genuinely separate ideas and space alone would slur them together.
+   Academic / translation register (Bookscape/openworlds) uses this most;
+   news/explainer use it sparingly; marketing rarely.
+
+Heuristic: if you have ≥2 mid-paragraph periods in a single paragraph and the
+clauses they separate are short (<10 words each), it's typewriter density —
+collapse to spaces. One period between two long sentences is fine; three
+between three short clauses is not.
 
 ## Closure  *(F4)*
 

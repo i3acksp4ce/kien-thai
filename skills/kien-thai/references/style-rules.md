@@ -9,15 +9,25 @@ longer than that — they're treated as atomic, like URLs.
 
 ### `mixed-sentence-length` *(style · all-registers · soft)*
 
-A 6-word sentence next to a 35-word one is normal Thai prose. Test your draft: if every sentence is ~20 words, break some.
+A 6-word sentence next to a 35-word one is normal Thai prose. Test your draft:
+if every sentence is ~20 words, break some.
 
-Good rhythm:
-> เริ่มจากเล็ก ๆ ก่อน. พอ traffic เข้ามาเยอะขึ้น cache layer ที่เคยพอ ก็เริ่มไม่พอ
-> และตอนนั้นเองที่ปัญหา hot key เริ่มโผล่. ปวดหัวมาก.
+Good rhythm — long body, then a short snap at the end (personal-blog register,
+where fragment snaps with `.` are allowed):
+
+> พอ traffic เข้ามาเยอะขึ้น cache layer ที่เคยพอก็เริ่มไม่พอ
+> และตอนนั้นเองที่ปัญหา hot key เริ่มโผล่ ปวดหัวมาก.
+
+In particle-free registers (explainer, news, marketing-body), drop the
+fragment and end the paragraph at the natural snap (`...hot key เริ่มโผล่.`).
 
 ### `connective-budget` *(style · all-registers · soft)*
 
-In a 100-word paragraph: at most one ซึ่ง, one โดย, one ดังนั้น. Drop "however" in roughly half its English occurrences. Test every connective: would a Thai reader notice it missing? If no, delete.
+In a 100-word paragraph: at most one ซึ่ง, one โดย, one ดังนั้น. Drop "however"
+in roughly half its English occurrences. Test every connective: would a Thai
+reader notice it missing? If no, delete. See `chueung-stacking`, `doi-sprawl`,
+`yangrai-kotam-overuse`, `formal-connective-stack` for the audit-time bans on
+each.
 
 ### `topic-comment-fronting` *(style · all-registers · soft)*
 
@@ -33,11 +43,16 @@ If your draft has more than ~25 Thai words without a break, look for a seam. Ski
 
 ### `topic-pronoun-drop` *(style · all-registers · soft)*
 
-Drop pronominal subjects after the topic is established. Re-state only when control changes. A paragraph beginning `เราเรียนรู้จากความผิดพลาด...` can run several sentences before *เรา* needs to reappear.
+Drop pronominal subjects after the topic is established. Re-state only when
+control changes. A paragraph beginning `เราเรียนรู้จากความผิดพลาด...` can run
+several sentences before *เรา* needs to reappear. See Frame 5
+(`f5/zero-anaphora`); audit catch `pronoun-spam`.
 
 ### `ko-pacing-particle` *(style · all-registers · soft)*
 
-Use ก็ as a pacing particle, not a connective. `พอ traffic ขึ้น DB ก็เริ่มอืด` — feels native. AI tends to drop ก็ entirely or use it wrong.
+Use ก็ as a pacing particle, not a connective. `พอ traffic ขึ้น DB ก็เริ่มอืด`
+— feels native. AI tends to drop ก็ entirely or use it wrong. See Frame 6
+(`f6/ko-pacing`, `f6/ko-resumptive`).
 
 ### `mai-yamok-reduplication` *(style · all-registers · soft)*
 
@@ -51,21 +66,29 @@ Use แบบ as a hedger / approximator. `แบบว่า`, `แบบเร
 
 ### `verb-over-nominal` *(style · all-registers · soft)*
 
-Verbs over noun forms when an action is the point. Prefer `แปลหนังสือ` to `ทำการแปลหนังสือ` to `การทำการแปลหนังสือ`. Reserve การ-/ความ- for genuinely abstract topics or for headings.
+Verbs over noun forms when an action is the point. Prefer `แปลหนังสือ` to
+`ทำการแปลหนังสือ` to `การทำการแปลหนังสือ`. Reserve การ-/ความ- for genuinely
+abstract topics or for headings. Audit catches: `tham-kan-padding`,
+`kan-nominalization`.
 
 ### `bare-adjective` *(style · all-registers · soft)*
 
-Adjectives directly, not มีความ + adjective. `โค้ดนี้ซับซ้อน` not `โค้ดนี้มีความซับซ้อน`.
+Adjectives directly, not มีความ + adjective. `โค้ดนี้ซับซ้อน` not
+`โค้ดนี้มีความซับซ้อน`. Audit catch: `mi-khwam-padding`.
 
 ### `active-voice-default` *(style · all-registers · soft)*
 
-Active voice unless the patient is genuinely the topic. Only use ถูก- when the action is genuinely adversative (ถูกวิจารณ์, ถูกแฮก, ถูกปฏิเสธ) or when no agent is recoverable.
+Active voice unless the patient is genuinely the topic. Only use ถูก- when the
+action is genuinely adversative (ถูกวิจารณ์, ถูกแฮก, ถูกปฏิเสธ) or when no
+agent is recoverable. Audit catch: `non-adversative-thuk`.
 
 ## Openers and closings
 
 ### `concrete-opener` *(style · all-registers · soft)*
 
-Open with one of: a fact, a confession, a symptom the reader recognizes, a rhetorical question, a concrete number. Never a panorama (`ในยุคปัจจุบัน...`).
+Open with one of: a fact, a confession, a symptom the reader recognizes, a
+rhetorical question, a concrete number. Never a panorama (`ในยุคปัจจุบัน...`).
+Audit catches: `panorama-opener`, `assert-consensus-opener`.
 
 ### `inline-def-parenthetical` *(style · all-registers · soft)*
 
@@ -80,7 +103,14 @@ Question-headings when the body answers them, declarative when the body elaborat
 
 ### `no-recap-close` *(style · all-registers · soft)*
 
-Close without recap. Real Thai writing ends with: forward-looking line, reframed question, quiet handoff (`เท่านี้ก่อน`, `ลองเอาไปเล่นดู`), or just stops. Never `โดยสรุปแล้ว...`.
+Close without recap. Real Thai writing ends with: a forward-looking line, a
+reframed question, a quiet handoff (`เท่านี้ก่อน`, `ลองเอาไปเล่นดู`), or just
+stops. `โดยสรุป` is grammatically fine but reads lower-quality in modern Thai.
+
+- **Bad**: `โดยสรุปแล้ว Kubernetes เป็นเครื่องมือที่มีประโยชน์อย่างยิ่งในการ...`
+- **Good (war-story)**: `เท่านี้ก่อนนะครับ ใครเคยเจอเคสแปลก ๆ มาคุยกันได้`
+- **Good (explainer)**: `เพื่อให้คุณมีชีวิตทางการเงินที่ดีขึ้น`
+- **Good (synthesis)**: reframe the original question — don't summarize.
 
 ### `advisory-close` *(style · all-registers · soft)*
 

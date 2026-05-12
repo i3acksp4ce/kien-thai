@@ -45,6 +45,10 @@ time-frames after the main clause: "X happens when Y" /
 Common Thai openers for fronted conditions/times: `พอ...ก็...`, `ถ้า...จะ...`,
 `เมื่อ...`, `ตอน...`, `หาก...`.
 
+Covers `tirai-frame-closure`, `frame-scoped-ko`, and `whenever-calque` —
+conditional frames require paired closure/linker (see `references/grammar.md`,
+`references/ai-tells.md`).
+
 ### `f3` *(frame · all-registers · structural)*
 
 **Frame 3 — Sentence boundaries via space and paragraph, not period.**
@@ -98,6 +102,9 @@ that closes the "actually it's Y, not X" thought.
 
 - Dangling: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุน`
 - Closed: `ปัญหาส่วนใหญ่ไม่ได้อยู่ที่ยอดขาย อยู่ที่ต้นทุนต่างหาก`
+
+Covers `dangling-additive-frame` and `seam-connective-missing` (audit-mode
+catches for the missing-between-clause-beat family).
 
 ### `f5` *(frame · all-registers · structural)*
 
@@ -190,26 +197,26 @@ do better. Drop one in two.
 
 ## Person deixis (apply before drafting any piece with a reader)
 
-Person deixis — who speaks, who's addressed, who's the referent. In any piece,
-identify all three roles. Most critical for Marketing copy.
+Identify three roles before drafting: **1st** (speaker), **2nd** (addressee),
+**3rd** (product / concept / third party). Most critical for Marketing.
 
-- **1st person — speaker**. Marketing: brand as `เรา`. Personal blog: author as
-  `ผม`/`ดิฉัน`. News/reference: no first-person.
-- **2nd person — addressee**. Marketing: reader as `คุณ` directly. **Never substitute
-  the audience's demographic noun** (`เจ้าของร้าน`, `ผู้ใช้`, `นักลงทุน`,
-  `ผู้ประกอบการ`) for `คุณ` in body copy. Demographic nouns belong in headers and
-  category framing, not as the active 2nd-person referent.
-- **3rd person — product, concept, third party**. Marketing: `ระบบนี้`,
-  `เครื่องมือนี้`, `แอปนี้`.
+The single rule AI breaks most: **never substitute the audience's demographic
+noun** (`เจ้าของร้าน`, `ผู้ใช้`, `นักลงทุน`, `ผู้ประกอบการ`) for `คุณ` in body
+copy. Demographic nouns frame headers and categories; `คุณ` is the active
+2nd-person referent.
 
-- Bad (3rd-person address substitutes demographic noun):
-  `เครื่องมือนี้ทำให้เจ้าของร้านเห็นภาพจริงของร้านตัวเอง`
-- Good (direct 2nd-person):
-  `ระบบนี้ช่วยให้คุณเห็นภาพจริงของร้านได้ทันที`
+- Bad: `เครื่องมือนี้ทำให้เจ้าของร้านเห็นภาพจริงของร้านตัวเอง`
+- Good: `ระบบนี้ช่วยให้คุณเห็นภาพจริงของร้านได้ทันที`
 
-Don't mix `เรา` and `คุณ` within the same paragraph (Krungsri pattern). Body in
-`เรา` when teaching a concept; advisory line shifts to `คุณ` for action. See
-`references/register.md` for register-specific person deixis defaults.
+Once a deixis frame is established for a stretch of prose — including the
+**implicit-2nd-person** frame where no pronoun is named but the reader is the
+addressee — the rest of the passage must hold it (`deixis-continuity` in
+register.md). Don't slip an indefinite-someone (`ใคร`, `คน`, `ใครๆ`) into an
+implicit-2nd-person passage; promote it to a modifier (`โดยไม่รู้ตัว`) instead.
+
+Full per-register deixis defaults, brand mood / gender / formality voice
+attributes, and the Krungsri "body in `เรา`, advisory in `คุณ`" pattern live
+in `references/register.md`.
 
 ## Stylistic conventions (apply on top of the frames)
 
@@ -219,47 +226,51 @@ rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
 
 ## Workflow when asked to write Thai prose
 
-1. **Identify register and voice** before writing. ASK if either is unclear. Five
-   register families live in `references/register.md`:
-   - **News / reference** — no first-person, no particles, active voice
-   - **Explainer** — bank/tech long-form, no particles, problem-first, `เรา`/`คุณ`
-     address
-   - **Marketing (family)** — SaaS-SME / B2B-formal / fintech-warm / retail-tech
-     sub-registers; person deixis required
-   - **Personal blog / dev war-story** — first-person `ผม` *or* `ดิฉัน` per gender,
-     ครับ/ค่ะ at openings and sign-offs only. **ASK gender if not stated** — don't
-     silently default to `ผม`.
-   - **Academic long-form** — no particles, longer sentences acceptable, synthesis
-     closings
+1. **Identify register, voice, and person deixis.** ASK if any are unclear —
+   wrong register is worse than rough prose.
+
+   Five register families (full guide in `references/register.md`):
+
+   - **News / reference** — no first-person, no particles, active voice.
+   - **Explainer** — bank/tech long-form, no particles, problem-first,
+     `เรา`/`คุณ` address.
+   - **Marketing (family)** — SaaS-SME / B2B-formal / fintech-warm /
+     retail-tech sub-registers; person deixis required.
+   - **Personal blog / dev war-story** — first-person `ผม` *or* `ดิฉัน` per
+     gender, ครับ/ค่ะ at openings and sign-offs only. **ASK gender if not
+     stated** — don't silently default to `ผม`.
+   - **Academic long-form** — no particles, longer sentences acceptable,
+     synthesis closings.
 
    Voice attributes (gender, brand mood, formality level) are orthogonal to
-   register — pick both.
+   register — pick both. For any piece with a reader, also pick 1st/2nd/3rd
+   person deixis (see section above).
 
-1.5. **Identify person deixis** for any piece with a reader, especially Marketing.
-   1st (brand `เรา`) / 2nd (reader `คุณ` — never demographic noun) / 3rd (product).
-   See Person deixis section above.
+2. **Draft frame-first.** Before picking words, walk the seven frames:
+   - Topic fronted? (Frame 1)
+   - Conditions and time clauses leading? (Frame 2)
+   - Sentences flowing without period spam? (Frame 3)
+   - Clauses closed with appropriate particles? (Frame 4)
+   - Cohesion via zero anaphora + demonstratives? (Frame 5)
+   - ก็ where Thai wants the beat? (Frame 6)
+   - Pivots via question or simple `แต่`, not formal connectives? (Frame 7)
 
-2. **Draft frame-first.** Before picking words, ask:
-   - What's the topic? Is it fronted (Frame 1)?
-   - Are conditions/times leading (Frame 2)?
-   - Are sentences flowing without period spam (Frame 3)?
-   - Do clauses close with appropriate particles (Frame 4)?
-   - Is cohesion via zero anaphora + demonstratives (Frame 5)?
-   - Is ก็ pacing where Thai wants the beat (Frame 6)?
-   - Are pivots via question or simple `แต่`, not formal connectives (Frame 7)?
+3. **Self-edit pass.** Scan for AI tells:
+   - `forbidden-phrases.md` blocklist.
+   - Connective budget: ≤1 ซึ่ง / ≤1 โดย / ≤1 ดังนั้น per ~100 words
+     (`connective-budget`).
+   - Period audit: drop mid-paragraph periods (`mid-paragraph-period`).
+   - Closure audit: `ไม่ได้...อย่างเดียว` / `ไม่ใช่แค่...` need a closure
+     particle (`dangling-additive-frame`).
+   - Sentence-length variance (`mixed-sentence-length`).
+   - ครับ/ค่ะ usage matches register (`khrap-kha-in-body`).
+   - ถูก- passive: each instance genuinely adversative or agentless
+     (`non-adversative-thuk`).
 
-3. **Self-edit pass — scan for AI tells:**
-   - Search for the forbidden phrases in `references/forbidden-phrases.md`.
-   - Connective budget: at most one ซึ่ง, one โดย, one ดังนั้น per ~100 words.
-   - Period audit: drop mid-paragraph periods.
-   - Closure audit: any `ไม่ได้...อย่างเดียว` / `ไม่ใช่แค่...` needs a closure particle.
-   - Sentence-length variance.
-   - ครับ/ค่ะ usage matches register.
-   - ถูก- passive: each instance genuinely adversative or genuinely agentless?
-
-4. **Closing.** Don't recap. Real Thai writing ends with: a forward-looking line, a
-   reframed question, a quiet handoff (`เท่านี้ก่อน`, `ลองเอาไปเล่นดู`), or just
-   stops. Never `โดยสรุปแล้ว...` then re-state the body.
+4. **Closing.** Don't recap (`no-recap-close`). Real Thai writing ends with a
+   forward-looking line, a reframed question, a quiet handoff (`เท่านี้ก่อน`,
+   `ลองเอาไปเล่นดู`), or just stops. Never `โดยสรุปแล้ว...` then re-state the
+   body.
 
 ## When asked to edit Thai prose
 
@@ -289,17 +300,12 @@ Minimum checklist:
 
 ## References
 
-References (full text below, in bundle order): `ai-tells.md` (mechanical),
-`grammar.md` (surface), `craft.md` (soft), `style-rules.md` (positive),
-`register.md` (active register only when the harness scopes), `examples.md`
-(active register only when scoped), `forbidden-phrases.md` (audit blocklist).
+Bundle order: `ai-tells.md` (mechanical), `craft.md` (soft taste),
+`examples.md` (register-tagged before/after), `forbidden-phrases.md` (audit
+blocklist), `grammar.md` (surface), `register.md` (5 register families +
+deixis + voice), `style-rules.md` (positive style). Harness scopes
+`register.md` and `examples.md` to the active register when known.
 
 Scholarly provenance (Iwasaki & Ingkaphirom, Smyth, Prasithrathsint,
 Takahashi, Olsson, Thai Discourse Treebank, Singnoi, Royal Institute,
 Marcel Barang) lives in `corpus/curated/scholarly/` — not in the bundle.
-
-## Important: when in doubt, ask the user
-
-If the register is ambiguous (is this for a dev blog or formal docs? is the audience
-SME owners or finance pros?), ask before drafting. Wrong register is worse than
-rough prose.

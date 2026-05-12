@@ -25,12 +25,11 @@ new awkward seam appears. Loop until clean.
    produces shallow passes.
 
 3. Audit pass. Deep-read end-to-end first, then list every issue. Cite each
-   issue with a slug (e.g., `f4/targhak-closure`, `wrong-classifier`,
-   `f6/ko-resumptive`); `#NN` is fallback for any rule not yet migrated to slug
-   form. Quote the offending text inline. As a pre-check, scan
-   `forbidden-phrases.md` against the prose — un-backticked occurrences only
-   (use/mention exemption). If everything passes, single line `CLEAN` only —
-   no prose, no commentary.
+   issue with the rule's slug (e.g. `f4/targhak-closure`, `wrong-classifier`,
+   `f6/ko-resumptive`) and quote the offending text inline. As a pre-check,
+   scan `forbidden-phrases.md` against the prose — un-backticked occurrences
+   only (use/mention exemption). If everything passes, output a single line
+   `CLEAN` — no prose, no commentary.
 
 4. Fix pass. Apply the listed edits.
 

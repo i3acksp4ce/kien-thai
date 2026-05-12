@@ -37,17 +37,6 @@ is the goal, not for marketing or conversion-oriented copy.
 
 ## Closings
 
-### `recap-closing` *(craft · all-registers · soft)*
-
-Real Thai writing rarely closes with "in summary." This is more a craft preference
-than a hard rule — `โดยสรุป` is grammatically fine, just lower-quality writing in
-most modern Thai prose.
-
-- **Bad**: `โดยสรุปแล้ว Kubernetes เป็นเครื่องมือที่มีประโยชน์อย่างยิ่งในการ...`
-- **Good (war-story)**: `เท่านี้ก่อนนะครับ ใครเคยเจอเคสแปลก ๆ มาคุยกันได้`
-- **Good (explainer)**: `เพื่อให้คุณมีชีวิตทางการเงินที่ดีขึ้น`
-- **Good (synthesis)**: reframe the original question — don't summarize.
-
 ### `cta-bang` *(craft · scoped · soft)*
 
 - **Bad**: `รีบสมัครเลย!` / `อย่ารอช้า!`
@@ -72,13 +61,6 @@ named example, or Thai-native intensification rather than `อย่าง + abs
 - **Bad**: `อย่างมหาศาล / อย่างน่าทึ่ง / อย่างไม่น่าเชื่อ / อย่างมีประสิทธิภาพ / อย่างมาก`
 - **Good**: substitute a number, a named example, or `ยิ่ง X เท่าไหร่ ยิ่ง Y เท่านั้น`.
 
-### `symmetric-tricolon` *(craft · all-registers · soft)*
-
-`รวดเร็ว ปลอดภัย และมีประสิทธิภาพ` — AI's signature. Asymmetric, specific lists
-read more native.
-
-- **Good** (uneven, specific): `เร็วขึ้นจาก 800ms เหลือ ~120ms และ memory จะไม่บวมเหมือนเดิม`
-
 ### `generic-reassurance` *(craft · scoped · soft)*
 
 - **Bad**: `ไม่ต้องกังวล เป็นเรื่องที่เข้าใจได้`
@@ -89,19 +71,10 @@ News, Academic. **Softened in Marketing/SaaS-SME** — a brief reassurance at ho
 pivot is acceptable when paired with a concrete next-step
 (`ไม่ต้องกลัวเริ่มไม่ทัน — ลองฟรี 30 วันได้เลย`).
 
-## Sentence-level shape
+## See also
 
-### `monotone-length` *(craft · all-registers · soft)*
-
-AI homogenizes around ~20 words. Real Thai prose mixes 6-word and 35-word sentences
-in the same paragraph.
-
-### `bulletless-prose-skip` *(craft · all-registers · soft)*
-
-Real long-form has 2–4 sentence prose paragraphs between headings. AI skips straight
-to bullets.
-
-### `bullet-dump-short-list` *(craft · all-registers · soft)*
-
-Commit to prose for 2–3 items; switch to bullets only at 4+ or when items are
-parallel-shaped.
+Sentence shape and bullet/prose balance live as positive rules in
+`style-rules.md` — `mixed-sentence-length`, `prose-before-bullets`,
+`uneven-list`, `no-recap-close`. craft.md only houses the soft AI-signature
+patterns that don't have a clean positive twin (cliché headlines, definition-
+first SEO opener, scoped CTA/reassurance bans, empty intensifiers).
