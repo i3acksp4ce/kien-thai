@@ -7,6 +7,7 @@ multiple conftest files coexist along a directory path.
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 from dataclasses import dataclass
@@ -72,6 +73,18 @@ def next_iteration_dir() -> Path:
 
 def backend_available(backend: str) -> bool:
     return shutil.which(BACKENDS[backend][0]) is not None
+
+
+def enabled_backends() -> set[str]:
+    """Backends opted in for this run. Default: claude only.
+
+    Override via `EVAL_BACKENDS=claude,codex` (comma-separated). Empty/unset
+    means claude only — codex is opt-in.
+    """
+    raw = os.environ.get("EVAL_BACKENDS", "").strip()
+    if not raw:
+        return {"claude"}
+    return {b.strip() for b in raw.split(",") if b.strip()}
 
 
 def parse_backend_output(backend: str, stdout: str) -> tuple[str, dict]:

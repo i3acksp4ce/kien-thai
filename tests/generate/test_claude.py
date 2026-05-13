@@ -8,10 +8,12 @@ from __future__ import annotations
 
 import pytest
 
-from lib import Eval
+from lib import Eval, enabled_backends
 
 pytestmark = pytest.mark.generate
 
 
 def test_claude(run_eval, eval_case: Eval, config: str):
+    if "claude" not in enabled_backends():
+        pytest.skip("claude not in EVAL_BACKENDS")
     run_eval("claude", eval_case, config)
