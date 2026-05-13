@@ -3,33 +3,39 @@
 This project's AI coding environment is managed by [ACE](https://github.com/ace-rs/ace).
 Run `ace` to start a coding session. Run `ace setup` if not yet configured.
 
-Skills and conventions are provided by the **PRODIGY9 Coding School** school and are
-symlinked into `.claude/skills/`. Skill edits go through symlinks into the school clone
-— propose changes back to the school repo when ready. Run `ace config` or `ace paths`
-to debug configuration issues.
+## Two skill sources — keep them straight
 
-## Project: kien-thai — what the skill teaches
+This repo sits at the intersection of **two** skill bodies. They serve opposite
+roles and must not be confused.
 
-A skills repo (open-source target) teaching Claude to write Thai prose that:
+**1. School skills — authoritative; apply them.** General coding/workflow skills
+from the **PRODIGY9 Coding School**, symlinked into `.claude/skills/` from
+`~/.local/share/ace/prod9/school/skills/`. These govern *how Claude edits this
+repo*: file editing, shell discipline, markdown style, eval harness work, ACE
+workflow, school-PR flow. Edits flow back to the school clone through the
+symlinks — propose changes back when ready. Run `ace config` / `ace paths` to
+debug configuration. See "Load these skills" below for the active set.
 
-1. Reads as little like generic AI output as possible.
-2. Has a distinct, believably human voice.
-3. Is easy to read for native Thai readers (no brain damage).
-4. Counters training-data skew toward over-formal / over-polite Thai.
-
-Two skills:
-
-- `skills/kien-thai/` — content rules: 7 frames + ai-tells + grammar +
-  craft + style-rules + register + examples + forbidden-phrases.
-- `skills/kode-thai/` — audit-loop trigger that invokes kien-thai to
-  convergence.
-
-School re-imports from here.
+**2. `skills/kien-thai/` + `skills/kode-thai/` — artifact under development;
+NOT authority.** These two skills live in this repo and **this repo is their
+source-of-truth** (the school re-imports from here, not the other way around).
+Their target is Thai prose that (1) reads as little like generic AI output as
+possible, (2) has a distinct, believably human voice, (3) is easy to read for
+native Thai readers, (4) counters training-data skew toward over-formal /
+over-polite Thai. Composition: `kien-thai` = content rules (7 frames + ai-tells
++ grammar + craft + style-rules + register + examples + forbidden-phrases);
+`kode-thai` = audit-loop trigger that invokes kien-thai to convergence. They
+are the **work-in-progress being tested** — do **not** self-apply them to
+Claude's own Thai output. Their correctness is what evals measure; freelance
+application contaminates the signal. The harness injects them under controlled
+conditions; outside the harness they are content under review, edited through
+the iteration discipline below.
 
 ### Locked decisions — skill content
 
 - No celebrity-columnist source material. Tech writing, bank long-form
-  (non-sensational), younger newspaper voices, internationally-minded translators.
+  (non-sensational), younger newspaper voices, internationally-minded
+  translators.
 - No LLM-judge until human review proves insufficient.
 
 ---
@@ -220,19 +226,31 @@ Repad the whole column whenever any cell in it changes width.
 
 ## Load these skills
 
-Default skill set (project-study, narrows ACE auto-load):
+School skills only (per "Two skill sources" above) — narrows ACE auto-load:
 
 - `general-coding` — Python edits in `tests/`, eval harness work.
 - `markdown-writing` — primary deliverables are Markdown (`SKILL.md`,
   `references/*.md`, eval feedback). Hard-wrap-90 + table-align rules apply.
-- `skill-creator` — this repo *is* a skill; iteration follows skill-creator
-  doctrine (two-stage evals, human review).
+- `skill-creator` — this repo *is* a skill (the kien-thai/kode-thai artifact);
+  iteration follows skill-creator doctrine (two-stage evals, human review).
 - `shell` — `uv` / pytest / eval harness shell glue.
 - `ace`, `ace-audit`, `ace-docs`, `ace-realign`, `ace-save`, `ace-school` —
-  ACE workflow + school-PR flow (skills symlinked from PRODIGY9 school).
+  ACE workflow + school-PR flow.
 
-Not loaded: Rust/Go/C#/CUE/Typst/Payload/Bulma/frontend language skills — no
-such code here. `gh-org-admin`, `p9-infra`, `prod9-fx` — wrong repo type.
+## Opening files for review
+
+Terminal pagers (`less`, `bat`, `cat`) mangle Thai rendering — combining marks
+misalign, line-breaks split syllables. When chakrit says "open X for review" (or
+similar), open the file in **iA Writer** instead:
+
+```
+open -a 'iA Writer' <filename>
+```
+
+Default to this for any Thai-prose review target: eval outputs under
+`workspace/iteration-N/...`, `references/*.md`, `notes/judgements/*`, etc.
+Fallback to terminal display only if iA Writer is unavailable
+(`ls /Applications/'iA Writer.app'` to check).
 
 ## RTK (token saver)
 
