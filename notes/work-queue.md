@@ -63,6 +63,52 @@ unverifiable.
 
 ---
 
+## Browser tooling for Thai source vetting ✅ unblocked 2026-05-13
+
+**Status.** Claude-in-Chrome MCP wired up. Used for the 2026-05-13 vetting
+pass — see [`source-vetting-2026-05-13.md`](source-vetting-2026-05-13.md).
+Worked well for GotoKnow, readthecloud.co, storyloggroup.com, Pantip.
+Minimore continues to return empty body even via Chrome (same JS-render
+block as WebFetch); use Wayback / paste-in for those.
+
+**Outstanding constraint.** Some sites still don't yield prose:
+
+- Minimore — SPA renders empty in the MCP context. Use Archive.org or
+  user paste-in.
+- Subscription-gated content (if ever needed) would require logged-in
+  profile; current setup is clean profile, read-only.
+
+The original block-condition on the broadened Register 3 Models list is
+resolved — `references/register.md` is now evidence-backed.
+
+Below is the original entry for archive.
+
+---
+
+**Need.** Autonomous source-research for Thai prose models is blocked because
+WebFetch hits 403 / empty-render across the primary candidate sites (GotoKnow,
+readthecloud.co, minimore.com, fungjaizine.com). Without rendered prose,
+grammar-discipline tier verdicts can't be made — see
+[`research-queue.md`](research-queue.md) → "Vet non-tech personal-blog source
+candidates."
+
+**Decided.** Wire up a Chrome / browser MCP so Claude can navigate JS-rendered
+pages, get past bot blocks, and extract verbatim Thai prose. Chakrit (2026-05-13)
+confirmed this is the unblock path.
+
+**Open design choices.**
+
+- Which MCP: Chrome DevTools MCP, browser-MCP, or playwright-mcp.
+- Auth/profile: should the browser run with a clean profile or chakrit's
+  logged-in profile (relevant if we ever want subscription-gated content).
+- Scope: vetting reads only, no form-submission / write actions.
+
+**Block.** Do not ship the broadened Register 3 Models list (currently
+provisional in `references/register.md`) as evidence-backed until this lands
+and the vetting pass completes.
+
+---
+
 ## Eval harness: xdist splits iteration directory across workers
 
 **Need.** `tests/generate/conftest.py` exposes `iteration_dir` as a

@@ -104,6 +104,82 @@ heuristic rule may be needed.
 
 ---
 
+## Vet non-tech personal-blog source candidates ✅ resolved 2026-05-13
+
+**Resolution.** Vetted via Claude-in-Chrome MCP. Full notes in
+[`notes/source-vetting-2026-05-13.md`](source-vetting-2026-05-13.md).
+Outcome applied to [`skills/kien-thai/references/register.md`](../skills/kien-thai/references/register.md):
+
+- **Promoted to Model (verified):** Vicharn Panich on GotoKnow
+  (author-scoped, plain-diary); Pantip Blueplanet/Klai Baan/Greenzone
+  bylined long-form posters.
+- **Dropped:** readthecloud.co (live site pivoted to "CloudPang" and
+  shows AI-assist tells); Storylog.co (defunct, redirects to
+  corporate site); Readery / Bookmoby (podcast/shop, not blog).
+- **Kept Reference-only:** Minimore (amateur-essay caveat; live SPA
+  still won't render via MCP).
+- **Spawned new vetting item:** Fictionlog/Tunwalai serial-fiction
+  register (see below).
+
+Below is the original entry for archive.
+
+---
+
+**Question.** The current Register 3 Models list was broadened (this session) with
+non-tech candidates: GotoKnow.org, Readery / Bookmoby, bylined The Cloud features,
+per-author-vetted Medium non-tech writers — plus a Reference-only tier listing
+Storylog, Minimore, Pantip long-form. These were added on plausibility, not on
+verified source-reading. The vetting pass is queued here.
+
+**Why vetting is blocked.** Autonomous WebFetch probes hit 403/empty across the
+primary candidates: GotoKnow (403), readthecloud.co (403), minimore.com
+(empty JS render), fungjaizine (522). Only Happening & Friends and theMatter
+returned full prose, and both are news-feature / lifestyle journalism rather
+than first-person essay — they confirm those *platforms* read like news/feature,
+not personal-blog. Without verbatim prose from the actual candidate sources, a
+grammar-discipline judgement would be speculation.
+
+**What one verified data point showed.**
+[`happeningandfriends.com/article-detail/87`](https://www.happeningandfriends.com/article-detail/87)
+(เดือนเพ็ญ จุ้ยประชา, Readery profile feature): high grammar discipline,
+3rd-person narrative, edited-magazine voice. Sits firmly in news-feature
+register, not personal-blog. Useful as confirmation that "Readery" the *brand*
+is covered by lifestyle journalism — but their own output is podcast/social,
+not long-form essay. So the Readery-as-personal-blog-model entry is doubly
+weak: their primary medium isn't blog, and they're more often *subject of*
+features than authors of personal essays.
+
+**Status of provisional entries (need browser-paste vetting):**
+
+| Candidate                          | Tier as listed   | Status                                                            |
+| ---------------------------------- | ---------------- | ----------------------------------------------------------------- |
+| GotoKnow.org (educator reflections)| Model (essay)    | WebFetch 403. Plausible; need 1-2 representative posts pasted.    |
+| Readery / Bookmoby                 | Model (literary) | Likely mis-tiered — primary medium is podcast/shop, not blog.     |
+| Bylined The Cloud features         | Model (edited)   | WebFetch 403. Edited-magazine voice — closer to news-feature with personal byline. |
+| Medium Thai non-tech               | Model (per-author)| Per-author; no platform-level guarantee. Identify named authors first. |
+| Storylog.co                        | Reference-only   | Plausible; need spot-check.                                       |
+| Minimore                           | Reference-only   | Empty JS render. Need spot-check.                                 |
+| Pantip long-form                   | Reference-only   | Plausible; need spot-check.                                       |
+
+**Scope to investigate (next pass — chakrit-driven or different fetch tool).**
+
+1. Paste 2-3 verbatim paragraphs from a GotoKnow educator reflection and a
+   Minimore/Storylog personal essay into a working note under `notes/`.
+2. Assess each for: first-person discipline, classifier accuracy, calque
+   density, sentence-rhythm shape, period frequency.
+3. Either confirm the Model/Reference tier as listed, or reclassify.
+4. For Readery/Bookmoby specifically: decide whether to drop entirely or
+   move to a "voice references" non-prose tier (podcast scripts, social
+   posts) that we explicitly do not lift grammar patterns from.
+
+**Landing place.** Final source-tier list in `references/register.md`
+Register 3 Models section. If any verified source produces a strong
+before/after exemplar for non-tech personal essay, lift into
+`references/examples.md` tagged `personal-blog`. Until vetted, the existing
+broadened Models list in `register.md` should be read as **provisional**.
+
+---
+
 ## Closer-binding scope reading discipline
 
 **Question.** Where does the "read closure-binding scope before judging
@@ -129,3 +205,42 @@ side; if also at generation time, it lands in the kien-thai workflow.
 **Landing place.** TBD between `skills/kien-thai/SKILL.md` workflow
 section, `skills/kode-thai/SKILL.md` audit pass, or a new checklist
 file under `skills/`. Pick after seeing more instances.
+
+---
+
+## Fictionlog / Tunwalai serial-fiction register
+
+**Question.** Storylog Group's successor platforms (Fictionlog,
+Tunwalai) host very high-volume native-Thai serial fiction. Should
+they enter the source list as a new fiction / web-novel register
+slot, distinct from the current 5 register families?
+
+**Provenance.** chakrit raised during 2026-05-13 vetting pass. See
+[`notes/source-vetting-2026-05-13.md`](source-vetting-2026-05-13.md).
+
+**Scope to investigate.**
+
+1. Author filter — only experienced / paid-out authors. Fictionlog
+   publicly lists per-author earnings; treat that as a discoverability
+   filter. Skip the amateur long tail.
+2. Sample 2-3 chapters from each platform across genres (romance,
+   fantasy, slice-of-life). Capture only short illustrative tidbits
+   (no extended quoting / redistribution).
+3. Decide whether serial-fiction register deserves its own register
+   slot (Register 6?) or is out-of-scope. Genre conventions (heavy
+   dialogue, narrative tropes, popular-fiction pacing) shouldn't
+   bleed into non-fiction registers.
+
+**Author-pool caveat (chakrit, 2026-05-13).** A large share of fiction
+on these platforms is written by teenagers and other untrained
+writers. Even the *fiction* register would be unsafe to lift from
+blindly without the paid-out-author filter — amateur conventions
+(clichéd dialogue, school-essay vocabulary, narrative-trope mimicry)
+would contaminate any patterns extracted.
+
+**Landing place.** Either:
+
+1. New "Register 6 — Popular fiction / web-novel" section in
+   `references/register.md`, with strict author-pool scoping; or
+2. Explicit out-of-scope note (kien-thai targets non-fiction registers
+   only). Pinto e-book is also out-of-scope — retail, not authoring.
