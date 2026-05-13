@@ -282,7 +282,12 @@ Don't translate dev jargon.
   pass). Useful as baseline for "what unedited Thai personal essay
   sounds like" — *the opposite of AI-polished output* — but not as
   a Model. Live site renders empty in current tooling; for full text
-  use archive snapshots or paste.
+  use archive snapshots or paste. Sample evidence:
+  [`#อายุมากขึ้นเราจะมีความสุขน้อยลง?`](https://web.archive.org/web/20230605160331/https://minimore.com/b/yqkoe/8)
+  by พอกลอน ซาเสียง (visible amateur tells: closing-line typo
+  `ความผิดชอบ`, code-mixed `support` as Thai verb, self-help
+  cliché kicker; see
+  [`notes/chrome-session-2026-05-13.md`](../../../notes/chrome-session-2026-05-13.md)).
 - Pantip long-form anonymous posts and short-form rooms (outside the
   bylined Model carve-out above). Grammar varies.
 
@@ -299,13 +304,17 @@ Don't translate dev jargon.
 - *Readery / Bookmoby* — primary medium is podcast and bookshop, not
   long-form blog. Featured as subjects of profile pieces, rarely as
   authors of long-form essay.
-
-**Vetting queued (see [`notes/research-queue.md`](../../../notes/research-queue.md)):**
-
 - *Fictionlog / Tunwalai* — popular-fiction / web-novel register,
-  distinct from current 5-register taxonomy. Author pool skews
-  amateur / teen, with strong genre conventions; future vetting must
-  filter to paid-out authors. Not currently part of any tier.
+  out-of-scope for the kien-thai brief. Vetted 2026-05-13 (see
+  [`notes/chrome-session-2026-05-13.md`](../../../notes/chrome-session-2026-05-13.md)):
+  Fictionlog Thai-original 7-day bestsellers are uniformly
+  cultivation/wuxia (`กำลังภายใน`/`แฟนตาซี`) with archaic pronouns
+  (`ข้า`/`เจ้า`) and Chinese-genre lexicon; Tunwalai is dominated
+  by `รักวัยรุ่น`/`รักโรแมนติก`/`อีโรติก`. Genre conventions don't
+  generalize to any non-fiction register the skill targets. Even
+  paid-out authors inhabit the conventions; an "experienced
+  author" filter wouldn't fix the structural mismatch. Do not
+  add as Register-6 — would create dead scaffolding.
 
 ## Register 4 — News / reference
 

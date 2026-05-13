@@ -7,7 +7,29 @@ finding would land.
 
 ---
 
-## ๆ-spacing as register-scoped style
+## ๆ-spacing as register-scoped style ✅ resolved 2026-05-13
+
+**Resolution.** Browser-vetted across 5 registers (see
+[`notes/chrome-session-2026-05-13.md`](chrome-session-2026-05-13.md) §3).
+Two-rule shape:
+
+1. **`ต่าง ๆ` is near-universally spaced** in edited Thai across
+   all registers — formal stock phrase, even Pantip/Minimore-style
+   amateur writing tends to space this one. Treat as a hard
+   default.
+2. **Other reduplications** (`สั้นๆ`, `ง่ายๆ`, `อะไรๆ`, `เด็กๆ`,
+   `เตี้ยๆ`, `อ่อนๆ`) follow register: dropped in personal-blog /
+   diary / amateur-essay; preserved in government / institutional
+   / formal-edited. Tech-blog (Blognone) is internally mixed.
+
+**Landing place.** `references/style-rules.md` — entry covering
+the `ต่าง ๆ` carve-out + the register-scoped general rule. Phrase
+as default, not hard `ai-tells.md`-tier check (small-N evidence:
+~20 samples).
+
+Below is the original entry for archive.
+
+---
 
 **Question.** Is the spacing convention around ๆ (e.g. `แย่ ๆ` vs `แย่ๆ`)
 register-dependent in real Thai writing, or is one form correct everywhere?
@@ -77,7 +99,43 @@ pain-point assertion vs hedging.
 
 ---
 
-## Personification verbs on inanimate / system subjects
+## Colloquial-emotional verbs leaking into Explainer/News register
+
+**Reframed 2026-05-13** — animacy hypothesis (see archive below) was
+falsified by browser vetting in
+[`notes/chrome-session-2026-05-13.md`](chrome-session-2026-05-13.md) §4.
+Native Thai *does* apply `ทนรับ` and `เครียด` to system subjects in
+gaming/community register (`เซิร์ฟเวอร์ทนรับ … ไม่ไหว`,
+`เซิร์ฟเวอร์เครียด`, both attested with substantial Google hits).
+
+**Reframed question.** Is the iter-7 `ทนรับ` issue a
+**register-leakage** pattern: AI mixes colloquial-emotional verbs
+(`ทน*` / `เครียด` / `ทรมาน`) into Explainer/News register where
+neutral verbs (`รองรับ`, `จัดการ`, `จัดสรร`, `ทนทานต่อ`) are
+expected? Same candidate verb list (`ทรมาน`, `เหน็ดเหนื่อย`, `อดทน`,
+`เครียด`, `สบาย`, `กล้า`, `รู้`) — but now check each for
+register-restriction, not animacy-restriction.
+
+**Provenance.** Still one instance (iter-7 `downstream ทนรับ burst`),
+but the framing is now register-mismatch, not grammar violation.
+
+**Scope to investigate.** Look at iter-1 through iter-7 Explainer
+and News-reference outputs for colloquial-emotional verbs on system
+subjects. Cross-check Blognone / Bangkok Post Tech / `รู้รอบ`-style
+explainer corpora — these should never use `ทน*` / `เครียด` on
+systems; if they do, the pattern is even more relaxed than
+hypothesized.
+
+**Landing place.** If recurrence appears in iter-8+, add a
+register-aware entry to `references/register.md` Register-2
+(Explainer) and Register-4 (News): "Avoid colloquial-emotional
+verbs on system subjects — use neutral `รองรับ`/`จัดการ`/`ทนทานต่อ`."
+Do **not** land as `grammar.md` animacy rule (the animacy framing
+is wrong).
+
+Below is the original entry for archive.
+
+---
 
 **Question.** Is `ทน` the only personification verb AI mis-applies to
 non-human subjects, or part of a broader class? Candidate verbs:
@@ -208,7 +266,24 @@ file under `skills/`. Pick after seeing more instances.
 
 ---
 
-## Fictionlog / Tunwalai serial-fiction register
+## Fictionlog / Tunwalai serial-fiction register ✅ resolved 2026-05-13
+
+**Resolution.** Out-of-scope. Vetted via Claude-in-Chrome MCP (see
+[`notes/chrome-session-2026-05-13.md`](chrome-session-2026-05-13.md) §1).
+Fictionlog Thai bestsellers are uniformly cultivation/wuxia with
+archaic pronouns and Chinese-genre lexicon; Tunwalai is dominated by
+romance/erotica genre fiction. Even paid-out experienced authors
+inhabit the genre conventions — the structural mismatch with kien-
+thai's non-fiction targets isn't fixable by a better author filter.
+Adding as Register-6 only to mark "do not lift from" would create
+dead scaffolding. Outcome captured in `references/register.md`
+Register-3 dropped-sources list.
+
+Below is the original entry for archive.
+
+---
+
+
 
 **Question.** Storylog Group's successor platforms (Fictionlog,
 Tunwalai) host very high-volume native-Thai serial fiction. Should

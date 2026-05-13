@@ -58,6 +58,28 @@ Use ก็ as a pacing particle, not a connective. `พอ traffic ขึ้น 
 
 Use ๆ (mai-yamok) for casual reduplication. `เรื่อย ๆ`, `ใหม่ ๆ`, `บ่อย ๆ` — natural Thai signal.
 
+### `mai-yamok-spacing` *(style · register-scoped · soft)*
+
+Two rules for the space before ๆ (vetted 2026-05-13, see
+[`notes/chrome-session-2026-05-13.md`](../../../notes/chrome-session-2026-05-13.md) §3):
+
+1. **`ต่าง ๆ` always takes the space.** Near-universal across edited
+   Thai — government, tech-blog, even amateur personal-blog tend to
+   space this one as a stock phrase. If audit ever sees `ต่างๆ`, flag it.
+2. **Other reduplications follow register.** Personal blog / marketing-
+   warm / casual-explainer / dev-blog: drop the space (`สั้นๆ`,
+   `ง่ายๆ`, `อะไรๆ`, `เด็กๆ`, `เตี้ยๆ`). Government / academic /
+   formal-explainer / institutional: keep the space (`สั้น ๆ`,
+   `ง่าย ๆ`). Tech-news (Register-4 Blognone-style) is mixed within
+   publication — pick one and stay consistent within a piece.
+
+Evidence: Pantip Blueplanet (settembre) and GotoKnow plain-diary
+(Vicharn Panich) drop the space on non-`ต่าง ๆ` reduplications
+(7/7 samples). Bank of Thailand keeps the space (2/2). Blognone
+homepage mixes within publication (4 no-space casual + 6 spaced
+`ต่าง ๆ` instances). Small-N (~20 samples); phrase as default,
+not hard check.
+
 ### `baeb-hedger` *(style · scoped · soft)*
 
 Use แบบ as a hedger / approximator. `แบบว่า`, `แบบเร็ว ๆ`, `แบบที่เคยทำ` — natural in dev/casual register; rare in AI output. Scope: dev/casual register.
