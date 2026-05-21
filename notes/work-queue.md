@@ -109,6 +109,48 @@ and the vetting pass completes.
 
 ---
 
+## Framing experiments for Thai-native generation
+
+**Need.** Bundle ordering and exemplar proximity matter for shifting
+Claude's output distribution toward Thai-native prose. Literature
+(multilingual ICL, English-accent paper, persona effect, multilingual
+CoT) confirms prompt-level techniques have measurable — though
+"marginal or inconsistent" — effects. The biggest under-used lever in
+the current harness: `examples.md` sits mid-bundle alphabetically, so
+the most concentrated native-Thai prose in the bundle is *not* adjacent
+to the task prompt where attention recency would amplify it.
+
+**Scope.** Add new harness configs alongside `with_skill` and `baseline`
+in `tests/lib.py:CONFIGS`. Three ranked experiments per the framing
+investigation:
+
+1. `with_skill_reordered` — `examples.md` last in bundle. 5-line change
+   in `kien_thai_bundle()`. Zero new content.
+2. `with_skill_primed` — adds curated native-prose exemplars from
+   `corpus/native-exemplars/<register>.md` after `examples.md`. Needs a
+   small curated corpus (2–3 short pieces per register) before this can
+   run.
+3. `with_skill_persona` — register-keyed Thai-language persona prepend
+   naming a specific publication/voice. Tested against #1+#2.
+
+**Findings so far.** Literature lens, recommended ordering, and the
+"don't force Thai-language CoT for mid-resource languages" caveat
+captured in
+[`notes/framing-investigation-2026-05-21.md`](framing-investigation-2026-05-21.md).
+
+**Open design choices.**
+
+- Whether the three variants A/B independently or stack into a single
+  `with_skill_primed` super-variant.
+- Where curated exemplars live (`corpus/native-exemplars/` vs
+  `references/exemplars.md`).
+- How to measure improvement — `test_quant.py` advisory heuristics +
+  human review (the existing convention), or add LLM-judge later.
+
+**Block.** None. Independent of in-flight skill work.
+
+---
+
 ## Eval harness: xdist splits iteration directory across workers
 
 **Need.** `tests/generate/conftest.py` exposes `iteration_dir` as a

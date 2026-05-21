@@ -187,8 +187,10 @@ def wrap_markdown(text: str, width: int = 90) -> str:
 #
 # - drop YAML frontmatter (skill-discovery metadata, useless in prompt)
 # - strip default meta `*(mechanical · all-registers · hard)*` etc. from rule headings
-# - register-scope register.md and examples.md when `register` is supplied
+# - register-scope register.md, examples.md, exemplars.md when `register` is supplied
 # - mode='audit' drops draft-time workflow sections from SKILL.md
+# - pin exemplars.md last so native-Thai prose lands closest to the task prompt
+#   (framing-investigation-2026-05-21.md, recommendations #1 and #2)
 #
 # Source files keep the verbose form (consistency test parses metadata).
 
@@ -329,9 +331,13 @@ def _scope_examples_md(text: str, register: str) -> str:
 def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
     """Build the prompt-ready skill bundle.
 
-    register: optional register slug; when set, register.md and examples.md
-        are scoped to the active register.
+    register: optional register slug; when set, register.md, examples.md, and
+        exemplars.md are scoped to the active register.
     mode: 'draft' (pass-0) keeps workflow sections; 'audit' drops them.
+
+    exemplars.md is pinned last regardless of alphabetical order — proximity
+    to the task prompt is the whole point of that file (see
+    notes/framing-investigation-2026-05-21.md).
     """
     skill = SKILL_PATH.read_text(encoding="utf-8")
     skill = _strip_frontmatter(skill)
@@ -340,13 +346,19 @@ def kien_thai_bundle(register: str | None = None, mode: str = "draft") -> str:
     skill = _strip_default_meta(skill)
     parts: list[str] = [skill]
 
-    for ref in sorted((KIEN_THAI_DIR / "references").glob("*.md")):
+    refs = sorted((KIEN_THAI_DIR / "references").glob("*.md"))
+    refs = [r for r in refs if r.name != "exemplars.md"]
+    exemplars = KIEN_THAI_DIR / "references" / "exemplars.md"
+    if exemplars.exists():
+        refs.append(exemplars)
+
+    for ref in refs:
         body = ref.read_text(encoding="utf-8")
         body = _strip_default_meta(body)
         if register:
             if ref.name == "register.md":
                 body = _scope_register_md(body, register)
-            elif ref.name == "examples.md":
+            elif ref.name in ("examples.md", "exemplars.md"):
                 body = _scope_examples_md(body, register)
         parts.append(f"\n\n## reference: {ref.name}\n\n{body}")
     return "".join(parts)

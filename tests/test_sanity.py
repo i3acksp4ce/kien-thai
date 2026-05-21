@@ -80,6 +80,26 @@ def test_bundle_examples_register_scoped():
     assert "Tech doc paragraph" not in marketing
 
 
+def test_bundle_exemplars_last_and_scoped():
+    # exemplars.md is the few-shot prefix slot — must land last in the bundle
+    # so it sits closest to the task prompt. Register-scoped like examples.md.
+    explainer = kien_thai_bundle(register="explainer")
+    marketing = kien_thai_bundle(register="marketing-saas-sme")
+    assert "## reference: exemplars.md" in explainer
+    # exemplars must come after every other reference section.
+    for other in ("ai-tells.md", "craft.md", "examples.md",
+                  "forbidden-phrases.md", "grammar.md", "register.md",
+                  "style-rules.md"):
+        assert explainer.index("## reference: exemplars.md") > explainer.index(
+            f"## reference: {other}"
+        ), f"exemplars.md must come after {other}"
+    # Register scoping: only the matching exemplar survives.
+    assert "Explainer — tech doc paragraph" in explainer
+    assert "Marketing/SaaS-SME — landing-page opener" not in explainer
+    assert "Marketing/SaaS-SME — landing-page opener" in marketing
+    assert "Explainer — tech doc paragraph" not in marketing
+
+
 def test_bundle_audit_mode_drops_workflow():
     draft = kien_thai_bundle(register="explainer", mode="draft")
     audit = kien_thai_bundle(register="explainer", mode="audit")
