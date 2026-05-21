@@ -127,8 +127,10 @@ main strategies that AI underuses:
    - Dangling: `ของค้างก็กลายเป็นต้นทุนเงียบ ระบบนี้ช่วย...`
    - Bridged: `ของค้างก็กลายเป็นต้นทุนเงียบ ตรงนี้แหละที่ระบบช่วยได้`
 
-- Calqued: `เราต้องเข้าใจว่าเราอยู่ในโลกที่เราสร้างขึ้นมาเอง มันมีกฎของมันเอง`
-- Native: `ต้องเข้าใจว่าโลกที่เราอยู่ คือโลกที่สร้างขึ้นเอง มีกฎของตัวมันเอง`
+<!-- Native side lifted from corpus/curated/tech-writing/somkiat-bun-testing.md;
+     Calqued side manufactured by re-inserting `มัน` at each VP head. -->
+- Calqued: `bun ได้ปล่อย feature ต่าง ๆ ออกมามากมาย มันปรับปรุงเรื่องของ performance จากการ build มันลดการใช้งาน memory ในขณะ runtime และมันยังปรับปรุงแนวทางการทดสอบอีกด้วย`
+- Native: `bun ได้ปล่อย feature ต่าง ๆ ออกมามากมาย ทั้งการปรับปรุงเรื่องของ performance จากการ build และลดการใช้งาน memory ในขณะ runtime รวมทั้งยังได้ปรับปรุงแนวทางการทดสอบอีกด้วย`
 
 **Caveat — zero anaphora has limits.** Aggressive subject-drop creates subjectless
 robot-prose when the referent isn't recoverable from context. If a clause starts
