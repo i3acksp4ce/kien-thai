@@ -94,10 +94,10 @@ def test_bundle_exemplars_last_and_scoped():
             f"## reference: {other}"
         ), f"exemplars.md must come after {other}"
     # Register scoping: only the matching exemplar survives.
-    assert "Explainer — tech doc paragraph" in explainer
-    assert "Marketing/SaaS-SME — landing-page opener" not in explainer
-    assert "Marketing/SaaS-SME — landing-page opener" in marketing
-    assert "Explainer — tech doc paragraph" not in marketing
+    assert "Explainer — educational advisory" in explainer
+    assert "Marketing/SaaS-SME — feature-tile" not in explainer
+    assert "Marketing/SaaS-SME — feature-tile" in marketing
+    assert "Explainer — educational advisory" not in marketing
 
 
 def test_bundle_audit_mode_drops_workflow():

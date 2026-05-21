@@ -186,6 +186,32 @@ is missing.
 
 ---
 
+## Cached native-Thai corpus
+
+`corpus/` holds vetted native-Thai source material — **this is the canonical
+source for every rule and every exemplar in `skills/kien-thai/`.** Do not
+fabricate Thai prose, do not lift Claude-authored output from
+`workspace/iteration-N/...` or from the After-blocks in `references/examples.md`
+when you need a native-voice anchor. Pull from here instead.
+
+```
+corpus/
+├── README.md                # category map (saas-sme, b2b-formal, tech-writing,
+│                            #   bank-longform, newspaper-feature, translation,
+│                            #   scholarly, etc.)
+├── curated/<category>/*.md  # 1–4 paragraph hand-picked snippets, with
+│                            #   frontmatter (source_url, retrieved, voice notes)
+└── raw/<category>/*.md      # full article body retained for deeper analysis
+```
+
+When pulling excerpts for `references/exemplars.md` or rule provenance, keep
+them **short** (fair-use sized) and cite the corpus file path in an HTML
+comment above the block.
+
+Gaps (registers with no curated entry yet) are tracked in
+`notes/source-vetting-2026-05-13.md` and the work-queue. If a register has no
+corpus file, surface that — don't paper over it with synthesized prose.
+
 ## Markdown style for this repo
 
 All Markdown files in this repo follow these rules. Durable here so open-source
@@ -237,20 +263,24 @@ School skills only (per "Two skill sources" above) — narrows ACE auto-load:
 - `ace`, `ace-audit`, `ace-docs`, `ace-realign`, `ace-save`, `ace-school` —
   ACE workflow + school-PR flow.
 
-## Opening files for review
+## Opening files for review or markdown editing
 
 Terminal pagers (`less`, `bat`, `cat`) mangle Thai rendering — combining marks
-misalign, line-breaks split syllables. When chakrit says "open X for review" (or
-similar), open the file in **iA Writer** instead:
+misalign, line-breaks split syllables. When chakrit says "open X for review",
+"open X in a markdown editor", or anything similar that calls for human-readable
+display or hand-editing of a markdown file, hand it off to **iA Writer**:
 
 ```
 open -a 'iA Writer' <filename>
 ```
 
-Default to this for any Thai-prose review target: eval outputs under
-`workspace/iteration-N/...`, `references/*.md`, `notes/judgements/*`, etc.
-Fallback to terminal display only if iA Writer is unavailable
-(`ls /Applications/'iA Writer.app'` to check).
+Default to this for any Thai-prose target — eval outputs under
+`workspace/iteration-N/...`, `references/*.md`, `notes/judgements/*`,
+`skills/kien-thai/**/*.md`, etc. — and for any "open in markdown editor" /
+"open the markdown" request regardless of Thai content.
+
+Check availability with `ls /Applications/'iA Writer.app'` if uncertain;
+fallback to terminal display only when iA Writer is missing.
 
 ## RTK (token saver)
 
