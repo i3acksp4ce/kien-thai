@@ -282,3 +282,41 @@ Remaining follow-ups:
    regression as a "publication can decline" case study.
 3. The closed research-queue item "Vet non-tech personal-blog source
    candidates" can now be marked done (this file is its output).
+
+---
+
+## Gap surfaced 2026-05-22 — operational / system-spec register
+
+`craft.md::positive-capability-framing` reasons about system-spec / UX-spec
+prose (`เมื่อแนบไฟล์ ระบบจะเปลี่ยนสถานะ` style). No curated corpus exists
+in this register. The rule was rewritten and marked provisional pending
+sourced material.
+
+Candidate source material: software vendor docs in Thai (SCB Easy /
+Krungsri app spec writeups), Thai-localized admin-console help (LINE
+Business, Shopee Seller Center), government e-service usage docs (e.g.
+Revenue Department e-Filing manuals). Native-authored, not translated, is
+the bar. Add to `research-queue.md` if pursued.
+
+## Corpus-quality concern surfaced 2026-05-22 — AWS Thailand b2b-formal
+
+While auditing `forbidden-phrases.md` against the corpus, `ปฏิเสธไม่ได้ว่า`
+and `มีความสำคัญ` both surfaced native-looking hits inside AWS Thailand
+marketing copy (`aws-thailand-agentcore.md` opens with
+`ในยุคของ AI agents คงปฏิเสธไม่ได้ว่า...`). Marketing copy from large
+vendors in 2024-2026 is a plausible AI-drafted-Thai vector — these entries
+should not be trusted as gold-standard native for blocklist-calibration or
+exemplar-lifting purposes.
+
+Action items:
+
+- Treat AWS Thailand (and similarly: any large multinational vendor's
+  Thai marketing pages indexed in 2024+) as **register reference for
+  surface conventions** (terminology, ทับศัพท์ choices, structure) but
+  **not as a quality reference for natural Thai rhetoric**.
+- Re-vet existing curated entries under
+  `corpus/curated/marketing/b2b-formal/aws-thailand-*.md` against this
+  concern. Some may need to be downgraded to `raw/` or removed.
+- Prefer Thai-founded company copy (Bluebik, Wisesight, Krungsri, SCB
+  in-house, banks' own long-form) as primary b2b-formal anchors over
+  multinational localizations.

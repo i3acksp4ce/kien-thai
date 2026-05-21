@@ -132,3 +132,103 @@ outputs are evidence, not artifacts"), not a retrospective judgement.
   block).
 - L3, L4–5, L11 before/after pairs lifted into `references/examples.md`
   as Examples 6–8 (register-tagged marketing-saas-sme).
+
+## Out-of-band edit (2026-05-22) — `empty-intensifier` recalibration
+
+Spot-check of `craft.md::empty-intensifier` Bad list against `corpus/`. Findings:
+
+- `อย่างมาก` traces to Somkiat tech-writing
+  (`corpus/raw/tech-writing/somkiat-architect-ivory-tower.md:51`,
+  `somkiat-tech-radar-34.md:50`) — native, not an AI tell.
+- `อย่างมีประสิทธิภาพ` traces across vetted marketing/b2b-formal corpus: AWS
+  Thailand (`aws-thailand-spip-security.md`, `aws-thailand-agentcore.md`),
+  Wisesight (`wisesight-homepage.md`), Bluebik (`bluebik-homepage.md` ×2),
+  SCB (`scb-just4u-ai.md`). Register convention in b2b-formal/fintech-warm.
+
+Edits to `craft.md`:
+- Scope changed `all-registers → scoped`.
+- Bad list narrowed to genuinely overheated forms
+  (`อย่างมหาศาล / น่าทึ่ง / ไม่น่าเชื่อ`).
+- Added "Not on the Bad list" subsection with corpus-traced exceptions.
+
+Origin: out-of-band review, not tied to a specific iter-7 output. Lumping-by-
+association was the failure mode — the rule grouped overheated calques with
+forms that have native trace. Logged here so the trace survives.
+
+## Out-of-band edit (2026-05-22) — `positive-capability-framing` rewrite
+
+Spot-check of `craft.md::positive-capability-framing` exposed three issues:
+
+1. **Thin corpus trace.** `ก็ต่อเมื่อ` × 1 in corpus, in *translation*
+   register only (`corpus/curated/translation/salforest-sme-sustainability.md`
+   :29). The rule asserted it as "the natural Thai 'only-when' pivot" with
+   definite-article confidence; one translation-register hit doesn't earn that.
+
+2. **Semantic shift in the prescribed Good form.** Probe-generation pair
+   (booking + payment): native correction surfaced that `จะ X ได้ก็ต่อเมื่อ Y`
+   reads as *permission* (system is permitted to X once Y), not *automatic
+   execution* (system X-es automatically once Y). For most system-spec
+   sentences the intent is auto-execution, so the rule's "Good" form changes
+   the spec's meaning rather than just its style.
+
+3. **Misidentified Bad pattern.** The earlier claim that `ต้อง Y ก่อน X ได้`
+   reads as English-projection enforcement chain was wrong — that sequencing
+   chain is native standard Thai. The actually-bad part of the original Bad
+   example is `บังคับ` on an inanimate system subject (animacy issue,
+   mechanical), not the temporal chain. Also surfaced: `ถึงจะ` is the native
+   "only-then" pivot in operational register (`เมื่อ Y แล้ว X ถึงจะ Z ได้`),
+   missing from the rule entirely.
+
+Edits to `craft.md`:
+- Scope changed `all-registers → scoped`; added `provisional` tag.
+- Rule split into (a) `บังคับ`-animacy issue and (b) sequencing-pivot choice.
+- `ถึงจะ` added as primary operational pivot; `ก็ต่อเมื่อ` demoted to
+  formal/policy register.
+- Semantic caveat added warning against mechanical `ก็ต่อเมื่อ + ได้`
+  substitution.
+- Provisional note citing corpus gap.
+
+Corpus gap (no curated operational/system-spec material) logged in
+`notes/source-vetting-2026-05-13.md` with candidate source directions.
+
+Method note: native-checked one of the Good forms by probe-generating
+candidate pairs and getting per-item correction. Pair-4 form
+`เมื่อยืนยันตัวตนผ่านแล้ว บัญชีถึงจะถอนเงินได้` is the validated example;
+the other examples in the rewritten rule are derived from the same pattern
+and remain candidate.
+
+## Out-of-band edit (2026-05-22) — `forbidden-phrases.md` corpus pass
+
+Audited blocklist against corpus. Findings:
+
+- **`ทำการ`** — 14 corpus hits, dominantly Somkiat tech-writing. Used as
+  dummy verb hosting English-borrowed verbs (`ทำการ run`, `ทำการ capture`,
+  `ทำการ balance`, `ทำการอธิบาย`, `ทำการตรวจสอบ`, `ทำการปรับปรุง`,
+  `ทำการวางแผน`). Native tech-writing pattern for English-term integration,
+  not padding. **Removed from blocklist.**
+- **`อย่างมีประสิทธิภาพ` / `อย่างมาก`** — already established native in
+  b2b-formal/tech-writing per the empty-intensifier edit above. **Removed
+  from blocklist** for consistency. `อย่างมหาศาล` retained (clean AI-tell).
+- **`การที่`** (16 bare hits) — native in newspaper-feature
+  (`การที่เมืองสมัยใหม่...` in the101). Blocklist entry is the specific
+  `การที่...นั้น` heavy-nominalizer combo, not bare `การที่`. No change.
+- **`ปฏิเสธไม่ได้ว่า`** (4 hits, 2 unique files: Salforest translation +
+  AWS Thailand b2b-formal). Thin native trace — keeping on blocklist; two
+  unique files is too sparse to override a clean AI-tell. See corpus-
+  quality concern below.
+- **`ในยุคปัจจุบัน` / `เป็นที่ทราบกันดี`** — appear in corpus only as
+  *mentions* (scholarly source discussing AI anti-patterns). Use-vs-mention
+  rule works correctly. No change.
+- **Zero-hit entries** (`ในส่วนของ`, `โดยสรุปแล้ว`, `กล่าวโดยสรุป`,
+  `ในโลกปัจจุบัน`): no corpus presence as far as our sources show. Keep.
+
+### Corpus-quality concern surfaced
+
+`ปฏิเสธไม่ได้ว่า` and `มีความสำคัญ` both have native hits in AWS Thailand
+b2b-formal marketing copy (`aws-thailand-agentcore.md`,
+`aws-thailand-spip-security.md`). Marketing copy in 2024-2026 is itself a
+plausible vector for AI-influenced phrasing — large-vendor Thai marketing
+output increasingly drafted with LLM assistance. AWS Thailand corpus
+entries should not be treated as gold-standard native for blocklist-
+calibration purposes; they may themselves reflect AI-shaped Thai. Flagged
+in `notes/source-vetting-2026-05-13.md` for a re-vet pass.

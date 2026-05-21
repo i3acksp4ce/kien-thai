@@ -53,13 +53,26 @@ instead* — they're not direct rephrasings of the Bad.
 
 ## Intensifiers and lists
 
-### `empty-intensifier` *(craft · all-registers · soft)*
+### `empty-intensifier` *(craft · scoped · soft)*
 
 Style preference, not a correctness rule. Real Thai prose substitutes a number,
-named example, or Thai-native intensification rather than `อย่าง + abstract noun`.
+named example, or Thai-native intensification rather than `อย่าง + abstract noun`
+of the overheated kind.
 
-- **Bad**: `อย่างมหาศาล / อย่างน่าทึ่ง / อย่างไม่น่าเชื่อ / อย่างมีประสิทธิภาพ / อย่างมาก`
+- **Bad**: `อย่างมหาศาล / อย่างน่าทึ่ง / อย่างไม่น่าเชื่อ` (and similar abstract-noun
+  calques pitched at hyperbole).
 - **Good**: substitute a number, a named example, or `ยิ่ง X เท่าไหร่ ยิ่ง Y เท่านั้น`.
+
+**Not on the Bad list** (corpus trace shows native use):
+
+- `อย่างมาก` — appears in skilled tech-writing (Somkiat). Caution applies to
+  *stacking* (`สำคัญอย่างมาก` repeated across paragraphs) rather than the word
+  itself.
+- `อย่างมีประสิทธิภาพ` — convention in marketing/b2b-formal and marketing/
+  fintech-warm (AWS Thailand, Wisesight, Bluebik, SCB). Reads as register
+  signal, not AI tell. In those registers, leave it alone. In tech-writing or
+  explainer register where the corpus prefers concrete verbs, still prefer the
+  concrete form.
 
 ### `generic-reassurance` *(craft · scoped · soft)*
 
@@ -89,19 +102,44 @@ not architectural.
 Heuristic: when about to write `มี [abstract relation] ระหว่าง A และ B`,
 ask whether 2–3 enumerated cases would carry more information.
 
-### `positive-capability-framing` *(craft · all-registers · soft)*
+### `positive-capability-framing` *(craft · scoped · soft · provisional)*
 
-Two-action chains with temporal ordering (`บังคับ Y ก่อนทำ X`) read as
-enforcement and feel awkward. Native Thai system-description frames
-positively with a condition: `ระบบจะ X ได้ก็ต่อเมื่อ Y` — system can X only
-when Y. Lead with the desired state-change; the precondition follows. AI
-defaults to enforcement framing because English requirement docs do.
+Earlier framing of this rule conflated two distinct issues. Split:
 
-- **Bad** (enforcement chain): `ระบบบังคับแนบหลักฐาน...ก่อนเปลี่ยนสถานะเป็น "ส่งแล้ว"`
-- **Good** (positive + condition): `ระบบเปลี่ยนสถานะสำนวนเป็น "ส่งแล้ว" ได้ก็ต่อเมื่อมีการแนบใบรับสำนวน...`
+**(a) `บังคับ` on inanimate system subject — animacy issue.** `ระบบบังคับ
+ให้...` reads wrong because `บังคับ` (coerce/force) carries an agentive,
+animate sense that doesn't fit a system subject. This is mechanical, closer
+to `ai-tells.md` territory than craft.
 
-`ก็ต่อเมื่อ` is the natural Thai "only-when" pivot — a single particle bridge
-that the AI under-produces because English has no equivalent token.
+- **Bad**: `ระบบบังคับให้แนบหลักฐาน...ก่อนเปลี่ยนสถานะ`
+- **Better**: lose `บังคับ` — use a sequencing chain (see (b)) or `ระบบ
+  จะ...ให้` framing.
+
+**(b) Sequencing-pivot choice in operational register.** Native operational
+Thai uses `ถึงจะ` as the "only-then" marker: `ต้อง Y ก่อน X ถึงจะ Z ได้` /
+`เมื่อ Y แล้ว X ถึงจะ Z ได้`. The temporal chain itself is native and
+fine — the earlier claim that enforcement chains read as English-projection
+was wrong; `ต้อง...ก่อนถึงจะ...ได้` is standard Thai.
+
+`ก็ต่อเมื่อ` also exists but skews legal / contract / formal-policy
+register and reads heavy in operational UX spec.
+
+- **Operational (native pivot)**: `เมื่อยืนยันตัวตนผ่านแล้ว บัญชีถึงจะ
+  ถอนเงินได้`
+- **Formal/policy register**: `บัญชีจะถอนเงินได้ก็ต่อเมื่อผ่านการยืนยันตัว
+  ตนแล้ว`
+
+**Semantic caveat — don't substitute `ก็ต่อเมื่อ + ได้` mechanically.** The
+form `จะ X ได้ก็ต่อเมื่อ Y` reads as *permission* (system is permitted to X
+once Y), not *automatic execution* (system X-es automatically once Y). For
+specs where the intent is auto-execution on condition, use `ถึงจะ` or
+temporal fronting (`เมื่อ Y แล้ว ระบบจะ X ให้`). `+ ได้` is not a free
+swap for `จะ` in this position.
+
+**Provisional**: corpus has no curated operational/system-spec register;
+this rule reasons across registers we haven't sourced. `ก็ต่อเมื่อ` traces
+to one corpus instance in translation register only. Revisit when
+operational corpus exists.
 
 ## See also
 
