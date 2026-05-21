@@ -229,7 +229,7 @@ rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
 1. **Identify register, voice, and person deixis.** ASK if any are unclear —
    wrong register is worse than rough prose.
 
-   Five register families (full guide in `references/register.md`):
+   Six register families (full guide in `references/register.md`):
 
    - **News / reference** — no first-person, no particles, active voice.
    - **Explainer** — bank/tech long-form, no particles, problem-first,
@@ -241,6 +241,10 @@ rules: sentence shape, verbs over nouns, openers/closings, concreteness, voice,
      stated** — don't silently default to `ผม`.
    - **Academic long-form** — no particles, longer sentences acceptable,
      synthesis closings.
+   - **Official / minutes** — government meeting minutes, ministerial memo,
+     internal policy, legal/regulatory. No particles, no first-person,
+     explicit subjects, four-part procedural sentences, formal vocab swap.
+     Provisional (added 2026-05-21, awaiting corpus expansion).
 
    Voice attributes (gender, brand mood, formality level) are orthogonal to
    register — pick both. For any piece with a reader, also pick 1st/2nd/3rd

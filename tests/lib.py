@@ -201,6 +201,7 @@ REGISTER_HEADERS: dict[str, tuple[str, ...]] = {
     "personal-blog": ("Register 3",),
     "news": ("Register 4",),
     "academic": ("Register 5",),
+    "official": ("Register 6",),
 }
 
 _FRONTMATTER_RE = re.compile(r"\A---\n.*?\n---\n+", re.DOTALL)

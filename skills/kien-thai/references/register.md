@@ -22,6 +22,7 @@ longer than that — they're treated as atomic, like URLs.
 | Personal blog post, dev war-story, retrospective  | Personal blog             |
 | News announcement, release notes, press release   | News / reference          |
 | Long-form analysis, op-ed, philosophical essay    | Academic                  |
+| Government meeting minutes, ministerial memo      | Official / minutes        |
 | Internal Slack-style team announcement            | Personal blog (light)     |
 | Email to customers from a person                  | Personal blog (light)     |
 
@@ -378,6 +379,170 @@ genuinely hedges.
 
 **Models**: The 101 World long-form, The MATTER deep features, Bookscape/openworlds
 non-fiction translations, สฤณี อาชวานันทกุล's translation register.
+
+## Register 6 — Official / minutes
+
+For Thai government meeting minutes, ministerial communiqué, internal policy
+memos, legal/regulatory documents, and formal corporate minutes that mirror
+government register. News/reference register cousin but distinct — minutes
+carry agenda items, action commitments, and procedural references that News
+does not.
+
+**Provisional** (added 2026-05-21): synthesized from a single drafting session
+(ป.ป.ท. / Samarterware minutes). Application trail with the original
+correction pairs lives in
+[`notes/feedback-2026-05-21-application.md`](../../../notes/feedback-2026-05-21-application.md).
+Awaiting broader corpus validation — apply the session-derived examples below
+as anchors, not as authority.
+
+**Particles**: zero. ครับ/ค่ะ banned. No closure particles in body.
+
+**Pronouns**: no first-person. No `ผม` / `เรา`. Named entities or
+institutional third-person only (`บริษัท`, `ปปท.`, `อัยการ`). Bare-verb
+commands without explicit subjects read as raw notes, not minutes.
+
+**Openers**: named subject + procedural verb. No reader-symptom hook, no
+rhetorical question, no scenario.
+
+**Closings**: factual close or action-item enumeration. No advisory, no
+recap, no CTA.
+
+**Connectives**: `connective-budget` applies — minimal `ซึ่ง` / `โดย` /
+`ดังนั้น`. One carve-out: `เพื่อ` chains in action commitments are *required*
+in this register (see `purpose-chain-required` below). Institutional
+connectives (`ทั้งนี้`, `อนึ่ง`) at section transitions are fine.
+
+**Voice**: zero personal voice. Active voice. Verbose-formal preferred over
+terse — bare-verb commands are notes, not minutes.
+
+**Sentence shape**: long sentences acceptable when carrying named-subject +
+method + object + temporal/destination clause (see `four-part-procedural`
+below). Topic-comment fronting (Frame 1) still applies.
+
+**Models** (anchors, not lift-targets): NACC (ป.ป.ช.) and similar agencies'
+published meeting summaries; Royal Gazette notices for vocabulary anchors.
+Corpus expansion pending.
+
+### `formal-capability-frame` *(mechanical · official · hard)*
+
+Capability claims in this register require the full `สามารถ + V + ได้`
+discontinuous frame. Bare-verb capability (`X ทำได้`, `X ทำเองได้`) reads as
+raw notes and is register-inappropriate. The "Acceptable (informal)" lenience
+that `capability-modal` in `grammar.md` allows for other registers does
+**not** extend here. Procedural verbs also shift formal: `ทำ` → `ดำเนินการ`.
+
+- **Bad**: `18/4 ฐานหลัก ปปท. ทำเองได้`
+- **Good**: `ประเภท 18/4 เป็นฐานหลักที่ ปปท. สามารถดำเนินการได้เอง`
+
+### `formal-procedural-vocab` *(mechanical · official · hard)*
+
+Many Thai procedural actions have a colloquial verb and a formal verb.
+Minutes use the formal one. AI defaults colloquial because the formal verb
+is rarer in training data.
+
+- `ตอก` → `ประทับ` (hammer in → imprint/stamp officially)
+- `เลขสำนวน` → `เลขสารบบ` (generic → formal registry number)
+- `เซ็น` → `ลงนาม` (sign colloquial → sign formal)
+- `อัปโหลด` → `แนบ` / `นำเข้า` (English loan → attach / load in)
+- `เช็ค` → `ตรวจสอบ` (English loan → verify)
+- `รับรองสำเนา` → `รับรองสำเนาถูกต้อง` (bare → standard formal phrase)
+- `ทำ` → `ดำเนินการ` (bare verb → procedural verb)
+- `คำถามค้าง` → `ประเด็นที่ยังต้องการคำชี้แจง` (informal status → formal issue framing)
+
+Distinct from `register-drift` casual↔formal pairs (`คนไหน` / `คนใด`): those
+are general lexical shifts that can apply in any register. This list is
+*procedural domain vocabulary* — AI defaults colloquial because the formal
+verb is rarer in training data.
+
+### `four-part-procedural` *(mechanical · official · hard)*
+
+Procedural action sentences need four parts: subject, method, object,
+destination/condition. Bare-verb commands are notes, not minutes.
+
+- **Bad** (bare verb, missing subject):
+  `ต้องตอกเลขสำนวนและรับรองสำเนาทุกแผ่น`
+- **Good** (four-part):
+  `เอกสารและหลักฐานในสำนวนต้องมีการประทับเลขสารบบและรับรองสำเนาถูกต้องครบทุกแผ่นก่อนส่งให้อัยการ`
+
+Parts: `เอกสารและหลักฐาน` (subject) · `ประทับ/รับรอง` (method) ·
+`เลขสารบบ/สำเนาถูกต้อง` (object) · `ก่อนส่งให้อัยการ` (destination/condition).
+
+### `time-bounds-need-anchor` *(mechanical · official · hard)*
+
+`ภายใน X เดือน/วัน` alone is incomplete — the reader needs the starting
+event. Always write `ภายใน X [unit] นับจาก [event]` or `ภายใน X [unit]
+นับจากวันที่ [event]`. AI omits the anchor because the English source often
+does; Thai operational documents do not.
+
+- **Bad**: `ส่งสำนวนอัยการภายใน 1 เดือน`
+- **Good**: `ปปท. ต้องส่งสำนวนให้อัยการภายใน 1 เดือน นับจากวันที่ลงมติส่งฟ้อง`
+
+### `purpose-chain-required` *(mechanical · official · hard)*
+
+Action commitments need an explicit purpose clause — often a chain `เพื่อ X
+เพื่อ Y` is *required*, not avoided. AI tends to drop the second `เพื่อ`
+because English sense of repetition flags it as awkward, but Thai
+bureaucratic register expects the explicit purpose chain. `X จะทำ Y` alone
+reads weak; `X จะทำ Y เพื่อ Z เพื่อ W` is the expected shape. The
+`connective-budget` limits in `style-rules.md` do **not** apply to `เพื่อ`
+chains in this register.
+
+- **Bad** (no purpose chain): `บริษัทจะตรวจสอบกฎเกณฑ์เพิ่มเติมจากระเบียบไต่สวน`
+- **Good** (chained purpose): `บริษัทจะศึกษาระเบียบไต่สวนเพิ่มเติมเพื่อรวบรวมกฎเกณฑ์ที่เกี่ยวข้องเพื่อประกอบการออกแบบระบบ`
+
+### `name-document-by-function` *(mechanical · official · hard)*
+
+Generic noun phrases (`หลักฐานลายเซ็น`, `เอกสารยืนยัน`) invite reader
+misreading. Name the actual document by its function in the workflow. Thai
+procedural register has rich vocabulary for named documents — use it. AI
+defaults to generic nouns because English would.
+
+Common named documents: `ใบรับสำนวน` (receipt of case file), `ใบเซ็นชื่อ`
+(attendee sign-in), `แบบ ทร. 14` (registration form), `หนังสือมอบอำนาจ`
+(power of attorney), `บันทึกถ้อยคำ` (deposition record), `รายงานการประชุม`
+(meeting report).
+
+- **Bad**: `แนบหลักฐานลายเซ็นอัยการก่อนเปลี่ยนสถานะเป็น "ส่งแล้ว"`
+- **Good**: `แนบใบรับสำนวนที่อัยการลงนามรับแล้วเท่านั้น`
+
+### `no-telegraphic-shorthand` *(mechanical · official · hard)*
+
+Compressed note-shorthand reads like internal scratch — expand to explicit
+prepositions, verbs, and prose. Three subtypes share one pattern: AI lifts
+shorthand from raw notes; the minutes pass should always expand.
+
+**Subtype A — prepositional shorthand.** `หลังขั้น X`, `ก่อน X`, `ระหว่าง X`
+→ `หลังจาก [verb] X`, `ก่อนการ [verb] X`, `ในระหว่าง [verb] X`.
+
+- **Bad**: `270 วัน หลังขั้นเบื้องต้น`
+- **Good**: `270 วัน หลังจากไต่สวนเบื้องต้น`
+
+**Subtype B — slash-separated numeric series.** Slash-separated (`15/30/45`)
+is for tables and notes. Prose uses commas + `และ` before the last item; add
+`ตามลำดับ` if order matters. `ที่ X วัน` → `เมื่อครบ X วัน` for elapsed-time
+triggers.
+
+- **Bad**: `แจ้งเตือนที่ 15/30/45 วัน`
+- **Good**: `แจ้งเตือนเมื่อครบ 15, 30 และ 45 วันตามลำดับ`
+
+**Subtype C — inline arithmetic notation.** Arithmetic shorthand (`60+60×2`,
+`2+1 ปี`) is personal-notes register. Spell out the base value, then describe
+the extension rule separately.
+
+- **Bad**: `กรอบเวลา 60+60×2 วัน สำหรับไต่สวนเบื้องต้น`
+- **Good**: `การไต่สวนเบื้องต้นมีกรอบเวลา 60 วัน และสามารถขยายเวลาออกไปได้ครั้งละ 60 วัน`
+
+### `formal-issue-vocab` *(mechanical · official · hard)*
+
+Informal "open questions" phrasing (`คำถามค้าง`, `เรื่องค้าง`, `ค้างคา`) is
+internal-status register. Official minutes use `ประเด็นที่ยังต้องการคำชี้แจง`,
+`ประเด็นที่อยู่ระหว่างพิจารณา`, or `ประเด็นค้างพิจารณา`. The shape is always
+`ประเด็นที่ + descriptive predicate`, not `คำถาม + adjective`.
+
+- **Bad**: `รายการงานที่ต้องดำเนินการและคำถามที่ค้างไว้`
+- **Good**: `รายการงานที่ต้องดำเนินการและประเด็นที่ยังต้องการคำชี้แจง`
+
+(See `formal-procedural-vocab` list above for the broader vocab.)
 
 ## Cross-register: when to shift
 

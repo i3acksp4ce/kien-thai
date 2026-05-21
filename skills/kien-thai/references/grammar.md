@@ -96,6 +96,11 @@ together; for emphatic capability, use both.
 - **Good**: `ระบบสามารถ query ได้ผ่าน API` (full frame)
 - **Acceptable (informal)**: `ระบบ query ได้ผ่าน API` (only `ได้`)
 
+**Register-aware**: official / news / academic require the full `สามารถ + V +
+ได้` frame. Personal-blog / explainer / marketing accept `V + ได้`. The
+"Acceptable (informal)" lenience does **not** extend to official minutes — see
+`formal-capability-frame` under Register 6 in `register.md`.
+
 ### `time-period` *(mechanical · all-registers · hard)*
 
 For time periods (centuries, decades, eras), Thai uses `ใน` — *during* the period —

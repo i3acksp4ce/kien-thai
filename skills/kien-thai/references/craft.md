@@ -71,6 +71,38 @@ News, Academic. **Softened in Marketing/SaaS-SME** — a brief reassurance at ho
 pivot is acceptable when paired with a concrete next-step
 (`ไม่ต้องกลัวเริ่มไม่ทัน — ลองฟรี 30 วันได้เลย`).
 
+## Voice and framing
+
+### `concrete-cases-over-topology` *(craft · all-registers · soft)*
+
+AI writes "there exists X between A and B" when the human would write "in
+some cases X happens this way, or that way." Topology statements
+(`มีเส้นทาง...`, `มีความสัมพันธ์...`, `มีการเชื่อมโยง...`) read abstract;
+case-by-case description (`บางกรณี...`, `คดีบางลักษณะ...`,
+`ในบางสถานการณ์...`) reads concrete and useful. Strictest in
+official / operational / minutes register where the audience is operational,
+not architectural.
+
+- **Bad**: `มีเส้นทางการส่งต่อสำนวนระหว่าง ปปท. และ ปปช.`
+- **Good**: `คดีบางลักษณะอาจจะมีการส่งต่อให้ทาง ปปช. ดำเนินการ หรือมีการได้รับมอบหมายจาก ปปช. ให้ดำเนินการ`
+
+Heuristic: when about to write `มี [abstract relation] ระหว่าง A และ B`,
+ask whether 2–3 enumerated cases would carry more information.
+
+### `positive-capability-framing` *(craft · all-registers · soft)*
+
+Two-action chains with temporal ordering (`บังคับ Y ก่อนทำ X`) read as
+enforcement and feel awkward. Native Thai system-description frames
+positively with a condition: `ระบบจะ X ได้ก็ต่อเมื่อ Y` — system can X only
+when Y. Lead with the desired state-change; the precondition follows. AI
+defaults to enforcement framing because English requirement docs do.
+
+- **Bad** (enforcement chain): `ระบบบังคับแนบหลักฐาน...ก่อนเปลี่ยนสถานะเป็น "ส่งแล้ว"`
+- **Good** (positive + condition): `ระบบเปลี่ยนสถานะสำนวนเป็น "ส่งแล้ว" ได้ก็ต่อเมื่อมีการแนบใบรับสำนวน...`
+
+`ก็ต่อเมื่อ` is the natural Thai "only-when" pivot — a single particle bridge
+that the AI under-produces because English has no equivalent token.
+
 ## See also
 
 Sentence shape and bullet/prose balance live as positive rules in
